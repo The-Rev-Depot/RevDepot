@@ -35,7 +35,7 @@ public class Product {
 	@Column(name ="product_rating")
 	private float productRating;
 	private String category;
-	@Column(name ="on_sale")
-	private boolean isOnSale;
+	@Column(name ="sale_id")
+	private int isOnSale;
 
 }
