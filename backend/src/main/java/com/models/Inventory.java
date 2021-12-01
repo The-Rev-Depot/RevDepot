@@ -26,6 +26,8 @@ public class Inventory {
 	@Column(name ="inventory_id")
 	private int inventoryId;
 	@Column(name ="product_id")
+	//if this is linked to the product table use @oneToOne annotation to link them in the DB
+	// then use @JoinColumn to and give it the same name as above
 	private int productId;
 	private double quantity;
 	
