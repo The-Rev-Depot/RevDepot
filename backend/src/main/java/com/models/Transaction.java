@@ -28,6 +28,7 @@ public class Transaction {
 	private int transactionId;
 	@Column(name ="transaction_date")
 	private Date transactionDate;
+	@Column(name = "transaction_cost")
 	private double cost;
 	@Column(name ="product_id")
 	private int productId;
