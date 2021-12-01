@@ -27,6 +27,7 @@ public class Product {
 	private int productId;
 	@Column(name ="product_name")
 	private String productName;
+	@Column(name = "product_description")
 	private String description;
 	@Column(name ="pic_url")
 	private String picUrl;
