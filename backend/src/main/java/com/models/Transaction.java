@@ -1,12 +1,14 @@
 package com.models;
 
 import java.sql.Date;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -28,9 +30,10 @@ public class Transaction {
 	private int transactionId;
 	@Column(name ="transaction_date")
 	private Date transactionDate;
+	@Column(name = "transaction_cost")
 	private double cost;
-	@Column(name ="product_id")
-	private int productId;
 	@Column(name ="user_id")
 	private int userId;
+	@OneToMany(mappedBy="itemId")
+	private Set<Item> items;
 }
