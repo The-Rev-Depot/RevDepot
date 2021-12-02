@@ -28,16 +28,16 @@ public class Product {
 	@Column(name ="product_name")
 	private String productName;
 	@Column(name = "product_description")
-	private String description;
+	private String productDescription;
 	@Column(name ="pic_url")
 	private String picUrl;
 	@Column(name ="product_price")
-	private int productPrice;
+	private double productPrice;
 	@Column(name ="product_rating")
 	private float productRating;
 	@Column(name = "product_category")
-	private String category;
+	private String productCategory;
 	@Column(name ="sale_id")
-	private int isOnSale;
+	private int saleId;
 
 }
