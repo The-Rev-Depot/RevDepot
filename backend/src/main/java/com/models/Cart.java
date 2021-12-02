@@ -22,21 +22,18 @@ import lombok.ToString;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "transaction")
+@Table(name = "cart")
 @ToString
-public class Transaction {
-
+public class Cart {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name ="transaction_id")
-	private int transactionId;
-	@Column(name ="transaction_date")
-	private Date transactionDate;
-	@Column(name = "transaction_cost")
-	private double cost;
+	@Column(name ="cart_id")
+	private int cartId;
 	@ManyToOne(optional = false)
 	@JoinColumn(name="user_id", nullable = false)
 	private User user;
 	@OneToMany(mappedBy="itemId")
 	private Set<Item> items;
+
 }
