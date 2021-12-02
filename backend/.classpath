@@ -35,7 +35,7 @@
 			<attribute name="optional" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Najee Mendes/Downloads/lombok-1.18.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/geeps/.m2/repository/org/projectlombok/lombok/1.18.22/lombok-1.18.22.jar"/>
 	<classpathentry kind="src" path="target/generated-sources/annotations">
 		<attributes>
 			<attribute name="ignore_optional_problems" value="true"/>
