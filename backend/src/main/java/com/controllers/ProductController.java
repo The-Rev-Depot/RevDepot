@@ -21,7 +21,7 @@ public class ProductController {
 	ProductService pService;
 
 	@CrossOrigin(origins = "4200")
-	@GetMapping(path = "/deals", produces = "apllication/json")
+	@GetMapping(path = "/deals", produces = "application/json")
 	public ResponseEntity<List<Product>> getAllDeals() {
 		return new ResponseEntity<List<Product>>(pService.getAllDeals(), HttpStatus.OK);
 	}
