@@ -1,7 +1,8 @@
-import { IItem } from "./item";
+import { IProduct } from "./product";
 
 export interface IInventory {
     inventoryId: number,
-    product: IItem[],
-    quantity: number
+    product: IProduct,
+    quantity: number,
+    
 }
