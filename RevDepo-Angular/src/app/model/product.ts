@@ -4,6 +4,7 @@ export interface IProduct {
     description: string,
     picUrl: string,
     productPrice: number,
+    productRating: number,
     category: string,
-    isOnSale: boolean
+    isOnSale: number
 }
