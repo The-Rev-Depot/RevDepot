@@ -1,5 +1,7 @@
+import { IProduct } from "./product";
+
 export interface IInventory {
     inventoryId: number,
-    productId: number,
+    product: IProduct,
     count: number
 }
