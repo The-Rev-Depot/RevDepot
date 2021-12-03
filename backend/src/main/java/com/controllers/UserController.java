@@ -49,31 +49,13 @@ public class UserController {
     //Checks to see if user is in database otherwise it'll reject their log in
     @PostMapping("login")
     public User login(HttpSession session, @RequestBody User user) {
-        try {
-            User currentUser;
-            if (!user.getUsername().isEmpty()){
-                currentUser = this.userService.getUserByUsername(user.getUsername());
-            } else if (!user.getEmail().isEmpty()){
-                currentUser = this.userService.getUserByEmail(user.getEmail());
-            } else {
-                currentUser = null;
-            }
-
+            User currentUser = this.userService.login(user);
             if (currentUser == null){
                 return null;
             } else {
-                // This method will check if the input user password matches the hashed value of the currentUser password
-                // This method can be eliminated if JWT is used.
-                if (BCrypt.checkpw(user.getPassword(), currentUser.getPassword())) {
-                    session.setAttribute("userInSession", currentUser);
-                    return currentUser;
-                } else {
-                    return null; // password is INCORRECT/INVALID
-                }
+                session.setAttribute("userInSession", currentUser);
+                return currentUser;
             }
-        } catch(Exception ex){
-            return null;
-        }
     }
 
     /**

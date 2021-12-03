@@ -3,6 +3,7 @@ package com.services;
 import com.dao.UserDao;
 import com.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -53,9 +54,10 @@ public class UserServiceImpl implements UserService{
     }
 
     /**
+     * Retrieves a user that matches the username passed to the method.
      *
-     * @param username
-     * @return
+     * @param username  - username of the user to be retrieved
+     * @return          - returns the User object matching the username
      */
     @Override
     public User getUserByUsername(String username){
@@ -63,12 +65,47 @@ public class UserServiceImpl implements UserService{
     }
 
     /**
+     * Retrieves a user that matches the email passed to the method.
      *
-     * @param email
-     * @return
+     * @param email     - email of the user to be retrieved
+     * @return          - returns the User object matching the email
      */
     @Override
     public User getUserByEmail(String email) {
         return this.userDao.findUserByEmail(email).orElse(null);
+    }
+
+    /**
+     * Method to log the user into the website
+     *
+     * @param user  the user object that is signing into the website
+     * @return      returns the user object
+     */
+    @Override
+    public User login(User user) {
+        try {
+            User currentUser;
+            if (!user.getUsername().isEmpty()){
+                currentUser = this.userDao.findUserByUsername(user.getUsername()).orElse(null);
+            } else if (!user.getEmail().isEmpty()){
+                currentUser = this.userDao.findUserByEmail(user.getEmail()).orElse(null);
+            } else {
+                currentUser = null;
+            }
+
+            if (currentUser == null){
+                return null;
+            } else {
+                // This method will check if the input user password matches the hashed value of the currentUser password
+                // This method can be eliminated if JWT is used.
+                if (BCrypt.checkpw(user.getPassword(), currentUser.getPassword())) {
+                    return currentUser;
+                } else {
+                    return null; // password is INCORRECT/INVALID
+                }
+            }
+        } catch(Exception ex){
+            return null;
+        }
     }
 }
