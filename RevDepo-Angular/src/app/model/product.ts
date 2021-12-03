@@ -4,7 +4,7 @@ export interface IProduct {
     description: string,
     picUrl: string,
     productPrice: number,
-    productRating: number
+    productRating: number,
     category: string,
     isOnSale: number
 }
