@@ -1,7 +1,6 @@
 package com.controllers;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -77,12 +76,12 @@ public class SalesTest {
 		Product[] products = mapFromJson(productResp, Product[].class);
 		
 		// Asserts that more than 0 items are returned
-		assertNotEquals(products.length, 0);
+		assertEquals(products[0].getSaleId(), 10);
 	}
 	
 	@Test
 	void testGetDealsByCategory() throws Exception {
-		restURL = new URL(baseURL + ":" + port + "/product/deals");
+		restURL = new URL(baseURL + ":" + port + "/product/deals/category");
 		
 		//get products from db		
 		MvcResult mvcResult = mvc
@@ -93,7 +92,7 @@ public class SalesTest {
 		Product[] products = mapFromJson(productResp, Product[].class);
 		
 		// Assert that more than 0 items are returned
-		assertNotEquals(products.length,0);
+		assertEquals(products[0].getProductCategory(),"category");
 	}
 	
 }
