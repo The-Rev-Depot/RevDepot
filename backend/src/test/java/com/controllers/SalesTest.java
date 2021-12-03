@@ -67,17 +67,33 @@ public class SalesTest {
 	}
 	
 	@Test
-	void testSalesMath() throws Exception {
-		//get product from db		
+	void testGetAllDeals() throws Exception {
+		//get products from db		
 		MvcResult mvcResult = mvc
 				.perform(MockMvcRequestBuilders.get(restURL.toString()).accept(MediaType.APPLICATION_JSON)).andReturn();
 		
-		// do math with sales number
-		
+		// Assign response to String, Parse String to Product Array		
 		String productResp = mvcResult.getResponse().getContentAsString();
 		Product[] products = mapFromJson(productResp, Product[].class);
 		
-		//assert that new price is correct new price/lower than original
+		// Asserts that more than 0 items are returned
 		assertNotEquals(products.length, 0);
 	}
+	
+	@Test
+	void testGetDealsByCategory() throws Exception {
+		restURL = new URL(baseURL + ":" + port + "/product/deals");
+		
+		//get products from db		
+		MvcResult mvcResult = mvc
+				.perform(MockMvcRequestBuilders.get(restURL.toString()).accept(MediaType.APPLICATION_JSON)).andReturn();
+		
+		// Assign response to String, Parse String to Product Array
+		String productResp = mvcResult.getResponse().getContentAsString();
+		Product[] products = mapFromJson(productResp, Product[].class);
+		
+		// Assert that more than 0 items are returned
+		assertNotEquals(products.length,0);
+	}
+	
 }
