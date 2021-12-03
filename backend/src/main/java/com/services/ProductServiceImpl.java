@@ -20,4 +20,8 @@ public class ProductServiceImpl implements ProductService {
 		return pDao.getAllDeals();
 	}
 
+	@Override
+	public List<Product> getAllDealsByCategory() {
+		return pDao.getAllDealsByCategory();
+	}
 }

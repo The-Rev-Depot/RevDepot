@@ -26,6 +26,12 @@ public class ProductController {
 		return new ResponseEntity<List<Product>>(pService.getAllDeals(), HttpStatus.OK);
 	}
 	
+	@CrossOrigin(origins = "4200")
+	@GetMapping(path = "/deals/category", produces = "application/json")
+	public ResponseEntity<List<Product>> getAllDealsByCategory() {
+		return new ResponseEntity<List<Product>>(pService.getAllDealsByCategory(), HttpStatus.OK);
+	}
+	
 //	
 //	@CrossOrigin(origins = "4200")
 //	@GetMapping(path = "/deals", produces = "apllication/json")

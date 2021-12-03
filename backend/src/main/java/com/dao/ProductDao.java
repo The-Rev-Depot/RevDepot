@@ -14,7 +14,8 @@ public interface ProductDao extends JpaRepository<Product,Integer>{
 	@Query(value = "Select * from revdepot.product where product.sale_id = 10", nativeQuery=true)
 	List<Product> getAllDeals();
 	
-	
+	@Query(value = "Select * from revdepot.product where product.sale_id != 0 group by product_category", nativeQuery = true)
+	List<Product> getAllDealsByCategory();
 	
 //	@Query(value = "Select * from revdepot.product where product.sale != 0", nativeQuery=true)
 //	 getDealById(@Param("id")int id);
