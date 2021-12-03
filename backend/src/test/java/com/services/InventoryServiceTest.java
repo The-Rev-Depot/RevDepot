@@ -33,8 +33,8 @@ public class InventoryServiceTest {
 		// Arrange
 		Inventory expectedInventory = new Inventory();
 		
-		when(inventoryDao.findById(expectedInventory.getInventoryId()))
-		.thenReturn(Optional.of(expectedInventory));
+		when(inventoryDao.getById(expectedInventory.getInventoryId()))
+		.thenReturn(expectedInventory);
 		
 		when(inventoryDao.save(expectedInventory)).thenReturn(expectedInventory);
 		
@@ -42,7 +42,7 @@ public class InventoryServiceTest {
 		Inventory actualInventory = inventoryService.updateInventory(expectedInventory);
 		
 		// Assert
-		verify(inventoryDao, times(1)).findById(expectedInventory.getInventoryId());
+		verify(inventoryDao, times(1)).getById(expectedInventory.getInventoryId());
 		verify(inventoryDao, times(1)).save(expectedInventory);
 		assertEquals(actualInventory, expectedInventory);
 		
