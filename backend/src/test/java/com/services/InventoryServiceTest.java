@@ -32,6 +32,8 @@ public class InventoryServiceTest {
 	void updateInventoryTest() {
 		// Arrange
 		Inventory expectedInventory = new Inventory();
+		int expectedQuantity = 5;
+		expectedInventory.setQuantity(expectedQuantity);
 		
 		when(inventoryDao.getById(expectedInventory.getInventoryId()))
 		.thenReturn(expectedInventory);
@@ -44,6 +46,7 @@ public class InventoryServiceTest {
 		// Assert
 		verify(inventoryDao, times(1)).getById(expectedInventory.getInventoryId());
 		verify(inventoryDao, times(1)).save(expectedInventory);
+		assertEquals(actualInventory.getQuantity(), expectedQuantity);
 		assertEquals(actualInventory, expectedInventory);
 		
 	}
