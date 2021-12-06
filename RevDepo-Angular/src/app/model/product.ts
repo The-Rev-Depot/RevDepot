@@ -1,9 +1,10 @@
-export interface IProduct {
+export interface Product {
     productId: number,
     productName: string,
     description: string,
     picUrl: string,
     productPrice: number,
     category: string,
-    isOnSale: boolean
+    isOnSale: number,
+    productRating:number
 }
