@@ -1,6 +1,7 @@
 package com.services;
 
 import com.models.Inventory;
+import com.models.Item;
 
 public interface InventoryService {
 	
@@ -11,4 +12,11 @@ public interface InventoryService {
 	 */
 	Inventory updateInventory(Inventory inventory);
 
+	/**
+	 * Subtracts the given item's quantity from the corresponding inventory record's quantity.
+	 * @param item  The item
+	 * @return		The updated inventory object
+	 */
+	public Inventory subtractItemFromInventory(Item item);
+	
 }

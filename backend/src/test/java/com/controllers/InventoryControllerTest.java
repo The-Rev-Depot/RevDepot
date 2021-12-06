@@ -34,9 +34,10 @@ public class InventoryControllerTest {
 		Inventory expectedInventory = new Inventory();
 		
 		// Act
-		Inventory actualInventory = inventoryController.updateInventory(expectedInventory);
+		//Inventory actualInventory = inventoryController.updateInventory(expectedInventory);
 		
 		// Assert
 		verify(inventoryService, times(1)).updateInventory(expectedInventory);
 	}
+	
 }

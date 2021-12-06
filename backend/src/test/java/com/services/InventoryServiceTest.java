@@ -1,19 +1,21 @@
 package com.services;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import java.util.Optional;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.dao.InventoryDao;
 import com.models.Inventory;
+import com.models.Item;
+import com.models.Product;
 
 @SpringBootTest
 public class InventoryServiceTest {
@@ -25,7 +27,7 @@ public class InventoryServiceTest {
 	
 	@BeforeEach
 	void setUp() {
-		inventoryService = new InventoryServiceImpl(inventoryDao);
+		inventoryService = Mockito.spy(new InventoryServiceImpl(inventoryDao));
 	}
 	
 	@Test
@@ -35,8 +37,7 @@ public class InventoryServiceTest {
 		int expectedQuantity = 5;
 		expectedInventory.setQuantity(expectedQuantity);
 		
-		when(inventoryDao.getById(expectedInventory.getInventoryId()))
-		.thenReturn(expectedInventory);
+		when(inventoryDao.getById(expectedInventory.getInventoryId())).thenReturn(expectedInventory);
 		
 		when(inventoryDao.save(expectedInventory)).thenReturn(expectedInventory);
 		
@@ -50,4 +51,33 @@ public class InventoryServiceTest {
 		assertEquals(actualInventory, expectedInventory);
 		
 	}
+	
+	@Test
+	void subtractItemFromInventoryTest() {
+		// Arrange
+		Product expectedProduct = new Product();
+		
+		Inventory expectedInventory = new Inventory();
+		expectedInventory.setProduct(expectedProduct);
+		expectedInventory.setQuantity(10);
+		
+		Item expectedItem = new Item();
+		int expectedItemQuantity = 1;
+		expectedItem.setProduct(expectedProduct);
+		expectedItem.setQuanity(expectedItemQuantity);
+		
+		when(inventoryDao.findByProduct(expectedItem.getProduct())).thenReturn(expectedInventory);
+		//when(inventoryDao.getById(expectedInventory.getInventoryId())).thenReturn(expectedInventory);
+		doReturn(expectedInventory).when(inventoryService).updateInventory(expectedInventory);
+		
+		// Act
+		Inventory actualInventory = inventoryService.subtractItemFromInventory(expectedItem);
+		
+		// Assert
+		verify(inventoryDao, times(1)).findByProduct(expectedProduct);
+		verify(inventoryService, times(1)).updateInventory(expectedInventory);
+		assertEquals(actualInventory.getQuantity(), expectedInventory.getQuantity() - expectedItemQuantity);
+		assertEquals(actualInventory.getInventoryId(), expectedInventory.getInventoryId());
+	}
+	
 }
