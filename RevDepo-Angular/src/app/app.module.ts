@@ -31,7 +31,7 @@ import { FilterPipe } from './pipes/filter.pipe';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule, 
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
   ],

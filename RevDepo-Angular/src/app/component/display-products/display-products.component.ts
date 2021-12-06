@@ -12,4 +12,7 @@ export class DisplayProductsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // todosArray = []; product array
+  //selectArray = [];
+
 }
