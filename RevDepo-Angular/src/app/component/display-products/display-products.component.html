@@ -39,6 +39,8 @@
     <h3>Deals</h3><!--data bind product info, need a new select statement for only items on sale,(onSale varible)-->
     <div id="itemCon">
 
+      <app-product-card></app-product-card>
+
       <!--
       <div *ngFor = "let todo of todosArray" class="todo-card" onclick="reroute">
 
@@ -63,42 +65,6 @@
     <!--how does search and sort team want to display results-->
   </div>
 
-  <div id="allItems ">
-<!--all category, display everything. could be its own page or hidden toggle?-->
-    <h3>All Items</h3>
-
-    <div class="grid-container">
-
-      <!--
-          <div *ngIf="greeterDiv">
-
-    <label for="yourName" style="color: crimson;">What's your name?</label>
-    <input type="text" id="yourName" [(ngModel)]="name" />
-
-    <button (click)="submitName()">Submit</button>
-
-</div>
-
-<h2 *ngIf="name" id="Welcomeh2" style="color: crimson;" [hidden]="Welcomeh2Tog">Welcome, {{name}}</h2>
-
-
-
-
-        <div *ngFor = "let todo of todosArray" class="todo-card" [hidden]="hiddenToggle">
-
-
-          <h2>ToDo#{{todo.id}}</h2>
-          <p>Tasks:{{todo.content}}</p>
-          <p>Status:{{todo.status}}</p>
-          <label for="updateBox{{todo.id}}">Update Tasks</label>
-          <input id="updateBox{{todo.id}}" [(ngModel)]="todo.content" />
-          <img src={{todo.img}}/> -->
-
-      </div>
-
-
-
-
 
 
 
@@ -107,8 +73,6 @@
 
   </div>
 
-
-</div>
 
 </div>
 
