@@ -17,8 +17,6 @@ export class CheckoutComponent implements OnInit {
   ngOnInit(): void {
     this.cart = this.cartService.getCart();
 
-
-
   }
 
   /**

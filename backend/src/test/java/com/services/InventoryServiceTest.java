@@ -47,8 +47,8 @@ public class InventoryServiceTest {
 		// Assert
 		verify(inventoryDao, times(1)).getById(expectedInventory.getInventoryId());
 		verify(inventoryDao, times(1)).save(expectedInventory);
-		assertEquals(actualInventory.getQuantity(), expectedQuantity);
-		assertEquals(actualInventory, expectedInventory);
+		assertEquals(expectedQuantity, actualInventory.getQuantity());
+		assertEquals(expectedInventory, actualInventory);
 		
 	}
 	
@@ -58,8 +58,9 @@ public class InventoryServiceTest {
 		Product expectedProduct = new Product();
 		
 		Inventory expectedInventory = new Inventory();
+		int expectedInventoryQuantity = 10;
 		expectedInventory.setProduct(expectedProduct);
-		expectedInventory.setQuantity(10);
+		expectedInventory.setQuantity(expectedInventoryQuantity);
 		
 		Item expectedItem = new Item();
 		int expectedItemQuantity = 1;
@@ -67,7 +68,6 @@ public class InventoryServiceTest {
 		expectedItem.setQuanity(expectedItemQuantity);
 		
 		when(inventoryDao.findByProduct(expectedItem.getProduct())).thenReturn(expectedInventory);
-		//when(inventoryDao.getById(expectedInventory.getInventoryId())).thenReturn(expectedInventory);
 		doReturn(expectedInventory).when(inventoryService).updateInventory(expectedInventory);
 		
 		// Act
@@ -76,8 +76,8 @@ public class InventoryServiceTest {
 		// Assert
 		verify(inventoryDao, times(1)).findByProduct(expectedProduct);
 		verify(inventoryService, times(1)).updateInventory(expectedInventory);
-		assertEquals(actualInventory.getQuantity(), expectedInventory.getQuantity() - expectedItemQuantity);
-		assertEquals(actualInventory.getInventoryId(), expectedInventory.getInventoryId());
+		assertEquals(expectedInventoryQuantity - expectedItemQuantity, actualInventory.getQuantity());
+		assertEquals(expectedInventory.getInventoryId(), actualInventory.getInventoryId());
 	}
 	
 }
