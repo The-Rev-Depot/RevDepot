@@ -1,3 +1,5 @@
+import { Routes } from '@angular/router';
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { IProduct } from 'src/app/model/product';
 
@@ -7,8 +9,9 @@ import { IProduct } from 'src/app/model/product';
   styleUrls: ['./product-card.component.css']
 })
 export class ProductCardComponent implements OnInit {
+  router1: any;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   public product: any;
   //public shirtPro : product;
@@ -65,6 +68,13 @@ export class ProductCardComponent implements OnInit {
   }
 
   productsArray = [this.shirtPro,this.shirtPro1,this.shirtPro2];
+
+moreInfo()
+  {
+    console.log("google")
+
+    this.router.navigateByUrl('/product-details');
+  }
 
 
 }
