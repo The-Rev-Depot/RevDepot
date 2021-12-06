@@ -14,6 +14,7 @@ import { SearchbarComponent } from './component/searchbar/searchbar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './component/navbar/navbar.component';
 import { FilterPipe } from './pipes/filter.pipe';
+import { CartService } from './service/cart.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import { FilterPipe } from './pipes/filter.pipe';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [CartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
