@@ -1,7 +1,15 @@
 <p>searchbar works!</p>
 
+<!-- <div class="md-form">
+    <input type="search" placeholder="Search Products">
+</div>
+<ul>
+
+</ul> -->
+
+
 <div class="md-form">
-    <input type="search" [(ngModel)]="searchText" placeholder="Search text">
+    <input type="search" [(ngModel)]="searchText" placeholder="Search Products">
   </div>
   <ul *ngFor="let product of productArray | filter: searchText">
     <li>{{product}}</li>

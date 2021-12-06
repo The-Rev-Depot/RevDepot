@@ -5,7 +5,8 @@ import { FilterPipe } from 'src/app/pipes/filter.pipe';
 @Component({
   selector: 'app-searchbar',
   templateUrl: './searchbar.component.html',
-  styleUrls: ['./searchbar.component.css']
+  styleUrls: ['./searchbar.component.css'],
+  providers: [FilterPipe]
 })
 export class SearchbarComponent implements OnInit {
 
@@ -24,12 +25,16 @@ export class SearchbarComponent implements OnInit {
   
 
   constructor(
+    private filter : FilterPipe,
     private mockProductService : MockProductServiceService
-    ) { }
+   ){ }
 
-    // this.productArray = mockProductService.
+   searchText = this.filter.transform;
+
+   productArray = this.mockProductService.productArray;
 
   ngOnInit(): void {
+    ;
   }
 
 }
