@@ -8,6 +8,6 @@ import com.models.Product;
 
 public interface ProductDao extends JpaRepository<Product,Integer>{
 	
-	//public List<Product> findAll();
+	public List<Product> findAll();
 
 }
