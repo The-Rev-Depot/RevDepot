@@ -2,6 +2,9 @@ package com.controllers;
 
 import com.models.User;
 import com.services.UserService;
+import com.utility.JwtUtility;
+import org.apache.tomcat.util.codec.binary.Base64;
+import org.apache.tomcat.util.codec.binary.StringUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -19,13 +22,14 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class UserControllerTest {
     UserController userController;
+    JwtUtility jwtUtility;
 
     @Mock
     UserService userService;
 
     @BeforeEach
     void setUp() {
-        this.userController = new UserController(userService);
+        this.userController = new UserController(userService, jwtUtility);
     }
 
     @Test
@@ -46,63 +50,39 @@ class UserControllerTest {
 
     @Test
     void createUser() {
-        //Assign
-        User expectedResult = new User(1, "test", "password", "Test", "Test",
+//Assign
+        JwtUtility jwt = Mockito.mock(JwtUtility.class);
+        String expectedResult = null;
+        User inputUser = new User(1, "test", "password", "Test", "Test",
                 "test@test.com", null, null);
-        //Mock
-        Mockito.when(userService.createUser(expectedResult)).thenReturn(expectedResult);
+
+        Mockito.when(userService.createUser(inputUser)).thenReturn(null);
+        Mockito.when(jwt.genToken(inputUser)).thenReturn("testing");
 
         //Act
-        User actualResult = this.userController.createUser(expectedResult);
-
+        String actualResult = this.userController.createUser(inputUser);
         //Assert
         assertEquals(expectedResult, actualResult);
+        Mockito.verify(userService, Mockito.times(1)).createUser(inputUser);
+
     }
 
     @Test
     void login() {
         //Assign
-        HttpSession session = Mockito.mock(HttpSession.class);
-        User expectedResult = null;
+        JwtUtility jwt = Mockito.mock(JwtUtility.class);
+        String expectedResult = null;
         User inputUser = new User(1, "test", "password", "Test", "Test",
                 "test@test.com", null, null);
 
-        Mockito.when(userService.login(inputUser)).thenReturn(expectedResult);
+        Mockito.when(userService.login(inputUser)).thenReturn(null);
+        Mockito.when(jwt.genToken(inputUser)).thenReturn("testing");
 
         //Act
-        User actualResult = this.userController.login(session, inputUser);
-
+        String actualResult = this.userController.login(inputUser);
         //Assert
         assertEquals(expectedResult, actualResult);
         Mockito.verify(userService, Mockito.times(1)).login(inputUser);
     }
 
-    @Test
-    void checkSession() {
-        //Assign
-        HttpSession session = Mockito.mock(HttpSession.class);
-        User expectedResult = new User(1, "test", "password", "Test", "Test",
-                "test@test.com", null, null);
-        session.setAttribute("userInSession", expectedResult);
-        Mockito.when(session.getAttribute("userInSession")).thenReturn(expectedResult);
-
-        //Act
-        User actualResult = this.userController.checkSession(session);
-
-        //Assert
-        assertEquals(expectedResult, actualResult);
-    }
-
-    @Test
-    void logout() {
-        //Assign
-        HttpSession session = Mockito.mock(HttpSession.class);
-        User expectedResult = null;
-
-        //Act
-        User actualResult = this.userController.logout(session);
-
-        //Assert
-        assertEquals(expectedResult, actualResult);
-    }
 }

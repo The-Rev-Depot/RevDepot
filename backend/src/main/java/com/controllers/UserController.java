@@ -2,6 +2,7 @@ package com.controllers;
 
 import com.models.User;
 import com.services.UserService;
+import com.utility.JwtUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,10 +14,12 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
 @RequestMapping("api")
 public class UserController {
     private UserService userService;
+    private JwtUtility jwtUtility;
 
     @Autowired
-    public UserController(UserService userService){
+    public UserController(UserService userService, JwtUtility jwtUtility){
         this.userService = userService;
+        this.jwtUtility = jwtUtility;
     }
 
     /**
@@ -36,49 +39,30 @@ public class UserController {
      * @return      - Return the User object which successfully added to the system.
      */
     @PostMapping("user")
-    public User createUser(@RequestBody User user){
-        return this.userService.createUser(user);
+    public String createUser(@RequestBody User user){
+        User currentUser = this.userService.createUser(user);
+        if (currentUser == null){
+            return null;
+        } else {
+            return jwtUtility.genToken(currentUser);
+        }
     }
 
     /**
      * Method used to login to the system as User with the account detail requirement
-     * @param session   - User object that holds the current login user information, could be empty if logout
      * @param user      - User object which primarily contain username/email and password
      * @return          - Returns the User object who successfully log-in Else return null.
      */
     //Checks to see if user is in database otherwise it'll reject their log in
     @PostMapping("login")
-    public User login(HttpSession session, @RequestBody User user) {
+    public String login(@RequestBody User user) {
             User currentUser = this.userService.login(user);
             if (currentUser == null){
                 return null;
             } else {
-                session.setAttribute("userInSession", currentUser);
-                return currentUser;
+                return jwtUtility.genToken(currentUser);
             }
     }
 
-    /**
-     * This will check if the current user is currently login in session
-     *
-     * @param session  -the sessionUser data currently login
-     * @return  User   -returns the User object with updated information
-     */
-    @GetMapping("check-session")
-    public User checkSession(HttpSession session) {
-        return (User) session.getAttribute("userInSession");
-    }
-
-    /**
-     * Method that will delete/remove the current user login session
-     *
-     * @param session   - User currently login
-     * @return          - null or empty User
-     */
-    @GetMapping("logout")
-    public User logout(HttpSession session) {
-        session.setAttribute("userInSession", null);
-        return null;
-    }
 
 }
