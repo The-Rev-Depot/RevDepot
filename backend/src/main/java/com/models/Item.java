@@ -19,7 +19,7 @@ public class Item {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name ="item_id")
 	private int itemId;
-	private int quanity;
+	private int quantity;
 	@ManyToOne(fetch = FetchType.EAGER, optional = false)
 	@JoinColumn(name="product_id", nullable = false)
 	private Product product;
