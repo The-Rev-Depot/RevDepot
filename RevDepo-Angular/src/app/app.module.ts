@@ -15,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './component/navbar/navbar.component';
 import { ProductCardComponent } from './component/product-card/product-card.component';
 import { CartService } from './service/cart.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { CartService } from './service/cart.service';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
   ],
   providers: [CartService],
   bootstrap: [AppComponent]
