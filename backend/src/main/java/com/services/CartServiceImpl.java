@@ -16,8 +16,11 @@ public class CartServiceImpl implements CartService{
 	
 	@Override
 	public void update(Cart curCart) {
-		Cart temp = cartDao.findCartByCartId(curCart.getCartId());
+		Cart temp = cartDao.findByCartId(curCart.getCartId());
 		temp.setItems(curCart.getItems());
+		User tempUser = this.getUserById(curCart.getUser().getUserId());
+		
+		temp.setUser(tempUser);
 		
 		cartDao.save(temp);
 	}
