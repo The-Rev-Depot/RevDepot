@@ -6,6 +6,7 @@ import { DisplayProductsComponent } from './component/display-products/display-p
 import { LoginComponent } from './component/login/login.component';
 import { ProductDetailsComponent } from './component/product-details/product-details.component';
 import { RegisterComponent } from './component/register/register.component';
+import { ResultPageComponent } from './component/result-page/result-page.component';
 
 const routes: Routes = [
   {path: 'display-products', component: DisplayProductsComponent},
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'cart', component: CartComponent},
   {path: 'product-details', component: ProductDetailsComponent},
+  {path: 'result-page/:category', component: ResultPageComponent},
   {path: 'checkout', component: CheckoutComponent},
   {path: '**', redirectTo: 'display-products'},
 

@@ -24,21 +24,23 @@ export class DisplayProductsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // todosArray = []; product array
-  //selectArray = [];
-  // //  productsArray = [this.shirtPro,this.shirtPro1,this.shirtPro2];
-  // shirtPro =
-  // {
 
-  //   productId: 1,
-  //   productName: 'card' ,
-  //   description: "string",
-  //   picUrl: "string",
-  //   productPrice: 15,
-  //   category: "string",
-  //   isOnSale: 1
+  Apparel =
+  {
+    title: "Apparel"
+  }
 
-  // }
+  Stationary =
+  {
+    title: "Stationary"
+  }
+
+  Accessories =
+  {
+    title: "Accessories"
+  }
+
+  categoriesArray = [this.Apparel,this.Stationary,this.Accessories];
 
 
 }

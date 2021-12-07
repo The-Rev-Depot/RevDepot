@@ -24,4 +24,19 @@ private InventoryDao inventoryDao;
 		return inventoryDao.findAll();
 	}
 	
+//		
+//	//methods to select by category 	
+//		//clothing, stationary, accessories...all(above)?
+//	public List<Inventory> getProductByCategory(Product product) {
+//		
+//		List<Inventory> productCategory = null;
+//		
+//		productCategory = inventoryDao.findByCategory(product.getCategory());
+//		
+//		
+//		return null;
+//	}
+
+	
+	
 }
