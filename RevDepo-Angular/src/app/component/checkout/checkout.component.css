@@ -2,3 +2,54 @@ table {
     width: 100%;
     max-width: 600px;
 }
+
+.product-card {
+    max-width: 450px;
+    margin: 10px;
+    border-radius: 15px;
+    /* background-color: #474C55;   rgba (72, 76, 86, 1); */
+    background-image: linear-gradient(#72A4C2, #FFFFFF, #FFFFFF, #FFFFFF);
+}
+
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2em;
+}
+
+.grey {
+    color: gray;
+    font-size: .8em;
+}
+
+.row {
+    display: flexbox;
+}
+
+.column-left {
+    max-width: 450px;
+    margin-left: 25px;
+}
+
+.column-right {
+    margin-left: 475px;
+    /* position: fixed; */
+}
+
+hr {
+    display: block;
+    border-width: 3px;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.box {
+    border-width: 2px;
+    border-style: solid;
+    margin-left: 475px;
+    margin-top: 10%;
+    
+    padding: 5%;
+}
