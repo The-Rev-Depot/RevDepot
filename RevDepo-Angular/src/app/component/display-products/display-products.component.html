@@ -1,1 +1,78 @@
 <p>display-products works!</p>
+
+
+<div class="container" id="fullcontainer">
+
+  <div id="topNav">
+    <app-navbar></app-navbar>
+    <!-- <app-searchbar></app-searchbar> -->
+    <app-cart></app-cart>
+  </div>
+
+
+
+
+<div id="homeCon" class="container">
+
+
+  <div id="banner" class="jumbotron">
+
+    <!-- Title -->
+  <h4 class="card-title h4 pb-2"><strong>My adventure</strong></h4>
+
+  <!-- Card image -->
+  <div class="view overlay my-4 waves-light" mdbWavesEffect>
+    <img src="https://itelementaryschool.com/wp-content/uploads/2015/03/it_photo_84532.jpg" class="img-fluid" alt="">
+    <a>
+      <div class="mask rgba-white-slight"></div>
+    </a>
+  </div>
+
+  <h5 class="indigo-text h5 mb-4">Photography</h5>
+
+  </div>
+
+
+
+<div id="items" class="container">
+  <div id="deals"><!--make this a round-about careinsel* section-->
+    <h3>Deals</h3><!--data bind product info, need a new select statement for only items on sale,(onSale varible)-->
+    <div id="itemCon">
+
+      <app-product-card></app-product-card>
+
+      <!--
+      <div *ngFor = "let todo of todosArray" class="todo-card" onclick="reroute">
+
+
+        <h2>ToDo#{{todo.id}}</h2>
+        <p>Tasks:{{todo.content}}</p>
+        <p>Status:{{todo.status}}</p>
+        <label for="updateBox{{todo.id}}">Update Tasks</label>
+        <input id="updateBox{{todo.id}}" [(ngModel)]="todo.content" />
+        <img src={{todo.img}}/>
+        -->
+
+    </div>
+  </div>
+
+
+
+
+  <div id="categories">
+    <h3>Categories</h3>
+    <div id="catButtons" class="grid-container"></div>
+    <!--how does search and sort team want to display results-->
+  </div>
+
+
+
+
+  </div>
+
+
+  </div>
+
+
+</div>
+

@@ -13,6 +13,7 @@ import { CheckoutComponent } from './component/checkout/checkout.component';
 import { SearchbarComponent } from './component/searchbar/searchbar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './component/navbar/navbar.component';
+import { ProductCardComponent } from './component/product-card/product-card.component';
 import { CartService } from './service/cart.service';
 
 @NgModule({
@@ -25,12 +26,13 @@ import { CartService } from './service/cart.service';
     CartComponent,
     CheckoutComponent,
     SearchbarComponent,
-    NavbarComponent
+    NavbarComponent,
+    ProductCardComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule, 
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
   ],
