@@ -1,17 +1,15 @@
 package com.controllers;
 
+import com.models.Response;
 import com.models.User;
 import com.services.UserService;
 import com.utility.JwtUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
-import java.util.List;
-import org.springframework.security.crypto.bcrypt.BCrypt;
-
 @RestController
-@RequestMapping("api")
+@RequestMapping("revdepot")
+@CrossOrigin(value="http://localhost:4200", allowCredentials = "true")
 public class UserController {
     private UserService userService;
     private JwtUtility jwtUtility;
@@ -28,8 +26,8 @@ public class UserController {
      * @return  - List of Users (object)
      */
     @GetMapping("user")
-    public List<User> getAllUser(){
-        return this.userService.getAllUsers();
+    public Response getAllUser(){
+        return new Response(true, "Listing All Users", this.userService.getAllUsers());
     }
 
     /**
@@ -39,12 +37,12 @@ public class UserController {
      * @return      - Return the User object which successfully added to the system.
      */
     @PostMapping("user")
-    public String createUser(@RequestBody User user){
+    public Response createUser(@RequestBody User user){
         User currentUser = this.userService.createUser(user);
         if (currentUser == null){
-            return null;
+            return new Response(false, "Failed to create a new user", null);
         } else {
-            return jwtUtility.genToken(currentUser);
+            return new Response(true, jwtUtility.genToken(currentUser), currentUser);
         }
     }
 
@@ -55,13 +53,13 @@ public class UserController {
      */
     //Checks to see if user is in database otherwise it'll reject their log in
     @PostMapping("login")
-    public String login(@RequestBody User user) {
-            User currentUser = this.userService.login(user);
-            if (currentUser == null){
-                return null;
-            } else {
-                return jwtUtility.genToken(currentUser);
-            }
+    public Response login(@RequestBody User user) {
+        User currentUser = this.userService.login(user);
+        if (currentUser == null){
+            return new Response(false, "Failure to login", null);
+        } else {
+            return new Response(true, jwtUtility.genToken(currentUser), currentUser);
+        }
     }
 
     /**
@@ -70,13 +68,12 @@ public class UserController {
      * @return          - Returns the JWT token including the User Object into its payload
      */
     @GetMapping("user/{id}")
-    public String getUserById(@PathVariable Integer userId){
-        User user = this.userService.getUserById(userId);
-
-        if (user == null){
-            return null;
+    public Response getUserById(@PathVariable Integer userId){
+        User currentUser = this.userService.getUserById(userId);
+        if (currentUser == null){
+            return new Response(false, "Cannot find user with id " + userId, null);
         } else {
-            return jwtUtility.genToken(user);
+            return new Response(true, jwtUtility.genToken(currentUser), currentUser);
         }
     }
 
@@ -86,13 +83,12 @@ public class UserController {
      * @return              - Returns the JWT token including the User Object into its payload
      */
     @GetMapping("user/username/{username}")
-    public String getUserByUsername(@PathVariable String username){
-        User user = this.userService.getUserByUsername(username);
-
-        if (user == null){
-            return null;
+    public Response getUserByUsername(@PathVariable String username){
+        User currentUser = this.userService.getUserByUsername(username);
+        if (currentUser == null){
+            return new Response(false, "Cannot find user with username " + username, null);
         } else {
-            return jwtUtility.genToken(user);
+            return new Response(true, jwtUtility.genToken(currentUser), currentUser);
         }
     }
 
@@ -102,13 +98,12 @@ public class UserController {
      * @return          - Returns the JWT token including the User Object into its payload
      */
     @GetMapping("user/email/{email}")
-    public String getUserByEmail(@PathVariable String email) {
-        User user = this.userService.getUserByEmail(email);
-
-        if (user == null){
-            return null;
+    public Response getUserByEmail(@PathVariable String email) {
+        User currentUser = this.userService.getUserByEmail(email);
+        if (currentUser == null){
+            return new Response(false, "Cannot find user with email " + email, null);
         } else {
-            return jwtUtility.genToken(user);
+            return new Response(true, jwtUtility.genToken(currentUser), currentUser);
         }
     }
 }
