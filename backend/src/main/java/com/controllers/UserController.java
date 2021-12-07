@@ -51,7 +51,7 @@ public class UserController {
     /**
      * Method used to login to the system as User with the account detail requirement
      * @param user      - User object which primarily contain username/email and password
-     * @return          - Returns the User object who successfully log-in Else return null.
+     * @return          - Returns the User object who successfully log-in Else return null that encoded into JWT token
      */
     //Checks to see if user is in database otherwise it'll reject their log in
     @PostMapping("login")
@@ -64,5 +64,51 @@ public class UserController {
             }
     }
 
+    /**
+     * Method used to get user using the userId as input
+     * @param userId    - userId for the user to retrieve
+     * @return          - Returns the JWT token including the User Object into its payload
+     */
+    @GetMapping("user/{id}")
+    public String getUserById(@PathVariable Integer userId){
+        User user = this.userService.getUserById(userId);
 
+        if (user == null){
+            return null;
+        } else {
+            return jwtUtility.genToken(user);
+        }
+    }
+
+    /**
+     * Method used to get user using the username as input
+     * @param username      - username for the user to retrieve
+     * @return              - Returns the JWT token including the User Object into its payload
+     */
+    @GetMapping("user/username/{username}")
+    public String getUserByUsername(@PathVariable String username){
+        User user = this.userService.getUserByUsername(username);
+
+        if (user == null){
+            return null;
+        } else {
+            return jwtUtility.genToken(user);
+        }
+    }
+
+    /**
+     * Method used to get user using the email as input
+     * @param email     - email for the user to retrieve
+     * @return          - Returns the JWT token including the User Object into its payload
+     */
+    @GetMapping("user/email/{email}")
+    public String getUserByEmail(@PathVariable String email) {
+        User user = this.userService.getUserByEmail(email);
+
+        if (user == null){
+            return null;
+        } else {
+            return jwtUtility.genToken(user);
+        }
+    }
 }

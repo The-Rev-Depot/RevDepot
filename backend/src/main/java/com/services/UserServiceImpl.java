@@ -72,9 +72,23 @@ public class UserServiceImpl implements UserService{
      */
     @Override
     public User getUserByEmail(String email) {
-        return this.userDao.findUserByEmail(email).orElse(null);
+        User user = this.userDao.findUserByEmail(email).orElse(null);
+        user.setPassword(null);
+        return user;
     }
 
+    /**
+     * Retrieves a user that matches the userId passed to the method.
+     *
+     * @param userId     - userId of the user to be retrieved
+     * @return          - returns the User object matching the userId
+     */
+    @Override
+    public User getUserById(Integer userId){
+        User user =  this.userDao.findById(userId).orElse(null);
+        user.setPassword(null);
+        return user;
+    }
     /**
      * Method to log the user into the website
      *
