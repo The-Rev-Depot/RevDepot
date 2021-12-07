@@ -61,8 +61,22 @@
 
   <div id="categories">
     <h3>Categories</h3>
-    <div id="catButtons" class="grid-container"></div>
+    <div id="catButtons" class="grid-container">
+      <a id = "spacing" *ngFor="let category of categoriesArray" class="col-1-4" routerLink="/result-page/{{category.title}}">
+        <div>
+            <h4>{{category.title}}</h4>
+        </div>  
+      </a>
+    </div>
+    <br>
+    <br>
+    
     <!--how does search and sort team want to display results-->
+
+
+
+
+
   </div>
 
 

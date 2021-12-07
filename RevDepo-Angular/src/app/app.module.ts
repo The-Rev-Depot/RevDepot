@@ -14,6 +14,7 @@ import { SearchbarComponent } from './component/searchbar/searchbar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './component/navbar/navbar.component';
 import { ProductCardComponent } from './component/product-card/product-card.component';
+import { ResultPageComponent } from './component/result-page/result-page.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ProductCardComponent } from './component/product-card/product-card.comp
     CheckoutComponent,
     SearchbarComponent,
     NavbarComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    ResultPageComponent
   ],
   imports: [
     BrowserModule,
