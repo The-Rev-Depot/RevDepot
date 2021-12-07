@@ -7,7 +7,7 @@ import { IItem } from '../model/item';
   providedIn: 'root'
 })
 export class CartService {
-  private cart: ICart = {
+  cart: ICart = {
     cartId: -1,
     user: {
       userId: -1,
