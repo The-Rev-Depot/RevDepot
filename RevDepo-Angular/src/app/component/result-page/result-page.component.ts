@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { IInventory } from 'src/app/model/inventory';
+import { ActivatedRoute, Router } from '@angular/router';
+import { IProduct} from 'src/app/model/product';
 import { ProductServiceService } from 'src/app/service/product-service.service';
 
 @Component({
@@ -10,9 +10,13 @@ import { ProductServiceService } from 'src/app/service/product-service.service';
 })
 export class ResultPageComponent implements OnInit {
 
-  inventory : IInventory | undefined;
+  items : IProduct | undefined;
 
-  constructor(private route: ActivatedRoute,private productService:ProductServiceService) { }
+  public productList: Array<IProduct> = [];
+
+
+
+  constructor(private router: Router, private route: ActivatedRoute,private productService:ProductServiceService) { }
 
   ngOnInit(): void {
 
@@ -22,7 +26,13 @@ export class ResultPageComponent implements OnInit {
     
      const categoryTitle = this.route.snapshot.paramMap.get('category');
 
-     this.productService.getIProduct().subscribe(inventory => this.inventory = inventory);
+     this.productService.getIProduct().subscribe(data => this.productList = data);
   }
 
+
+  moreInfo() {
+    console.log("google")
+
+    this.router.navigateByUrl('/product-details');
+  }
 }
