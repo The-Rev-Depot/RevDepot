@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { anyTypeAnnotation } from "node_module/@babel/types/lib/index-legacy";
+import { UserServiceService } from "src/app/service/user-service.service";
 
 @Component({
   selector: 'app-login',
@@ -7,18 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private userService: UserService, private router:Router) { }
+  _username: string = "";
+  _password: string = "";
+  _userId: number = 0;
+  _invalidUsernameMessage: string = "";
+  _invalidPasswordMessage: string = "";
+  _isFound: boolean = false;
+
+  constructor(private userService: UserServiceService, private router:Router) { }
 
   ngOnInit(): void {
-    this.userService.checkSession().subscribe(data => {
-      console.log(data)
-      if (data.success){
-        this.router.navigate([`/dashboard`]);
-      }
-    })
   }
 
   userLogin(){
+    console.log(this._username)
+    console.log(this._password)
     this.userService.userLogin(this._username, this._password).subscribe(data => {
       console.log(data)
       if (data.success){
@@ -51,6 +57,7 @@ export class LoginComponent implements OnInit {
     this._invalidUsernameMessage = "";
     if (this._username.match("\@")){
       this.userService.getUserByEmail(this._username).subscribe(data => {
+        console.log(data.object.email)
         if (data.object.email == this._username){
           this._isFound = true;
           this._invalidUsernameMessage = "";
@@ -58,7 +65,8 @@ export class LoginComponent implements OnInit {
       })
     } else if (this._username != ""){
       this.userService.getUserByUsername(this._username).subscribe(data => {
-        if (data.object.userName == this._username){
+        console.log(data.object.username)
+        if (data.object.username == this._username){
           this._isFound = true;
           this._invalidUsernameMessage = "";
         }
@@ -70,6 +78,8 @@ export class LoginComponent implements OnInit {
       this._invalidUsernameMessage = "Username is EMPTY!";
     } else if (!this._isFound) {
       this._invalidUsernameMessage = "Username not found!";
+    } else {
+      this._invalidUsernameMessage = "";
     }
   }
 
