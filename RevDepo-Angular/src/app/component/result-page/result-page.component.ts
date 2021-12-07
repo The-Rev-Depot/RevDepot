@@ -26,6 +26,10 @@ export class ResultPageComponent implements OnInit {
  public productPrice: any;
  public category: any;
  public isOnSale: any;
+  items : IProduct | undefined;
+
+  public productList: Array<IProduct> = [];
+
 
 
   constructor(private router: Router, private route: ActivatedRoute,private productService:ProductServiceService) { }
