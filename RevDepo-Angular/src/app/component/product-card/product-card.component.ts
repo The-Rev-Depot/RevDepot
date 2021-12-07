@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { IProduct } from 'src/app/model/product';
+//import { threadId } from 'worker_threads';
+import { ResultPageComponent } from '../result-page/result-page.component';
 
 @Component({
   selector: 'app-product-card',
@@ -8,7 +11,7 @@ import { IProduct } from 'src/app/model/product';
 })
 export class ProductCardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router, private result: ResultPageComponent) { }
 
   public product: any;
   //public shirtPro : product;
@@ -22,6 +25,8 @@ export class ProductCardComponent implements OnInit {
   public isOnSale: any;
 
   ngOnInit(): void {
+    //console.log(this.result.getIProduct);
+    //this.result.getIProduct;
   }
 
   shirtPro =
@@ -65,6 +70,13 @@ export class ProductCardComponent implements OnInit {
   }
 
   productsArray = [this.shirtPro,this.shirtPro1,this.shirtPro2];
+
+  moreInfo()
+  {
+    this.result.moreInfoDis;
+
+
+  }
 
 
 }

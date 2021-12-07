@@ -1,2 +1,29 @@
 <p>result-page works!</p>
 <!-- test -->
+
+<!-- <app-product-card></app-product-card> -->
+
+<div class="grid-container">
+
+
+
+  <div *ngFor = "let shirtPro of productsArray" class="product-card" onclick="moreInfo()">
+
+
+    <h2>ID#: {{shirtPro.productId}}</h2>
+    <p>Name: {{shirtPro.productName}}</p>
+    <p>Price: {{shirtPro.productPrice}}</p>
+    <p>On Sale: {{shirtPro.isOnSale}}</p>
+    <img src={{shirtPro.picUrl}}/>
+    <a class="nav-link" routerLink="/product-details">link</a>
+
+</div>
+
+
+
+
+
+
+
+</div>
+
