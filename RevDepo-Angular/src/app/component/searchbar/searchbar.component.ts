@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { MockProductServiceService } from 'src/app/service/mock-product-service.service';
 import { FilterPipe } from 'src/app/pipes/filter.pipe';
 
+import { ProductServiceService } from 'src/app/service/product-service.service';
+import { IProduct } from 'src/app/model/product';
+import { HttpErrorResponse } from '@angular/common/http';
+
 @Component({
   selector: 'app-searchbar',
   templateUrl: './searchbar.component.html',
@@ -9,6 +13,9 @@ import { FilterPipe } from 'src/app/pipes/filter.pipe';
   providers: [FilterPipe]
 })
 export class SearchbarComponent implements OnInit {
+
+  public product : IProduct[] | any ;
+  
 
   mockProduct : any = {
     productId : 1,
@@ -25,16 +32,32 @@ export class SearchbarComponent implements OnInit {
   
 
   constructor(
+    private productService : ProductServiceService,
     private filter : FilterPipe,
     private mockProductService : MockProductServiceService
    ){ }
 
-   searchText = this.filter.transform;
+  //  searchText = this.filter.transform;
+  searchText = "";
 
-   productArray = this.mockProductService.productArray;
+  //  productArray = this.mockProductService.productArray;
 
   ngOnInit(): void {
-    ;
+    this.getIProduct();
+  }
+
+  // Read
+  public getIProduct() : void {
+    console.log(this.product);
+    this.productService.getIProduct()
+    .subscribe(
+      (response:IProduct[]) => {
+        this.product = response
+      },
+      (error: HttpErrorResponse)=> {
+        console.log(error)
+      }
+    );
   }
 
 }
