@@ -1,1 +1,4 @@
 h2testing/
+### Maven ###
+target/
+log/
