@@ -30,6 +30,7 @@ hs_err_pid*
 
 ### NPM ###
 node_modules/
+node_module
 
 ### Gradle ###
 .gradle
@@ -81,3 +82,5 @@ nbdist/
 # System Files
 .DS_Store
 Thumbs.db
+
+h2testing/
