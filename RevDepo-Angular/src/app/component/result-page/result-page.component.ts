@@ -55,11 +55,13 @@ export class ResultPageComponent implements OnInit {
         }
       });
      console.log(this.productList);
+
+     this.productsList=this.productList;
+
+
   }
 
     //this.getProduct();
-  
-
 
 
   public getProduct(): void{
@@ -77,10 +79,15 @@ export class ResultPageComponent implements OnInit {
       //console.log("single product pop:  " + this.productsArray.pop);
       console.log("single product:  " + this.product);
   }
+
       public moreInfo() {
         console.log("google")
-        this.router.navigateByUrl('/product-details');
-    
+        console.log(this.productsList);
+        console.log(this.productsList[0]);
+        this.product=this.productsList[0];
+        console.log("Single item: " + this.product);
+        console.log(this.product.productId);
+
       }
 }
 
