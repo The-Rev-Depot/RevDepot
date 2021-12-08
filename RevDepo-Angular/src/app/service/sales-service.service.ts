@@ -10,6 +10,7 @@ export class SalesServiceService {
   constructor(private http: HttpClient) { }
 
   allDeals:any = [];
+  dealsByCategory:any = [];
   url = "http://localhost:8080/product/deals";
   urlCategory = "http://localhost:8080/product/deals/category";
 
@@ -17,20 +18,16 @@ export class SalesServiceService {
     this.http.get<any>(this.url).subscribe(
       response => {
         this.allDeals = response;
-        console.log(this.allDeals);
-      }
-      )
+      })
       return of(this.allDeals);
   }
 
   getAllItemsOnSaleByCategory(): Observable<any[]> {
     this.http.get<any>(this.urlCategory).subscribe(
       response => {
-        this.allDeals = response;
-        console.log(this.allDeals);
-      }
-      )
-      return of(this.allDeals);
+        this.dealsByCategory = response;
+        console.log(this.dealsByCategory);
+      })
+      return of(this.dealsByCategory);
   }
-
 }
