@@ -1,4 +1,4 @@
-<div *ngIf="productList" class="grid-container">
+<div *ngIf="inventoryList" class="grid-container">
 <p>result-page works!</p>
 
 <a class="nav-link" routerLink="/">Home</a>
@@ -10,14 +10,14 @@
 
 
 
-    <div *ngFor = "let item of productList" class="product-card" (click)="moreInfo()">
+    <div *ngFor = "let item of inventoryList" class="product-card" (click)="moreInfo()">
 
 
-      <h2>ID#: {{item.productId}}</h2>
-      <p>Name: {{this.productList[0].productName}}</p>
-      <p>Price: {{item.productPrice}}</p>
-      <p>On Sale: {{item.isOnSale}}</p>
-      <img src={{item.picUrl}}/>
+      <h2>ID#: {{item.product.productId}}</h2>
+      <p>Name: {{item.product.productName}}</p>
+      <p>Price: {{item.product.productPrice}}</p>
+      <p>On Sale: {{item.product.isOnSale}}</p>
+      <img src={{item.product.picUrl}}/>
       <a class="nav-link" routerLink="/product-details">link</a>
 
   </div>
