@@ -5,6 +5,7 @@ import { ProductClass } from 'src/app/model/product-class';
 
 import { IInventory } from 'src/app/model/inventory';
 import { ProductServiceService } from 'src/app/service/product-service.service';
+import { InventoryClass } from 'src/app/model/inventory-class';
 
 @Component({
   selector: 'app-result-page',
@@ -32,7 +33,8 @@ export class ResultPageComponent implements OnInit {
   items : IProduct | undefined;
 
   public searchResults:any = [];
-  public productList: Array<ProductClass> = [];
+
+  public inventoryList: Array<InventoryClass> = [];
 
 
 
@@ -42,7 +44,7 @@ export class ResultPageComponent implements OnInit {
     this.getIProduct();
   }
 
-  public getIProduct(): void{
+  public getIProduct(): void {
      //const categoryTitle = this.route.snapshot.paramMap.get('category');
 
     //  this.productService.getIProduct().subscribe(data => this.productList = data);
@@ -51,10 +53,15 @@ export class ResultPageComponent implements OnInit {
         this.searchResults = data;
 
         for (let one of this.searchResults) {
-          this.productList.push(one);
+          this.inventoryList.push(one);
         }
+
+
       });
-     console.log(this.productList);
+     console.log(this.inventoryList);
+
+
+
   }
 
     //this.getProduct();
