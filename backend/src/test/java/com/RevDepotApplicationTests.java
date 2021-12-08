@@ -29,7 +29,7 @@ class RevDepotApplicationTests {
 	private InventoryDao inventoryDao;
 
 	Product product = new Product(1, "rev pro","shirt with Revature logo", "www.google.com",
-			15, newFloat, "clothing", 0);
+			15, newFloat, "apparel", 0);
 	
 	@Test
 	@DisplayName("Testing Repository")
@@ -41,6 +41,7 @@ class RevDepotApplicationTests {
 		
 		System.out.println(products.get(0));
 		System.out.println(product);
+		System.out.println(products);
 				
 		assertEquals(product, products.get(0));
 	}
