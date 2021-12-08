@@ -1,4 +1,3 @@
-import { getLocaleDateTimeFormat } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { ICart } from '../model/cart';
 import { IItem } from '../model/item';
