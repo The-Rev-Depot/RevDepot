@@ -17,7 +17,6 @@ export class ResultPageComponent implements OnInit {
   inventory : IInventory | undefined;
   products :IProduct | undefined;
   product : any;
-  productsArray : any;
   productsList: any;
 
 
@@ -35,6 +34,7 @@ export class ResultPageComponent implements OnInit {
   public searchResults:any = [];
 
   public inventoryList: Array<InventoryClass> = [];
+  public productsArray: Array<ProductClass> = [];
 
 
 
@@ -61,9 +61,9 @@ export class ResultPageComponent implements OnInit {
      console.log(this.inventoryList);
 
      this.productsList=this.inventoryList;
-     console.log(this.inventoryList);
+     console.log(this.productsList);
 
-
+     this.getProduct();
 
   }
 
@@ -72,27 +72,35 @@ export class ResultPageComponent implements OnInit {
 
   public getProduct(): void{
 
-     const categoryTitle = this.route.snapshot.paramMap.get('category');
-     //this.productService.getIProduct().subscribe(inventory => this.inventory = inventory);
-      //this.productService.getIProduct().subscribe(product => this.product = product);
-     // this.productsList = [this.productService.getIProduct().subscribe(product => this.productsList = product)];
+     //const categoryTitle = this.route.snapshot.paramMap.get('category');
 
 
-     //console logs
-     console.log("Before anything started: " + this.productsList);
-     console.log("array of data: " + this.productsArray);
-     // console.log("single product [0]:  " + this.productsArray[0]);
-      //console.log("single product pop:  " + this.productsArray.pop);
-      console.log("single product:  " + this.product);
+     for(let i =0; i<this.productsList.length;i++)
+     {
+       if(this.productsList[i].product.category == "clothing"){
+     console.log("Sorted: " + this.productsList[i].product.category);
+     //this.productsList[i].product.push(this.productsArray);
+     this.productsArray.push(this.productsList[i].product);
+
+
+
+     }
+     console.log("After push: " + this.productsArray);
+     console.log("After push: " + this.productsList);
+     }
+
   }
 
       public moreInfo() {
-        console.log("google")
-        console.log(this.productsList);
-        console.log(this.productsList[0]);
-        this.product=this.productsList[0];
-        console.log("Single item: " + this.product);
-        console.log(this.product.productId);
+        // console.log("google")
+        // console.log(this.productsList);
+        // console.log(this.productsList[0]);
+        // this.product=this.productsList[0];
+        // console.log("Single item: " + this.product);
+        // console.log(this.product.productId);
+        console.log(this.productsList[0].product.category);
+
+        this.getProduct();
 
       }
 }
