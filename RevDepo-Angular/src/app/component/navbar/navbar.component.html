@@ -1,3 +1,20 @@
-<p>navbar works!</p>
+<!-- <app-searchbar></app-searchbar> -->
 
-<app-searchbar></app-searchbar>
+<mat-toolbar color="primary">
+    <span>My App</span>
+    <span class="example-spacer"></span>
+    <button *ngIf="loggedIn" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon"
+        (click)="sidenav.toggle()">
+        <mat-icon *ngIf="!opened">shopping_cart</mat-icon>
+        <mat-icon *ngIf="opened">arrow_right</mat-icon>
+    </button>
+</mat-toolbar>
+
+<mat-sidenav-container class="sidnav-container" hasBackdrop="false">
+    <mat-sidenav class="sidenav" mode="over" [(opened)]="opened" position='end' fixedTopGap="64" [autoFocus]="false">
+        Sidenav content
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

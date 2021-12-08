@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-navbar',
@@ -6,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-
+  loggedIn = true;
+  @ViewChild(MatSidenav) sidenav!: MatSidenav;
+  events: string[] = [];
+  opened: boolean = false;
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  toggleSideNav(){
+    this.opened != this.opened;
+    this.sidenav.toggle();
   }
 
 }
