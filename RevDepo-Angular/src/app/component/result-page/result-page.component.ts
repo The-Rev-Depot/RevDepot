@@ -36,6 +36,9 @@ export class ResultPageComponent implements OnInit {
 
   public inventoryList: Array<InventoryClass> = [];
 
+  public sortedCategory: any = [];
+
+
 
 
   constructor(private router: Router, private route: ActivatedRoute,private productService:ProductServiceService) { }
@@ -61,13 +64,11 @@ export class ResultPageComponent implements OnInit {
      console.log(this.inventoryList);
 
      this.productsList=this.inventoryList;
-     console.log(this.inventoryList);
-
-
-
+     console.log(this.productsList);
+     console.log(this.productsList[0].product.category)
   }
 
-    //this.getProduct();
+    
 
 
   public getProduct(): void{
