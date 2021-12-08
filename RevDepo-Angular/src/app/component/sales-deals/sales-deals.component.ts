@@ -20,7 +20,7 @@ export class SalesDealsComponent implements OnInit {
   }
 
   private getProductsOnSale() {
-    this.service.getAllItemsOnSale();
-    this.productsOnSale = this.service.allDeals;
+    return this.service.getAllItemsOnSale();
+    
   }
 }
