@@ -13,6 +13,7 @@ import { CheckoutComponent } from './component/checkout/checkout.component';
 import { SearchbarComponent } from './component/searchbar/searchbar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './component/navbar/navbar.component';
+import { ProductCardComponent } from './component/product-card/product-card.component';
 import { CartService } from './service/cart.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //angular material modules
@@ -63,7 +64,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     CartComponent,
     CheckoutComponent,
     SearchbarComponent,
-    NavbarComponent
+    NavbarComponent,
+    ProductCardComponent
   ],
   imports: [
   
