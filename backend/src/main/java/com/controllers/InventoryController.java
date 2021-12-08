@@ -37,7 +37,6 @@ public class InventoryController {
 		}
 		
 		return items;
-//		return inventoryService.updateInventory(inventory);
 	}
 }
 
