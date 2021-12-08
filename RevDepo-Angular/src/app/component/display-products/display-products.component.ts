@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { IProduct } from 'src/app/model/product';
 
 @Component({
@@ -9,7 +10,7 @@ import { IProduct } from 'src/app/model/product';
 export class DisplayProductsComponent implements OnInit {
 
   public product: any;
-  //public shirtPro : product;
+  public shirtPro!: IProduct;
 
   public productId:any;
   public productName: any;
@@ -20,6 +21,7 @@ export class DisplayProductsComponent implements OnInit {
   public isOnSale: any;
 
   Apparel = { title: "Apparel" }
+  
 
   Stationary = { title: "Stationary" }
 
@@ -28,7 +30,7 @@ export class DisplayProductsComponent implements OnInit {
   categoriesArray = [this.Apparel,this.Stationary,this.Accessories];
 
   
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -36,5 +38,13 @@ export class DisplayProductsComponent implements OnInit {
 
 
 
+  moreInfo()
+  {
+    console.log("google")
+
+    this.router.navigateByUrl('/product-details');
+
+
+  }
 
 }
