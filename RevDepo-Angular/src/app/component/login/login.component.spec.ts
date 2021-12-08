@@ -45,4 +45,14 @@ describe('LoginComponent', () => {
 
   })
 
+  it('should call userLogin() when the button is clicked', ()=>{
+
+    spyOn(component, 'userLogin');
+
+    const button = fixture.nativeElement.querySelector('button');
+    button.dispatchEvent(new Event('click'));
+
+    expect(component.userLogin).toHaveBeenCalled();
+
+  })
 });

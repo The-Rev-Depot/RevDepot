@@ -23,10 +23,7 @@ export class LoginComponent implements OnInit {
   }
 
   userLogin(){
-    console.log(this._username)
-    console.log(this._password)
     this.userService.userLogin(this._username, this._password).subscribe(data => {
-      console.log(data)
       if (data.success){
         this._userId = data.object.userId;
         this.router.navigate([`/dashboard/`]);
