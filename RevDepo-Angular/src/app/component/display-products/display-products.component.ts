@@ -19,28 +19,22 @@ export class DisplayProductsComponent implements OnInit {
   public category: any;
   public isOnSale: any;
 
+  Apparel = { title: "Apparel" }
+
+  Stationary = { title: "Stationary" }
+
+  Accessories = {  title: "Accessories" }
+
+  categoriesArray = [this.Apparel,this.Stationary,this.Accessories];
+
+  
   constructor() { }
 
   ngOnInit(): void {
   }
 
 
-  Apparel =
-  {
-    title: "Apparel"
-  }
 
-  Stationary =
-  {
-    title: "Stationary"
-  }
-
-  Accessories =
-  {
-    title: "Accessories"
-  }
-
-  categoriesArray = [this.Apparel,this.Stationary,this.Accessories];
 
 
 }

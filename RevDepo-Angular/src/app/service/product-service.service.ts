@@ -15,7 +15,9 @@ export class ProductServiceService {
 
   //Get Request to get all products
   public getIProduct(): Observable<IProduct[]> {
-    return this.http.get<IProduct[]>(`${this.url}inventory/items`) 
+    //return this.http.get<IProduct[]>(`${this.url}inventory/items`) 
+    return this.http.get('http://localhost:8080/inventory/items') as Observable<IProduct[]>;
   }
-
 }
+
+
