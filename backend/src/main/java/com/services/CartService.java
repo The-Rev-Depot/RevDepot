@@ -5,7 +5,8 @@ import com.models.User;
 
 public interface CartService {
 	
-	public void update(Cart curCart);
+	public void updateCart(Cart curCart);
 	public User getUserById(int id);
-	public void add(Cart curCart);
+	public void addCart(Cart curCart);
+	public Cart getCartByUserId(int userId);
 }
