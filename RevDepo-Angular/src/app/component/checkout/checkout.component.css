@@ -1,8 +1,3 @@
-table {
-    width: 100%;
-    max-width: 600px;
-}
-
 .product-card {
     max-width: 450px;
     margin: 10px;
@@ -23,17 +18,20 @@ table {
 }
 
 .row {
-    display: flexbox;
+    display: inline-flex;
+    margin-left: 5px;
 }
 
 .column-left {
-    max-width: 450px;
-    margin-left: 25px;
+    max-width: 450px; 
+    flex: 50%;
+    
 }
 
 .column-right {
-    margin-left: 475px;
-    /* position: fixed; */
+    margin-left: 25px;
+    
+     position: fixed;  
 }
 
 hr {
@@ -48,8 +46,13 @@ hr {
 .box {
     border-width: 2px;
     border-style: solid;
+    border-radius: 15%;
     margin-left: 475px;
     margin-top: 10%;
     
-    padding: 5%;
+    padding: 2%;
+    padding-left: 5%;
+    
 }
+
+
