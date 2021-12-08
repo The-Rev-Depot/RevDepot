@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute} from '@angular/router';
 import { IProduct } from 'src/app/model/product';
 //import { threadId } from 'worker_threads';
-import { ResultPageComponent } from '../result-page/result-page.component';
+//import { ResultPageComponent } from '../result-page/result-page.component';
 
 @Component({
   selector: 'app-product-card',
@@ -11,7 +11,7 @@ import { ResultPageComponent } from '../result-page/result-page.component';
 })
 export class ProductCardComponent implements OnInit {
 
-  constructor(private router: Router, private result: ResultPageComponent) { }
+  constructor(private router: Router /*, private result: ResultPageComponent*/) { }
 
   public product: any;
   //public shirtPro : product;
@@ -33,7 +33,7 @@ export class ProductCardComponent implements OnInit {
   {
 
     productId: 1,
-    productName: 'card' ,
+    productName: "card",
     description: "string",
     picUrl: "string",
     productPrice: 15,
@@ -47,7 +47,7 @@ export class ProductCardComponent implements OnInit {
   {
 
     productId: 2,
-    productName: 'dispalycard' ,
+    productName: "dispalycard" ,
     description: "string",
     picUrl: "string",
     productPrice: 15,
@@ -60,7 +60,7 @@ export class ProductCardComponent implements OnInit {
   {
 
     productId: 3,
-    productName: 'string' ,
+    productName: "string" ,
     description: "string",
     picUrl: "string",
     productPrice: 15,
@@ -71,11 +71,13 @@ export class ProductCardComponent implements OnInit {
 
   productsArray = [this.shirtPro,this.shirtPro1,this.shirtPro2];
 
-  moreInfo()
-  {
-    this.result.moreInfoDis;
+   moreInfo()
+   {
+  //   this.result.moreInfoDis;
 
+     console.log("google")
 
+     this.router.navigateByUrl('/product-details');
   }
 
 

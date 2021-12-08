@@ -1,4 +1,5 @@
 <p>result-page works!</p>
+<a class="nav-link" routerLink="/">Home</a>
 <!-- test -->
 
 <!-- <app-product-card></app-product-card> -->
@@ -7,7 +8,7 @@
 
 
 
-    <div *ngFor = "let item of productList" class="product-card" onclick="moreInfo()">
+    <div *ngFor = "let item of productList" class="product-card" (click)="moreInfo()">
 
 
       <h2>ID#: {{item.productId}}</h2>

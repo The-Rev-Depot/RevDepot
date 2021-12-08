@@ -7,7 +7,7 @@
 
 
 
-  <div *ngFor = "let shirtPro of productsArray" class="product-card" onclick="moreInfo()">
+  <div *ngFor = "let shirtPro of productsArray" class="product-card" (click)="moreInfo()">
 
 
     <h2>ID#: {{shirtPro.productId}}</h2>

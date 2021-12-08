@@ -18,11 +18,11 @@ export class ProductServiceService {
 
   //Get Request to get all products
   public getIProduct(): Observable<IProduct[]> {
-    return this.http.get<IProduct[]>(`${this.url}inventory/items`) 
+    return this.http.get<IProduct[]>(`${this.url}inventory/items`)
   }
 
   /**
-   * name
+   * pops off one product when calling getIProduct method
    */
   public getByLast(): Observable<IProduct>{
 
@@ -32,6 +32,7 @@ export class ProductServiceService {
 
   }
 
+  //reroute to product details page
   public moreInfoDis() : void
   {
     console.log("google")

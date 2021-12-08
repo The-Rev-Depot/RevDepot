@@ -10,7 +10,7 @@ import { IProduct } from 'src/app/model/product';
 export class DisplayProductsComponent implements OnInit {
 
   public product: any;
-  //public shirtPro : product;
+  public shirtPro!: IProduct;
 
   public productId:any;
   public productName: any;
@@ -48,6 +48,8 @@ export class DisplayProductsComponent implements OnInit {
     console.log("google")
 
     this.router.navigateByUrl('/product-details');
+
+
   }
 
 }
