@@ -1,32 +1,65 @@
-<!-- Display items in cart -->
-<div *ngIf="cart">
-    <table mat-table [dataSource]="cart.items">
-        <ng-container matColumnDef="quantity">
-            <th mat-header-cell *matHeaderCellDef> Quantity </th>
-            <td mat-cell *matCellDef="let item"> {{item.quantity}} </td>
-            <td mat-footer-cell *matFooterCellDef></td>
-          </ng-container>
+<div class="row" *ngIf="cart">
+  <div class="column-left">
+    <h2>Item Details</h2>
+    <div *ngFor="let item of cart.items">
+      <mat-card class="product-card mat-elevation-z5">
+        <mat-card-title-group>
+          <mat-card-title>{{ item.product.productName }} </mat-card-title>
+          <mat-card-subtitle>{{ item.product.category }} </mat-card-subtitle>
 
-        <!-- Add product picture later -->
+          <!--  -->
+        </mat-card-title-group>
+        <mat-card-content>
+          <div class="flex-container">
+            <div>Qty: {{ item.quantity }}</div>
+            <div>
+              <p>
+                ${{
+                  item.quantity * item.product.productPrice | number: "1.2-2"
+                }}
+                <br />
+                <span class="grey"
+                  >${{ item.product.productPrice | number: "1.2-2" }} ea</span
+                >
+              </p>
+            </div>
+          </div>
 
-        <ng-container matColumnDef="productName">
-            <th mat-header-cell *matHeaderCellDef> Product Name </th>
-            <td mat-cell *matCellDef="let item"> {{item.product.productName}} </td>
-            <td mat-footer-cell *matFooterCellDef></td>
-          </ng-container>
+          <div>
+            <img mat-card-lg-image src="{{ item.product.picUrl }}" />
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  <div class="column-right">
+    <div class="box">
+      <div><h2>Order Summary</h2></div>
+      <table>
+        <tr>
+          <td>
+            <p>Items({{ getTotalQty()  }}):</p>
+          </td>
+          <td>
+            <p>${{ getTotalPrice() | number: "1.2-2" }}</p>
+          </td>
+        </tr>
+        <tr>
+          <td><p>Shipping & Handling:</p></td>
+          <td><p>$10.00</p></td>
+        </tr>
+        <tr>
+          <td><p>Estimated Tax to be collected:</p></td>
+          <td><p>$0.00</p></td>
+        </tr>
+      </table>
+      <hr />
 
-        <ng-container matColumnDef="productPrice">
-            <th mat-header-cell *matHeaderCellDef> Price </th>
-            <td mat-cell *matCellDef="let item"> ${{item.product.productPrice * item.quantity}} </td>
-            <td mat-footer-cell *matFooterCellDef>${{getTotalPrice()}}</td>
-          </ng-container>
+      <div>
+        <h4>Order total : ${{ getTotalPrice() + 10 }}</h4>
+      </div>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
-    </table>
-
+      <button mat-raised-button color="primary">Place your order</button>
+    </div>
+  </div>
 </div>
-
-<!-- Checkout button -->
-<button mat-raised-button (click)="onCheckoutClicked()">Checkout</button>

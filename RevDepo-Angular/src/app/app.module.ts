@@ -4,6 +4,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 import {MatTableModule} from '@angular/material/table';
 import { MatButtonModule } from  '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +19,8 @@ import { SearchbarComponent } from './component/searchbar/searchbar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './component/navbar/navbar.component';
 import { CartService } from './service/cart.service';
+
+
 
 @NgModule({
   declarations: [
@@ -37,8 +41,8 @@ import { CartService } from './service/cart.service';
     ReactiveFormsModule,
     HttpClientModule,
     MatTableModule,
-    MatButtonModule
-    
+    MatButtonModule,
+    MatCardModule
   ],
   providers: [CartService],
   bootstrap: [AppComponent]

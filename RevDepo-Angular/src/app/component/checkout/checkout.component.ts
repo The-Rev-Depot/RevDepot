@@ -35,4 +35,7 @@ export class CheckoutComponent implements OnInit {
     return this.cartService.getTotalPrice();
   }
 
+  getTotalQty() {
+    return this.cartService.getTotalQty();
+  }
 }

@@ -31,6 +31,18 @@ export class CartService {
      return total;
    }
 
+   getTotalQty(): number {
+     let total: number =0;
+
+     this.cart?.items.forEach(
+      (value)=>{
+       total +=  value.quantity;
+      }
+    );
+
+    return total;
+   }
+
    checkoutCart(): Observable<IItem[]> {
     const httpPost = {
       headers: new HttpHeaders({
@@ -58,9 +70,9 @@ export class CartService {
         {
           itemId: 0, quantity: 1, product: {
             productId: 0,
-            productName: "prod1",
+            productName: "Computer Tower Stand",
             description: "",
-            picUrl: "",
+            picUrl: "https://material.angular.io/assets/img/examples/shiba2.jpg",
             productPrice: 15,
             productRating: 0,
             category: "",
@@ -70,9 +82,9 @@ export class CartService {
         {
           itemId: 1, quantity: 3, product: {
             productId: 0,
-            productName: "prod2",
+            productName: "Renpho Powerful Portable Massage Gun",
             description: "",
-            picUrl: "",
+            picUrl: "https://material.angular.io/assets/img/examples/shiba2.jpg",
             productPrice: 20,
             productRating: 0,
             category: "",
@@ -82,9 +94,9 @@ export class CartService {
         {
           itemId: 2, quantity: 5, product: {
             productId: 0,
-            productName: "prod3",
+            productName: "Rollerblade Zetrablade Men's Adult Fitness Inline Skate",
             description: "",
-            picUrl: "",
+            picUrl: "https://material.angular.io/assets/img/examples/shiba2.jpg",
             productPrice: 50,
             productRating: 0,
             category: "",
