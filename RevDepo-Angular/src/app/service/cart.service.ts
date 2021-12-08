@@ -53,6 +53,7 @@ export class CartService {
    }
 
    getCart(): ICart {
+     // Hardcoded for now
     return this.cart = {
       cartId: 0,
       user: {
