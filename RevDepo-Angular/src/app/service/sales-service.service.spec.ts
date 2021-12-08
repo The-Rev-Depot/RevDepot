@@ -52,6 +52,12 @@ fdescribe('SalesServiceService', () => {
             }
           )
          
+          service.getAllItemsOnSaleByCategory().subscribe(
+            (productsOnSale: any[]) => {
+              expect(productsOnSale).toEqual(mockObjects);
+              done();
+            }
+          )
   })
 
   

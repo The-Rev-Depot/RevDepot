@@ -11,6 +11,7 @@ export class SalesServiceService {
 
   allDeals:any = [];
   url = "http://localhost:8080/product/deals";
+  urlCategory = "http://localhost:8080/product/deals/category";
 
   getAllItemsOnSale(): Observable<any[]> {
     this.http.get<any>(this.url).subscribe(
@@ -22,6 +23,14 @@ export class SalesServiceService {
       return of(this.allDeals);
   }
 
-
+  getAllItemsOnSaleByCategory(): Observable<any[]> {
+    this.http.get<any>(this.urlCategory).subscribe(
+      response => {
+        this.allDeals = response;
+        console.log(this.allDeals);
+      }
+      )
+      return of(this.allDeals);
+  }
 
 }

@@ -12,15 +12,20 @@ export class SalesDealsComponent implements OnInit {
 
   title = "Ongoing Sales"
   productsOnSale:any = []
+  productsOnSaleByCategory:any = []
 
   constructor(private service:SalesServiceService) { }
 
   ngOnInit(): void {
     this.productsOnSale = this.getProductsOnSale();
+    this.productsOnSaleByCategory = this.getProductsOnSaleByCategory();
   }
 
   private getProductsOnSale() {
     return this.service.getAllItemsOnSale();
-    
+  }
+
+  private getProductsOnSaleByCategory() {
+    return this.service.getAllItemsOnSaleByCategory();
   }
 }
