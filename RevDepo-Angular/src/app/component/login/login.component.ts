@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { anyTypeAnnotation } from "node_module/@babel/types/lib/index-legacy";
+import { anyTypeAnnotation } from "node_modules/@babel/types/lib/index-legacy";
 import { UserServiceService } from "src/app/service/user-service.service";
 
 @Component({
