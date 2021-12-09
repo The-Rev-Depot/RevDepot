@@ -20,7 +20,8 @@ public class Item {
 	@Column(name ="item_id")
 	private int itemId;
 	private int quanity;
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
+	@JoinColumn(name="product_id", nullable = false)
 	private Product product;
 	
 	

@@ -13,7 +13,11 @@ import { CheckoutComponent } from './component/checkout/checkout.component';
 import { SearchbarComponent } from './component/searchbar/searchbar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './component/navbar/navbar.component';
+<<<<<<< HEAD
 import { SalesDealsComponent } from './component/sales-deals/sales-deals.component';
+=======
+import { CartService } from './service/cart.service';
+>>>>>>> main
 
 @NgModule({
   declarations: [
@@ -35,7 +39,11 @@ import { SalesDealsComponent } from './component/sales-deals/sales-deals.compone
     ReactiveFormsModule,
     HttpClientModule,
   ],
+<<<<<<< HEAD
   providers: [HttpClient],
+=======
+  providers: [CartService],
+>>>>>>> main
   bootstrap: [AppComponent]
 })
 export class AppModule { }
