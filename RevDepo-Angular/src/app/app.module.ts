@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 import {MatTableModule} from '@angular/material/table';
 import { MatButtonModule } from  '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
-
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +20,7 @@ import { NavbarComponent } from './component/navbar/navbar.component';
 import { ProductCardComponent } from './component/product-card/product-card.component';
 import { CartService } from './service/cart.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 //angular material modules
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatBadgeModule} from '@angular/material/badge';
@@ -55,8 +55,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
-
-
+import { SalesDealsComponent } from './component/sales-deals/sales-deals.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +68,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     CheckoutComponent,
     SearchbarComponent,
     NavbarComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    SalesDealsComponent
   ],
   imports: [
   
@@ -120,7 +120,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatCardModule
     
   ],
-  providers: [CartService],
+  providers: [HttpClient, CartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
