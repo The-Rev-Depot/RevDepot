@@ -1,7 +1,11 @@
 package com.controllers;
 
+import com.models.Response;
 import com.models.User;
 import com.services.UserService;
+import com.utility.JwtUtility;
+import org.apache.tomcat.util.codec.binary.Base64;
+import org.apache.tomcat.util.codec.binary.StringUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -19,26 +23,28 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class UserControllerTest {
     UserController userController;
+    JwtUtility jwtUtility;
 
     @Mock
     UserService userService;
 
     @BeforeEach
     void setUp() {
-        this.userController = new UserController(userService);
+        this.userController = new UserController(userService, jwtUtility);
     }
 
     @Test
     void getAllUser() {
         //assign
-        List<User> expectedResult = new ArrayList<>();
-        expectedResult.add(new User(1, "test", "test", "Test", "Test", "test@mail.com",  null, null));
+        List<User>  users = new ArrayList<>();
+        users.add(new User(1, "test", "test", "Test", "Test", "test@mail.com",  null, null));
+        Response expectedResult = new Response(true, "Listing All Users", users);
 
         //mock
-        Mockito.when(userService.getAllUsers()).thenReturn(expectedResult);
+        Mockito.when(userService.getAllUsers()).thenReturn(users);
 
         //act
-        List<User> actualResult = this.userController.getAllUser();
+        Response actualResult = this.userController.getAllUser();
 
         //assert
         assertEquals(expectedResult, actualResult);
@@ -47,62 +53,88 @@ class UserControllerTest {
     @Test
     void createUser() {
         //Assign
-        User expectedResult = new User(1, "test", "password", "Test", "Test",
+        JwtUtility jwt = Mockito.mock(JwtUtility.class);
+        User user = new User(1, "roel", "password", "Roel", "Crodua",
                 "test@test.com", null, null);
+        Response expectedResult = new Response(false, "Failed to create a new user", null);
         //Mock
-        Mockito.when(userService.createUser(expectedResult)).thenReturn(expectedResult);
+        Mockito.when(userService.createUser(user)).thenReturn(null);
+        Mockito.when(jwt.genToken(user)).thenReturn("user");
 
         //Act
-        User actualResult = this.userController.createUser(expectedResult);
-
+        Response actualResult = this.userController.createUser(user);
         //Assert
         assertEquals(expectedResult, actualResult);
+        Mockito.verify(userService, Mockito.times(1)).createUser(user);
+
     }
 
     @Test
     void login() {
         //Assign
-        HttpSession session = Mockito.mock(HttpSession.class);
-        User expectedResult = null;
-        User inputUser = new User(1, "test", "password", "Test", "Test",
+        JwtUtility jwt = Mockito.mock(JwtUtility.class);
+        User user = new User(1, "roel", "password", "Roel", "Crodua",
                 "test@test.com", null, null);
-
-        Mockito.when(userService.login(inputUser)).thenReturn(expectedResult);
+        Response expectedResult = new Response(false, "Failure to login", null);
+        //Mock
+        Mockito.when(userService.login(user)).thenReturn(null);
+        Mockito.when(jwt.genToken(user)).thenReturn("user");
 
         //Act
-        User actualResult = this.userController.login(session, inputUser);
-
+        Response actualResult = this.userController.login(user);
         //Assert
         assertEquals(expectedResult, actualResult);
-        Mockito.verify(userService, Mockito.times(1)).login(inputUser);
+        Mockito.verify(userService, Mockito.times(1)).login(user);
     }
 
     @Test
-    void checkSession() {
-        //Assign
-        HttpSession session = Mockito.mock(HttpSession.class);
-        User expectedResult = new User(1, "test", "password", "Test", "Test",
+    void getUserById() {
+        //assign
+        User user = new User(1, "roel", "password", "Roel", "Crodua",
                 "test@test.com", null, null);
-        session.setAttribute("userInSession", expectedResult);
-        Mockito.when(session.getAttribute("userInSession")).thenReturn(expectedResult);
+        Response expectedResult = new Response(false, "Cannot find user with id " + user.getUserId(), null);
 
-        //Act
-        User actualResult = this.userController.checkSession(session);
+        //Mock
+        Mockito.when(userService.getUserById(user.getUserId())).thenReturn(null);
 
-        //Assert
-        assertEquals(expectedResult, actualResult);
+        //act
+        Response actualResult = this.userController.getUserById(user.getUserId());
+
+        //assert
+        assertEquals(expectedResult.toString(), actualResult.toString());
     }
 
     @Test
-    void logout() {
-        //Assign
-        HttpSession session = Mockito.mock(HttpSession.class);
-        User expectedResult = null;
+    void getUserByUsername() {
+        //assign
+        User user = new User(1, "roel", "password", "Roel", "Crodua",
+                "test@test.com", null, null);
+        Response expectedResult = new Response(false, "Cannot find user with username " + user.getUsername(), null);
 
-        //Act
-        User actualResult = this.userController.logout(session);
+        //Mock
+        Mockito.when(userService.getUserByUsername(user.getUsername())).thenReturn(null);
 
-        //Assert
-        assertEquals(expectedResult, actualResult);
+        //act
+        Response actualResult = this.userController.getUserByUsername(user.getUsername());
+
+        //assert
+        assertEquals(expectedResult.toString(), actualResult.toString());
+    }
+
+    @Test
+    void getUserByEmail() {
+        //assign
+        User user = new User(1, "roel", "password", "Roel", "Crodua",
+                "test@test.com", null, null);
+        Response expectedResult = new Response(false, "Cannot find user with email " + user.getEmail(), null);
+
+        //Mock
+        Mockito.when(userService.getUserByEmail(user.getEmail())).thenReturn(null);
+
+        //act
+        Response actualResult = this.userController.getUserByEmail(user.getEmail());
+
+        //assert
+        assertEquals(expectedResult.toString(), actualResult.toString());
     }
 }

@@ -1,22 +1,23 @@
 package com.controllers;
 
+import com.models.Response;
 import com.models.User;
 import com.services.UserService;
+import com.utility.JwtUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
-import java.util.List;
-import org.springframework.security.crypto.bcrypt.BCrypt;
-
 @RestController
-@RequestMapping("api")
+@RequestMapping("revdepot")
+@CrossOrigin(value="http://localhost:4200", allowCredentials = "true")
 public class UserController {
     private UserService userService;
+    private JwtUtility jwtUtility;
 
     @Autowired
-    public UserController(UserService userService){
+    public UserController(UserService userService, JwtUtility jwtUtility){
         this.userService = userService;
+        this.jwtUtility = jwtUtility;
     }
 
     /**
@@ -25,8 +26,8 @@ public class UserController {
      * @return  - List of Users (object)
      */
     @GetMapping("user")
-    public List<User> getAllUser(){
-        return this.userService.getAllUsers();
+    public Response getAllUser(){
+        return new Response(true, "Listing All Users", this.userService.getAllUsers());
     }
 
     /**
@@ -36,49 +37,73 @@ public class UserController {
      * @return      - Return the User object which successfully added to the system.
      */
     @PostMapping("user")
-    public User createUser(@RequestBody User user){
-        return this.userService.createUser(user);
+    public Response createUser(@RequestBody User user){
+        User currentUser = this.userService.createUser(user);
+        if (currentUser == null){
+            return new Response(false, "Failed to create a new user", null);
+        } else {
+            return new Response(true, jwtUtility.genToken(currentUser), currentUser);
+        }
     }
 
     /**
      * Method used to login to the system as User with the account detail requirement
-     * @param session   - User object that holds the current login user information, could be empty if logout
      * @param user      - User object which primarily contain username/email and password
-     * @return          - Returns the User object who successfully log-in Else return null.
+     * @return          - Returns the User object who successfully log-in Else return null that encoded into JWT token
      */
     //Checks to see if user is in database otherwise it'll reject their log in
     @PostMapping("login")
-    public User login(HttpSession session, @RequestBody User user) {
-            User currentUser = this.userService.login(user);
-            if (currentUser == null){
-                return null;
-            } else {
-                session.setAttribute("userInSession", currentUser);
-                return currentUser;
-            }
+    public Response login(@RequestBody User user) {
+        User currentUser = this.userService.login(user);
+        if (currentUser == null){
+            return new Response(false, "Failure to login", null);
+        } else {
+            return new Response(true, jwtUtility.genToken(currentUser), currentUser);
+        }
     }
 
     /**
-     * This will check if the current user is currently login in session
-     *
-     * @param session  -the sessionUser data currently login
-     * @return  User   -returns the User object with updated information
+     * Method used to get user using the userId as input
+     * @param userId    - userId for the user to retrieve
+     * @return          - Returns the JWT token including the User Object into its payload
      */
-    @GetMapping("check-session")
-    public User checkSession(HttpSession session) {
-        return (User) session.getAttribute("userInSession");
+    @GetMapping("user/{id}")
+    public Response getUserById(@PathVariable Integer userId){
+        User currentUser = this.userService.getUserById(userId);
+        if (currentUser == null){
+            return new Response(false, "Cannot find user with id " + userId, null);
+        } else {
+            return new Response(true, jwtUtility.genToken(currentUser), currentUser);
+        }
     }
 
     /**
-     * Method that will delete/remove the current user login session
-     *
-     * @param session   - User currently login
-     * @return          - null or empty User
+     * Method used to get user using the username as input
+     * @param username      - username for the user to retrieve
+     * @return              - Returns the JWT token including the User Object into its payload
      */
-    @GetMapping("logout")
-    public User logout(HttpSession session) {
-        session.setAttribute("userInSession", null);
-        return null;
+    @GetMapping("user/username/{username}")
+    public Response getUserByUsername(@PathVariable String username){
+        User currentUser = this.userService.getUserByUsername(username);
+        if (currentUser == null){
+            return new Response(false, "Cannot find user with username " + username, null);
+        } else {
+            return new Response(true, jwtUtility.genToken(currentUser), currentUser);
+        }
     }
 
+    /**
+     * Method used to get user using the email as input
+     * @param email     - email for the user to retrieve
+     * @return          - Returns the JWT token including the User Object into its payload
+     */
+    @GetMapping("user/email/{email}")
+    public Response getUserByEmail(@PathVariable String email) {
+        User currentUser = this.userService.getUserByEmail(email);
+        if (currentUser == null){
+            return new Response(false, "Cannot find user with email " + email, null);
+        } else {
+            return new Response(true, jwtUtility.genToken(currentUser), currentUser);
+        }
+    }
 }
