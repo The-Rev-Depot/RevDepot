@@ -21,14 +21,14 @@ export class DisplayProductsComponent implements OnInit {
   public isOnSale: any;
 
   Apparel = { title: "apparel"}
-  
+
   Stationary = { title: "stationary"}
 
   Accessories = {  title: "accessories"}
 
   categoriesArray = [this.Apparel,this.Stationary,this.Accessories];
 
-  
+
   constructor(private router: Router) { }
 
   ngOnInit(): void {

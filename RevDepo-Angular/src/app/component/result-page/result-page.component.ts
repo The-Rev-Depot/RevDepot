@@ -27,7 +27,7 @@ export class ResultPageComponent implements OnInit {
 //  public productPrice: any;
 //  public category: any;
 //  public isOnSale: any;
-  //items : IProduct | undefined; 
+  //items : IProduct | undefined;
 
   productsList: any;
 
@@ -78,10 +78,10 @@ export class ResultPageComponent implements OnInit {
 
   public moreInfo() {
         // console.log("google")
-        // console.log(this.productsList);
-        // console.log(this.productsList[0]);
-        // this.product=this.productsList[0];
-        // console.log("Single item: " + this.product);
+        console.log(this.productsList);
+         console.log(this.productsList[0]);
+         //this.product=this.productsList[0];
+         //console.log("Single item: " + this.product);
         // console.log(this.product.productId);
     console.log(this.productsList[0].product.category);
 
