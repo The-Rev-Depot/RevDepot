@@ -80,7 +80,7 @@ export class CartService {
         lastName: "",
         email: "",
         urlProPic: "",
-        birthday: new Date()
+        birthday: ""
       },
       items: [
         {

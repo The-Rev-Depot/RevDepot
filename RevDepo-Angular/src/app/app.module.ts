@@ -112,7 +112,7 @@ import { SalesDealsComponent } from './component/sales-deals/sales-deals.compone
     MatTreeModule,
     MatFormFieldModule,
     AppRoutingModule,
-    FormsModule, 
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     MatTableModule,
