@@ -1,1 +1,23 @@
 <p>searchbar works!</p>
+
+<!-- <div class="md-form">
+    <input type="search" placeholder="Search Products">
+</div>
+<ul>
+
+</ul> -->
+<!-- <h4>Product List:</h4>
+<div>
+  <ul *ngFor = 'let p of product'>
+    <li>
+      {{ p.productName }}
+    </li>    
+  </ul>
+</div> -->
+
+<div class="md-form">
+    <input type="search" [(ngModel)]="searchText" placeholder="Search Products">
+  </div>
+  <ul *ngFor="let p of product | filter: searchText">
+    <li>{{p.productName}}</li>
+  </ul>

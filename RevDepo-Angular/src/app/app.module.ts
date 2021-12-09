@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+
+import {MatTableModule} from '@angular/material/table';
+import { MatButtonModule } from  '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -8,21 +12,17 @@ import { LoginComponent } from './component/login/login.component';
 import { RegisterComponent } from './component/register/register.component';
 import { DisplayProductsComponent } from './component/display-products/display-products.component';
 import { ProductDetailsComponent } from './component/product-details/product-details.component';
-import { CartComponent } from './component/cart/cart.component';
 import { CheckoutComponent } from './component/checkout/checkout.component';
 import { SearchbarComponent } from './component/searchbar/searchbar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './component/navbar/navbar.component';
 import { ProductCardComponent } from './component/product-card/product-card.component';
-import { CartService } from './service/cart.service';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 //angular material modules
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
-import {MatButtonModule} from '@angular/material/button';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
-import {MatCardModule} from '@angular/material/card';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatStepperModule} from '@angular/material/stepper';
@@ -46,12 +46,27 @@ import {MatSliderModule} from '@angular/material/slider';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatSortModule} from '@angular/material/sort';
-import {MatTableModule} from '@angular/material/table';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 import { MatFormFieldModule } from '@angular/material/form-field';
+
+import { SalesDealsComponent } from './component/sales-deals/sales-deals.component';
+import { ResultPageComponent } from './component/result-page/result-page.component';
+import { CartService } from './service/cart.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { FilterPipe } from './pipes/filter.pipe';
+
+// import { 
+//   MatIconModule, 
+//   MatInputModule, 
+//   MatAutocompleteModule, 
+//   MatChipsModule,
+//   MatFormFieldModule
+//  } from '@angular/material';
+
 
 
 @NgModule({
@@ -61,11 +76,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     RegisterComponent,
     DisplayProductsComponent,
     ProductDetailsComponent,
-    CartComponent,
     CheckoutComponent,
     SearchbarComponent,
     NavbarComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    SalesDealsComponent,
+    ResultPageComponent,
+    FilterPipe
   ],
   imports: [
   
@@ -108,14 +125,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatTreeModule,
     MatFormFieldModule,
     AppRoutingModule,
-    FormsModule, 
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    BrowserAnimationsModule,
-    
+    MatTableModule,
+    MatButtonModule,
+    MatCardModule
     
   ],
-  providers: [CartService],
+  providers: [HttpClient, CartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
