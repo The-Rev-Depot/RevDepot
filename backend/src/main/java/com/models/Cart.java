@@ -8,8 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -26,11 +26,11 @@ import lombok.ToString;
 public class Cart {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name ="cart_id")
+	@Column(name = "cart_id")
 	private int cartId;
 	@OneToOne(optional = false)
-	@JoinColumn(name="user_id", nullable = false)
+	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
-	@OneToMany(mappedBy="itemId")
+	@OneToMany(mappedBy = "id")
 	private Set<Item> items;
 }
