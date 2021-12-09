@@ -12,13 +12,11 @@ import { LoginComponent } from './component/login/login.component';
 import { RegisterComponent } from './component/register/register.component';
 import { DisplayProductsComponent } from './component/display-products/display-products.component';
 import { ProductDetailsComponent } from './component/product-details/product-details.component';
-import { CartComponent } from './component/cart/cart.component';
 import { CheckoutComponent } from './component/checkout/checkout.component';
 import { SearchbarComponent } from './component/searchbar/searchbar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './component/navbar/navbar.component';
 import { ProductCardComponent } from './component/product-card/product-card.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //angular material modules
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
@@ -57,6 +55,19 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { SalesDealsComponent } from './component/sales-deals/sales-deals.component';
 import { ResultPageComponent } from './component/result-page/result-page.component';
 import { CartService } from './service/cart.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { FilterPipe } from './pipes/filter.pipe';
+
+// import { 
+//   MatIconModule, 
+//   MatInputModule, 
+//   MatAutocompleteModule, 
+//   MatChipsModule,
+//   MatFormFieldModule
+//  } from '@angular/material';
+
+
 
 @NgModule({
   declarations: [
@@ -65,13 +76,13 @@ import { CartService } from './service/cart.service';
     RegisterComponent,
     DisplayProductsComponent,
     ProductDetailsComponent,
-    CartComponent,
     CheckoutComponent,
     SearchbarComponent,
     NavbarComponent,
     ProductCardComponent,
     SalesDealsComponent,
-    ResultPageComponent
+    ResultPageComponent,
+    FilterPipe
   ],
   imports: [
   
