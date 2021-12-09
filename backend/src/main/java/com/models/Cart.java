@@ -12,6 +12,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.dao.CartDao;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -33,4 +35,6 @@ public class Cart {
 	private User user;
 	@OneToMany(mappedBy = "id")
 	private Set<Item> items;
+	
+	
 }

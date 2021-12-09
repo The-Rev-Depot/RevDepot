@@ -14,4 +14,6 @@ public interface UserDao extends JpaRepository<User, Integer>{
 
     @Query("from User where email = :email")
     Optional<User> findUserByEmail(String email);
+    
+    User findUserByUserId(int id);
 }

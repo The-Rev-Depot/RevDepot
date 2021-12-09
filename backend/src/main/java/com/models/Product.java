@@ -38,5 +38,19 @@ public class Product {
 	private String category;
 	@Column(name = "sale_id")
 	private int isOnSale;
+	
+	public Product(String productName, String description, String picUrl, int productPrice,
+			float productRating, String category, int isOnSale) {
+		super();
+		this.productName = productName;
+		this.description = description;
+		this.picUrl = picUrl;
+		this.productPrice = productPrice;
+		this.productRating = productRating;
+		this.category = category;
+		this.isOnSale = isOnSale;
+	}
 
+	
+	
 }
