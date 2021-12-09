@@ -4,7 +4,11 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'filter'
 })
 export class FilterPipe implements PipeTransform {
-  transform(items: any[], searchText: any): any[] {
+  transform(items: any[], searchText: string): any[] {
+
+    /**
+     * The pipe will filter the list of elements base on the search text that will be provided
+     */
 
     // returns an empty array if the array is null 
     if (!items) {
@@ -17,11 +21,17 @@ export class FilterPipe implements PipeTransform {
     }
 
     // converts the search text to lowercase 
-    searchText = searchText.toLocaleLowerCase();
+    // searchText = searchText.toLowerCase();
 
     // returns the filtered array
+    // return items.filter(it => {
+    //   return it.toLowerCase().includes(searchText);
+    // });
+
     return items.filter(it => {
-      return it.toLocaleLowerCase().includes(searchText);
+      return it.toLowerCase().includes(searchText);
     });
+
+    
   }
 }

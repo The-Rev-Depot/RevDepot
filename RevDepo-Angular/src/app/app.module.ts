@@ -15,6 +15,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './component/navbar/navbar.component';
 import { FilterPipe } from './pipes/filter.pipe';
 import { CartService } from './service/cart.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+// import { 
+//   MatIconModule, 
+//   MatInputModule, 
+//   MatAutocompleteModule, 
+//   MatChipsModule,
+//   MatFormFieldModule
+//  } from '@angular/material';
+
+
 
 @NgModule({
   declarations: [
@@ -35,6 +46,7 @@ import { CartService } from './service/cart.service';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
   ],
   providers: [CartService],
   bootstrap: [AppComponent]
