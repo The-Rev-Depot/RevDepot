@@ -2,6 +2,11 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
+import {MatTableModule} from '@angular/material/table';
+import { MatButtonModule } from  '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
+
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './component/login/login.component';
@@ -14,6 +19,8 @@ import { SearchbarComponent } from './component/searchbar/searchbar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './component/navbar/navbar.component';
 import { CartService } from './service/cart.service';
+
+
 
 @NgModule({
   declarations: [
@@ -33,6 +40,9 @@ import { CartService } from './service/cart.service';
     FormsModule, 
     ReactiveFormsModule,
     HttpClientModule,
+    MatTableModule,
+    MatButtonModule,
+    MatCardModule
   ],
   providers: [CartService],
   bootstrap: [AppComponent]
