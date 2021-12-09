@@ -15,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './component/navbar/navbar.component';
 import { ProductCardComponent } from './component/product-card/product-card.component';
 import { ResultPageComponent } from './component/result-page/result-page.component';
+import { CartService } from './service/cart.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,7 @@ import { ResultPageComponent } from './component/result-page/result-page.compone
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [CartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
