@@ -12,6 +12,7 @@ import { CheckoutComponent } from './component/checkout/checkout.component';
 import { SearchbarComponent } from './component/searchbar/searchbar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './component/navbar/navbar.component';
+import { CartService } from './service/cart.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { NavbarComponent } from './component/navbar/navbar.component';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [CartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
