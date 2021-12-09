@@ -65,7 +65,7 @@ public class InventoryServiceTest {
 		Item expectedItem = new Item();
 		int expectedItemQuantity = 1;
 		expectedItem.setProduct(expectedProduct);
-		expectedItem.setQuanity(expectedItemQuantity);
+		expectedItem.setQuantity(expectedItemQuantity);
 		
 		when(inventoryDao.findByProduct(expectedItem.getProduct())).thenReturn(expectedInventory);
 		doReturn(expectedInventory).when(inventoryService).updateInventory(expectedInventory);

@@ -1,1 +1,39 @@
-<p>navbar works!</p>
+<!-- <app-searchbar></app-searchbar> -->
+
+<mat-toolbar color="primary">
+    <span>The Rev Depot</span>
+    <span class="example-spacer"></span>
+    <button *ngIf="loggedIn" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon"
+        (click)="sidenav.toggle()">
+        <mat-icon *ngIf="!opened">shopping_cart</mat-icon>
+        <mat-icon *ngIf="opened">arrow_forward_ios</mat-icon>
+    </button>
+</mat-toolbar>
+
+<mat-sidenav-container class="sidnav-container" hasBackdrop="false">
+    <mat-sidenav class="sidenav" mode="over" [(opened)]="opened" position='end' fixedTopGap="64" [autoFocus]="false">
+
+        <div *ngFor="let product of products">
+
+            <mat-card>
+                <mat-card-title>{{ product.productName }}</mat-card-title>
+                <mat-card-subtitle>{{ product.productPrice }}</mat-card-subtitle>
+                <br>
+                <img src="{{ product.picUrl }}" />
+                <br>
+            </mat-card>
+
+        </div>
+
+
+        <h3 *ngIf="cartIsEmpty">Cart is currently empty.</h3>
+        <mat-divider></mat-divider>
+       
+        <h4>Total: </h4>
+        <mat-divider></mat-divider>
+        <button mat-flat-button color="primary">Checkout</button>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

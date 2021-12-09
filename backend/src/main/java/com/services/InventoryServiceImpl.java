@@ -1,5 +1,7 @@
 package com.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,11 +33,16 @@ public class InventoryServiceImpl implements InventoryService {
 		Inventory inventory = inventoryDao.findByProduct(item.getProduct());
 	
 		// Subtract item.quantity from inventory's quantity
-		inventory.setQuantity(inventory.getQuantity() - item.getQuanity());
+		inventory.setQuantity(inventory.getQuantity() - item.getQuantity());
 		
 		// Update inventory in database
 		return updateInventory(inventory);
 		
+	}
+
+	@Override
+	public List<Inventory> getAllProducts() {
+		return inventoryDao.findAll();
 	}
 	
 	@Autowired
