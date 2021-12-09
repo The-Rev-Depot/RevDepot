@@ -18,7 +18,6 @@ import { SearchbarComponent } from './component/searchbar/searchbar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './component/navbar/navbar.component';
 import { ProductCardComponent } from './component/product-card/product-card.component';
-import { CartService } from './service/cart.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //angular material modules
@@ -56,6 +55,8 @@ import {MatTreeModule} from '@angular/material/tree';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { SalesDealsComponent } from './component/sales-deals/sales-deals.component';
+import { ResultPageComponent } from './component/result-page/result-page.component';
+import { CartService } from './service/cart.service';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { SalesDealsComponent } from './component/sales-deals/sales-deals.compone
     SearchbarComponent,
     NavbarComponent,
     ProductCardComponent,
-    SalesDealsComponent
+    SalesDealsComponent,
+    ResultPageComponent
   ],
   imports: [
   

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { IProduct } from 'src/app/model/product';
 
 @Component({
@@ -9,7 +10,7 @@ import { IProduct } from 'src/app/model/product';
 export class DisplayProductsComponent implements OnInit {
 
   public product: any;
-  //public shirtPro : product;
+  public shirtPro!: IProduct;
 
   public productId:any;
   public productName: any;
@@ -19,26 +20,30 @@ export class DisplayProductsComponent implements OnInit {
   public category: any;
   public isOnSale: any;
 
-  constructor() { }
+  Apparel = { title: "apparel"}
+  
+  Stationary = { title: "stationary"}
+
+  Accessories = {  title: "accessories"}
+
+  categoriesArray = [this.Apparel,this.Stationary,this.Accessories];
+
+  
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  // todosArray = []; product array
-  //selectArray = [];
-  // //  productsArray = [this.shirtPro,this.shirtPro1,this.shirtPro2];
-  // shirtPro =
-  // {
 
-  //   productId: 1,
-  //   productName: 'card' ,
-  //   description: "string",
-  //   picUrl: "string",
-  //   productPrice: 15,
-  //   category: "string",
-  //   isOnSale: 1
 
-  // }
 
+  moreInfo()
+  {
+    console.log("google")
+
+    this.router.navigateByUrl('/product-details');
+
+
+  }
 
 }
