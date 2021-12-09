@@ -18,9 +18,20 @@ public class ProductServiceImpl implements ProductService {
 		this.productDao = productDao;
 	}
 	
+	@Override
 	public List<Product> getAllProducts() {
 		return productDao.findAll();
 	}
+	
+	@Override
+	public List<Product> getAllDeals() {
+		// TODO Auto-generated method stub
+		return productDao.getAllDeals();
+	}
 
+	@Override
+	public List<Product> getAllDealsByCategory() {
+		return productDao.getAllDealsByCategory();
+	}
 }
 //test

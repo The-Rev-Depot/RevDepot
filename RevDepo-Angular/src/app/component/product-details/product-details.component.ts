@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ProductServiceService } from 'src/app/service/product-service.service';
 
 @Component({
   selector: 'app-product-details',
@@ -7,7 +9,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductDetailsComponent implements OnInit {
 
-  constructor() { }
   public product: any;
   //public shirtPro : product;
 
@@ -18,6 +19,9 @@ export class ProductDetailsComponent implements OnInit {
   public productPrice: any;
   public category: any;
   public isOnSale: any;
+
+
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -36,5 +40,14 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   productsArray = [this.shirtPro];
+
+
+  moreInfo()
+  {
+    console.log("google")
+
+    this.router.navigateByUrl('/product-details');
+  }
+
 
 }

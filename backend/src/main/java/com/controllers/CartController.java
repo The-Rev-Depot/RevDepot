@@ -1,6 +1,8 @@
 package com.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,13 +23,18 @@ public class CartController {
     }
     
     @PutMapping("/update")
-    public void update(@RequestBody Cart curCart){
-        this.cartService.update(curCart);
+    public void updateCart(@RequestBody Cart curCart){
+        this.cartService.updateCart(curCart);
     }
     
     @PostMapping("/add")
-    public void add(Cart curCart) {
-    	this.cartService.add(curCart);
+    public void addCart(Cart curCart) {
+    	this.cartService.addCart(curCart);
+    }
+    
+    @GetMapping("/user/{id}")
+    public Cart getCartByUserId(@PathVariable int id) {
+    	return this.cartService.getCartByUserId(id);
     }
 
 }

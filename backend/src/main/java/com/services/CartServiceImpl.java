@@ -15,14 +15,14 @@ public class CartServiceImpl implements CartService{
 	private UserDao userDao;
 	
 	@Override
-	public void update(Cart curCart) {
-		Cart temp = cartDao.findByCartId(curCart.getCartId());
-		temp.setItems(curCart.getItems());
+	public void updateCart(Cart curCart) {
+		Cart tempCart = cartDao.findByCartId(curCart.getCartId());
+		tempCart.setItems(curCart.getItems());
 		User tempUser = this.getUserById(curCart.getUser().getUserId());
 		
-		temp.setUser(tempUser);
+		tempCart.setUser(tempUser);
 		
-		cartDao.save(temp);
+		cartDao.save(tempCart);
 	}
 	
 	@Override
@@ -31,13 +31,20 @@ public class CartServiceImpl implements CartService{
     }
 	
 	@Override
-	public void add(Cart curCart) {		
+	public void addCart(Cart curCart) {		
 		User tempUser = this.getUserById(curCart.getUser().getUserId());
 		
 		curCart.setUser(tempUser);
 		curCart.setCartId(0);
 		cartDao.save(curCart);
 		
+	}
+	
+	@Override
+	public Cart getCartByUserId(int userId) {
+		Cart tempCart = this.cartDao.findByUser_UserId(userId);
+		tempCart.getUser().setPassword(null);
+		return tempCart;
 	}
 	
 	@Autowired

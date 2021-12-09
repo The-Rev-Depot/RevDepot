@@ -71,7 +71,7 @@ class TestCartService {
 	
 	
 	/*
-	 *Creating a temporary cart objects, NOT assigning any value to it, and testing for false assertions. 
+	 *Creating a temporary cart object, NOT assigning any value to it, and testing for false assertions. 
 	 */
 	@Test
 	void shouldNotUpdateTemporaryCartWithCartPassed() {

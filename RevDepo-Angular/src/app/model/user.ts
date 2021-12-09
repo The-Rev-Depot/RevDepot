@@ -6,5 +6,5 @@ export interface IUser {
     lastName: string,
     email: string,
     urlProPic: string,
-    birthday: Date
+    birthday: string
 }
