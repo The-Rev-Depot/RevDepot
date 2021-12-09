@@ -20,12 +20,11 @@ export class DisplayProductsComponent implements OnInit {
   public category: any;
   public isOnSale: any;
 
-  Apparel = { title: "Apparel" }
+  Apparel = { title: "apparel"}
   
+  Stationary = { title: "stationary"}
 
-  Stationary = { title: "Stationary" }
-
-  Accessories = {  title: "Accessories" }
+  Accessories = {  title: "accessories"}
 
   categoriesArray = [this.Apparel,this.Stationary,this.Accessories];
 

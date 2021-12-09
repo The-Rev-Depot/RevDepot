@@ -14,31 +14,26 @@ import { InventoryClass } from 'src/app/model/inventory-class';
 })
 export class ResultPageComponent implements OnInit {
 
-  inventory : IInventory | undefined;
-  products :IProduct | undefined;
-  product : any;
+    //none of these are being used / not essential as far as I can tell
+
+  // inventory : IInventory | undefined;
+  // products :IProduct | undefined;
+  // product : any;
+
+//  public productId:any;
+//  public productName: any;
+//  public description: any;
+//  public picUrl: any;
+//  public productPrice: any;
+//  public category: any;
+//  public isOnSale: any;
+  //items : IProduct | undefined; 
+
   productsList: any;
 
-
- //public shirtPro : product;
-
- public productId:any;
- public productName: any;
- public description: any;
- public picUrl: any;
- public productPrice: any;
- public category: any;
- public isOnSale: any;
-  items : IProduct | undefined;
-
   public searchResults:any = [];
-
   public inventoryList: Array<InventoryClass> = [];
   public productsArray: Array<ProductClass> = [];
-
-  public sortedCategory: any = [];
-
-
 
 
   constructor(private router: Router, private route: ActivatedRoute,private productService:ProductServiceService) { }
@@ -48,9 +43,8 @@ export class ResultPageComponent implements OnInit {
   }
 
   public getIProduct(): void {
-     //const categoryTitle = this.route.snapshot.paramMap.get('category');
+     const categoryTitle = String (this.route.snapshot.paramMap.get('title'));
 
-    //  this.productService.getIProduct().subscribe(data => this.productList = data);
     this.productService.getIProduct().subscribe(
       (data) => {
         this.searchResults = data;
@@ -58,54 +52,39 @@ export class ResultPageComponent implements OnInit {
         for (let one of this.searchResults) {
           this.inventoryList.push(one);
         }
+        console.log(this.inventoryList);
 
-
-      });
-     console.log(this.inventoryList);
-
-     this.productsList=this.inventoryList;
-     console.log(this.productsList);
-     console.log(this.productsList[0].product.category)
-
-     this.getProduct();
-
+        this.getProduct(categoryTitle);
+      }
+    );
   }
 
-    
 
+  public getProduct(categoryTitle:string): void{
 
-  public getProduct(): void{
+     for(let i =0; i<this.inventoryList.length; i++) {
 
-     //const categoryTitle = this.route.snapshot.paramMap.get('category');
+      if(this.inventoryList[i].product.category == categoryTitle){
 
+      console.log("Sorted: " + this.inventoryList[i].product.category);
 
-     for(let i =0; i<this.productsList.length;i++)
-     {
-       if(this.productsList[i].product.category == "clothing"){
-     console.log("Sorted: " + this.productsList[i].product.category);
-     //this.productsList[i].product.push(this.productsArray);
-     this.productsArray.push(this.productsList[i].product);
-
-
+      this.productsArray.push(this.inventoryList[i].product);
 
      }
      console.log("After push: " + this.productsArray);
-     console.log("After push: " + this.productsList);
      }
 
   }
 
-      public moreInfo() {
+  public moreInfo() {
         // console.log("google")
         // console.log(this.productsList);
         // console.log(this.productsList[0]);
         // this.product=this.productsList[0];
         // console.log("Single item: " + this.product);
         // console.log(this.product.productId);
-        console.log(this.productsList[0].product.category);
+    console.log(this.productsList[0].product.category);
 
-        this.getProduct();
-
-      }
+  }
 }
 

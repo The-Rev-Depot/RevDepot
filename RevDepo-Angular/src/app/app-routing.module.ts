@@ -14,7 +14,7 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'cart', component: CartComponent},
   {path: 'product-details', component: ProductDetailsComponent},
-  {path: 'result-page/:category', component: ResultPageComponent},
+  {path: 'result-page/:title', component: ResultPageComponent},
   {path: 'checkout', component: CheckoutComponent},
   {path: '**', redirectTo: 'display-products'},
 
