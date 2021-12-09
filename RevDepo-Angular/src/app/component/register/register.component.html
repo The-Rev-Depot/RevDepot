@@ -1,1 +1,36 @@
-<p>register works!</p>
+<div class="form-register">
+    <form id="register-form" class="form-container text-center">
+        <h2 class="fw-bolder mb-4 text-center">Register New User</h2>
+        <div class="mb-3">
+            <label for="register-username" class="form-label">New Username</label>
+            <input type="text" class="form-control" [(ngModel)]='userAccount.username' aria-describedby="register-username-help">
+            <div id="register-username-help" class="form-text">Choose something unique that you can remember</div>
+        </div>
+        <div class="mb-3">
+            <label for="register-password" class="form-label">New Password</label>
+            <input type="password" class="form-control" [(ngModel)]='userAccount.password' aria-describedby="register-password-help">
+            <div id="register-password-help" class="form-text">~Password Criteria~</div>
+        </div>
+        <div class="row g-3">
+            <div class="col">
+                <input type="text" class="form-control" placeholder="First Name" [(ngModel)]='userAccount.firstName'>
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Family Name" [(ngModel)]='userAccount.lastName'>
+            </div>
+        </div>
+        <br/>
+        <div class="mb-3">
+            <label for="register-email" class="form-label">Email</label>
+            <input type="email" class="form-control" [(ngModel)]="userAccount.email" placeholder="ExampleEmail@email.com">
+        </div>
+        <div class="mb-3">
+            <label for="register-bday" class="form-label">Birthday</label>
+            <input type="date" class="form-control" [(ngModel)]='userAccount.birthday'>
+        </div>
+        <div class="col">
+            <button type="submit" class="btn btn-primary" (click)="registerUser()">Register</button>
+        </div>
+    </form>
+    <a id="login" class="text-decoration-none" routerLink='/login'>Return to Login</a>
+</div>

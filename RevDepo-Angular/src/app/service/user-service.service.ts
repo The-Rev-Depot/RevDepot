@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { GenericService } from './generic.service';
+import { IUser } from '../model/user';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +25,10 @@ export class UserServiceService {
 
   getUserByUsername(username: string) {
     return this.httpClient.get<any>(this.genericService._localServerDomain  + `/user/username/${username}`, {withCredentials: true});
+  }
+
+  addUserRequest(newUser: IUser): Observable<any> {
+    return this.httpClient.post<any>(this.genericService._localServerDomain + `/user`, newUser, {withCredentials: true})
   }
 
 
