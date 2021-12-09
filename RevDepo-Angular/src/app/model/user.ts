@@ -4,6 +4,7 @@ export interface IUser {
     password: string,
     firstName: string,
     lastName: string,
+    email: string,
     urlProPic: string,
     birthday: Date
 }
