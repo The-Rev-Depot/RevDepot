@@ -28,7 +28,7 @@ export class ProductCardComponent implements OnInit {
     //console.log(this.result.getIProduct);
     //this.result.getIProduct;
   }
-
+ //test
   shirtPro =
   {
 
