@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   constructor(private userService: UserServiceService, private router:Router) { }
 
   ngOnInit(): void {
+    console.log(JSON.parse(sessionStorage.getItem('userObject')!).object);
   }
 
   userLogin(){
@@ -26,8 +27,8 @@ export class LoginComponent implements OnInit {
     this.userService.userLogin(this._username, this._password).subscribe(data => {
       console.log(data)
       if (data.success){
-        this._userId = data.object.userId;
-        this.router.navigate([`/dashboard/`]);
+        sessionStorage.setItem('userObject', JSON.stringify(data));
+        this.router.navigate([`/display-products/`]);
       } else {
         this._invalidPasswordMessage = "Invalid password";
       }

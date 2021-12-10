@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { GenericService } from './generic.service';
 import { IUser } from '../model/user';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,8 @@ import { Observable } from 'rxjs';
 export class UserServiceService {
 
   checkloggedIn = true;
-  constructor(private httpClient: HttpClient, private genericService: GenericService) {
+
+  constructor(private httpClient: HttpClient, private genericService: GenericService, private router: Router) {
   }
 
   userLogin(username: string, password: string){
@@ -33,5 +35,10 @@ export class UserServiceService {
     return this.httpClient.post<any>(this.genericService._localServerDomain + `/user`, newUser, {withCredentials: true})
   }
 
+  // we are now handling logout from the frontend, so no need to use httpClient
+  logout() {
+    sessionStorage.clear();
+    this.router.navigateByUrl('');
+  }
 
 }
