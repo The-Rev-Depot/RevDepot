@@ -1,39 +1,45 @@
 <!-- <app-searchbar></app-searchbar> -->
-
-<mat-toolbar color="primary">
-    <span>The Rev Depot</span>
+<mat-toolbar color="primary" class = "fixed-header">
+    
+    <button  mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click) = "homeRoute()">
+    <mat-icon >home</mat-icon>
+    </button>
+    <span class="example-spacer"></span>
+    <mat-form-field>
+        <input type=" text" matInput placeholder="Search">
+    </mat-form-field>
     <span class="example-spacer"></span>
     <button *ngIf="loggedIn" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon"
-        (click)="sidenav.toggle()">
-        <mat-icon *ngIf="!opened">shopping_cart</mat-icon>
-        <mat-icon *ngIf="opened">arrow_forward_ios</mat-icon>
+    (click)="sidenav.toggle()">
+    <mat-icon *ngIf="!opened">shopping_cart</mat-icon>
+    <mat-icon *ngIf="opened">arrow_forward_ios</mat-icon>
     </button>
-</mat-toolbar>
 
-<mat-sidenav-container class="sidnav-container" hasBackdrop="false">
-    <mat-sidenav class="sidenav" mode="over" [(opened)]="opened" position='end' fixedTopGap="64" [autoFocus]="false">
+ </mat-toolbar>
 
-        <div *ngFor="let product of products">
-
-            <mat-card>
-                <mat-card-title>{{ product.productName }}</mat-card-title>
-                <mat-card-subtitle>{{ product.productPrice }}</mat-card-subtitle>
-                <br>
-                <img src="{{ product.picUrl }}" />
-                <br>
-            </mat-card>
-
-        </div>
-
-
-        <h3 *ngIf="cartIsEmpty">Cart is currently empty.</h3>
-        <mat-divider></mat-divider>
-       
-        <h4>Total: </h4>
-        <mat-divider></mat-divider>
-        <button mat-flat-button color="primary">Checkout</button>
+ <mat-sidenav-container class="sidnav-container" hasBackdrop="false" autosize>
+    <mat-sidenav class="sidenav" mode="over" [(opened)]="opened" position='end' fixedTopGap="64" [autoFocus]="false" fixedInViewport>
+    <div *ngIf = "cart">
+       <div *ngFor="let item of cart.items">
+          <mat-card>
+             <mat-card-title>{{ item.product.productName }}</mat-card-title>
+            <mat-card-subtitle>Quantity: {{item.quantity}}</mat-card-subtitle>
+             <mat-card-subtitle>Price: {{ item.product.productPrice }}</mat-card-subtitle>    
+             <br>
+             <img  width="105" height="85" src="{{ item.product.picUrl }}" />
+             <br><br>
+             <button mat-flat-button color="primary" (click)="removeItem()">Update Quantity</button>
+             <br/>
+          </mat-card>
+       </div>
+    </div>
+    <h3 *ngIf="cartIsEmpty">Cart is currently empty.</h3>
+    <mat-divider></mat-divider>
+    <h4>Total: {{totalPrice}}</h4>
+    <mat-divider></mat-divider>
+    <button mat-flat-button color="primary" (click)="checkoutRoute()" (click)="sidenav.toggle()">Checkout</button>
     </mat-sidenav>
     <mat-sidenav-content>
-        <router-outlet></router-outlet>
+    <router-outlet></router-outlet>
     </mat-sidenav-content>
-</mat-sidenav-container>
+  </mat-sidenav-container>
