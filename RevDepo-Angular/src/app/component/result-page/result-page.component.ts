@@ -36,7 +36,7 @@ export class ResultPageComponent implements OnInit {
   public productsArray: Array<ProductClass> = [];
 
 
-  constructor(private router: Router, private route: ActivatedRoute,private productService:ProductServiceService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private productService:ProductServiceService) { }
 
   ngOnInit(): void {
     this.getIProduct();
@@ -62,11 +62,17 @@ export class ResultPageComponent implements OnInit {
 
   public getProduct(categoryTitle:string): void{
 
+    console.log(categoryTitle);
+
+
      for(let i =0; i<this.inventoryList.length; i++) {
 
-      if(this.inventoryList[i].product.category == categoryTitle){
+      console.log(this.inventoryList[i].product.productCategory);
+      console.log(this.inventoryList[i].product);
 
-      console.log("Sorted: " + this.inventoryList[i].product.category);
+      if(this.inventoryList[i].product.productCategory == categoryTitle){
+
+      console.log("Sorted: " + this.inventoryList[i].product.productCategory);
 
       this.productsArray.push(this.inventoryList[i].product);
 
@@ -78,12 +84,12 @@ export class ResultPageComponent implements OnInit {
 
   public moreInfo() {
         // console.log("google")
-        console.log(this.productsList);
-         console.log(this.productsList[0]);
+        console.log(this.productsArray);
+         console.log(this.productsArray[0]);
          //this.product=this.productsList[0];
          //console.log("Single item: " + this.product);
         // console.log(this.product.productId);
-    console.log(this.productsList[0].product.category);
+    console.log(this.productsArray[0].productCategory);
 
   }
 }

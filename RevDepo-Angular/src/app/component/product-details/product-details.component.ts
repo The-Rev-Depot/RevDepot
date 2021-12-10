@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { IInventory } from 'src/app/model/inventory';
 import { ProductServiceService } from 'src/app/service/product-service.service';
+import { InventoryClass } from 'src/app/model/inventory-class';
 
+import { IProduct } from 'src/app/model/product';
+import { ProductClass } from 'src/app/model/product-class';
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
@@ -20,10 +24,70 @@ export class ProductDetailsComponent implements OnInit {
   public category: any;
   public isOnSale: any;
 
+  productsList: any;
 
-  constructor(private router: Router) { }
+  public searchResults:any = [];
+  public inventoryList: Array<InventoryClass> = [];
+  public productsArray: Array<ProductClass> = [];
+  public productArray: Array<ProductClass> = [];
+
+
+
+
+  constructor(private router: Router, private route: ActivatedRoute, private productService:ProductServiceService) { }
 
   ngOnInit(): void {
+    this.getIProduct();
+  }
+
+
+  public getIProduct(): void {
+    const idTitle = String (this.route.snapshot.paramMap.get('Id'));
+
+   this.productService.getIProduct().subscribe(
+     (data) => {
+       this.searchResults = data;
+
+       for (let one of this.searchResults) {
+         this.inventoryList.push(one);
+       }
+       console.log(this.inventoryList);
+
+       this.getProduct(idTitle);
+     }
+   );
+ }
+
+
+ public getProduct(idTitle:any): void{
+
+  console.log(idTitle);
+
+
+   for(let i =0; i<this.inventoryList.length; i++) {
+
+    console.log(this.inventoryList[i].product.productId);
+    console.log(this.inventoryList[i].product);
+
+    if(this.inventoryList[i].product.productId == idTitle){
+
+    console.log("Sorted: " + this.inventoryList[i].product.productId);
+
+    this.productsArray.push(this.inventoryList[i].product);
+
+   }
+   console.log("After push: " + this.productsArray);
+   }
+
+   this.productArray = [this.productsArray[0]];
+  console.log(this.productArray);
+}
+
+  moreInfo()
+  {
+    console.log("google")
+
+    this.router.navigateByUrl('/product-details');
   }
 
   shirtPro =
@@ -39,15 +103,7 @@ export class ProductDetailsComponent implements OnInit {
 
   }
 
-  productsArray = [this.shirtPro];
 
-
-  moreInfo()
-  {
-    console.log("google")
-
-    this.router.navigateByUrl('/product-details');
-  }
 
 
 }

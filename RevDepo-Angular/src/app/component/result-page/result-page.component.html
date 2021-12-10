@@ -10,15 +10,15 @@
 
 
 
-    <div *ngFor = "let item of productsArray" class="product-card" (click)="moreInfo()">
+    <div *ngFor = "let item of productsArray" class="product-card">
 
 
       <h2>ID#: {{item.productId}}</h2>
       <p>Name: {{item.productName}}</p>
       <p>Price: {{item.productPrice}}</p>
-      <p>On Sale: {{item.isOnSale}}</p>
+      <p>On Sale: {{item.saleId}}</p>
       <img src={{item.picUrl}}/>
-      <a class="nav-link" routerLink="/product-details">link</a>
+      <a class="nav-link" routerLink="/product-details/{{item.productId}}">link</a>
 
   </div>
 

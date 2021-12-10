@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute} from '@angular/router';
 import { IProduct } from 'src/app/model/product';
+import { ProductClass } from 'src/app/model/product-class';
+import { IInventory } from 'src/app/model/inventory';
+import { ProductServiceService } from 'src/app/service/product-service.service';
+import { InventoryClass } from 'src/app/model/inventory-class';
 //import { threadId } from 'worker_threads';
 //import { ResultPageComponent } from '../result-page/result-page.component';
 
@@ -11,7 +15,7 @@ import { IProduct } from 'src/app/model/product';
 })
 export class ProductCardComponent implements OnInit {
 
-  constructor(private router: Router /*, private result: ResultPageComponent*/) { }
+  constructor(private router: Router, private route: ActivatedRoute, private productService:ProductServiceService/*, private result: ResultPageComponent*/) { }
 
   public product: any;
   //public shirtPro : product;
@@ -25,9 +29,66 @@ export class ProductCardComponent implements OnInit {
   public isOnSale: any;
 
   ngOnInit(): void {
+
+    this.getIProduct();
+
     //console.log(this.result.getIProduct);
     //this.result.getIProduct;
   }
+
+  productsList: any;
+
+  public searchResults:any = [];
+  public inventoryList: Array<InventoryClass> = [];
+  public productsArray: Array<ProductClass> = [];
+  public productArray: Array<ProductClass> = [];
+
+
+  public getIProduct(): void {
+    const dealTitle = Boolean (1);
+
+   this.productService.getIProduct().subscribe(
+     (data) => {
+       this.searchResults = data;
+
+       for (let one of this.searchResults) {
+         this.inventoryList.push(one);
+       }
+       console.log(this.inventoryList);
+
+       this.getProduct(dealTitle);
+     }
+   );
+ }
+
+
+ public getProduct(dealTitle:any): void{
+
+  console.log(dealTitle);
+
+
+   for(let i =0; i<this.inventoryList.length; i++) {
+
+    console.log(this.inventoryList[i].product.saleId);
+    console.log(this.inventoryList[i].product);
+
+    if(this.inventoryList[i].product.saleId == dealTitle){
+
+    console.log("Sorted: " + this.inventoryList[i].product.saleId);
+
+    this.productsArray.push(this.inventoryList[i].product);
+
+   }
+   console.log("After push: " + this.productsArray);
+   }
+
+   this.productArray = [this.productsArray[0]];
+  console.log(this.productArray);
+}
+
+
+
+
  //test
   shirtPro =
   {
@@ -69,10 +130,15 @@ export class ProductCardComponent implements OnInit {
 
   }
 
-  productsArray = [this.shirtPro,this.shirtPro1,this.shirtPro2];
+
 
    moreInfo()
    {
+      //temp move to main method
+      //this.productArray = [this.shirtPro,this.shirtPro1,this.shirtPro2];
+
+
+
   //   this.result.moreInfoDis;
 
      console.log("google")

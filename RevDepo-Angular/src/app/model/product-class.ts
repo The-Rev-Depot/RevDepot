@@ -6,8 +6,8 @@ export class ProductClass {
         public description: string,
         public picUrl: string,
         public productPrice: number,
-        public category: string,
-        public isOnSale: boolean
+        public productCategory: string,
+        public saleId: boolean
     ) {}
-    
+
 }

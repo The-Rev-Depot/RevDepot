@@ -1,19 +1,21 @@
 
 <a class="nav-link" routerLink="/">Home</a>
 
+<p (click)="moreInfo()">Test</p>
+
 
 
 <div class="grid-container">
 
 
 
-  <div *ngFor = "let shirtPro of productsArray" class="product-card" (click)="moreInfo()">
+  <div *ngFor = "let shirtPro of productArray" class="product-card">
 
 
     <h2>ID#: {{shirtPro.productId}}</h2>
     <p>Name: {{shirtPro.productName}}</p>
     <p>Price: {{shirtPro.productPrice}}</p>
-    <p>On Sale: {{shirtPro.isOnSale}}</p>
+    <p>On Sale: {{shirtPro.saleId}}</p>
     <img src={{shirtPro.picUrl}}/>
 
 </div>
