@@ -27,29 +27,17 @@ public class Product {
 	@Column(name = "product_name")
 	private String productName;
 	@Column(name = "product_description")
-	private String description;
-	@Column(name = "pic_url")
+	private String productDescription;
+	@Column(name ="pic_url")
 	private String picUrl;
-	@Column(name = "product_price")
-	private int productPrice;
-	@Column(name = "product_rating")
+	@Column(name ="product_price")
+	private double productPrice;
+	@Column(name ="product_rating")
 	private float productRating;
 	@Column(name = "product_category")
-	private String category;
-	@Column(name = "sale_id")
-	private int isOnSale;
-	
-	public Product(String productName, String description, String picUrl, int productPrice,
-			float productRating, String category, int isOnSale) {
-		super();
-		this.productName = productName;
-		this.description = description;
-		this.picUrl = picUrl;
-		this.productPrice = productPrice;
-		this.productRating = productRating;
-		this.category = category;
-		this.isOnSale = isOnSale;
-	}
+	private String productCategory;
+	@Column(name ="sale_id")
+	private int saleId;
 
 	
 	

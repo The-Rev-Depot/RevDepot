@@ -1,1 +1,65 @@
-<p>checkout works!</p>
+<div class="row flex-container" *ngIf="cart">
+  <div class="column-left">
+    <h2>Item Details</h2>
+    <div *ngFor="let item of cart.items">
+      <mat-card class="product-card mat-elevation-z5">
+        <mat-card-title-group>
+          <mat-card-title>{{ item.product.productName }} </mat-card-title>
+          <mat-card-subtitle>{{ item.product.category }} </mat-card-subtitle>
+
+          <!--  -->
+        </mat-card-title-group>
+        <mat-card-content>
+          <div class="flex-container">
+            <div>Qty: {{ item.quantity }}</div>
+            <div >
+              <p>
+                ${{
+                  item.quantity * item.product.productPrice | number: "1.2-2"
+                }}
+                <br />
+                <span class="grey"
+                  >${{ item.product.productPrice | number: "1.2-2" }} ea</span
+                >
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <img mat-card-md-image src="{{ item.product.picUrl }}" />
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  <div class="column-right">
+    <div class="box">
+      <div><h2>Order Summary</h2></div>
+      <table>
+        <tr>
+          <td>
+            <p>Items({{ getTotalQty()  }}):</p>
+          </td>
+          <td>
+            <p>${{ getTotalPrice() | number: "1.2-2" }}</p>
+          </td>
+        </tr>
+        <tr>
+          <td><p>Shipping & Handling:</p></td>
+          <td><p>$10.00</p></td>
+        </tr>
+        <tr>
+          <td><p>Estimated Tax to be collected:</p></td>
+          <td><p>$0.00</p></td>
+        </tr>
+      </table>
+      <hr />
+
+      <div>
+        <h4>Order total : ${{ getTotalPrice() + 10 | number: "1.2-2" }}</h4>
+      </div>
+
+      <button mat-raised-button color="primary">Place your order</button>
+    </div>
+  </div>
+</div>

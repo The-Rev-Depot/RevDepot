@@ -1,1 +1,14 @@
-<p>login works!</p>
+<div class="form-login mt-5">
+  <form id="login-form" class="form-container text-center ">
+      <h2 class="fw-bolder mb-4 text-center" >User Login</h2>
+      <input type="text" placeholder="Username" id="username" name="_username" [(ngModel)] = "_username" (focus)="removeUsername()" (blur)="checkUsername()" autocomplete="username" required>
+      <div id="validate-username" class="fst-italic fw-bolder text-danger">{{_invalidUsernameMessage}}</div>
+      <input type="password" placeholder="Password" id="password" name="_password" [(ngModel)] = "_password" (focus)="removePassword()" autocomplete="current-password" required>
+      <div id="validate-password" class="fst-italic fw-bolder text-danger">{{_invalidPasswordMessage}}</div>
+      <div class="col">
+        <button type="submit" class="btn btn-primary fw-bolder" (click)="userLogin()">LOGIN</button>
+     </div>
+   <a id="reset" class="text-decoration-none text-white" routerLink="forgot-password">Forgot Password?</a>
+  </form>
+  <a id="register" class="text-decoration-none" routerLink="register">Register New Account</a>
+</div>
