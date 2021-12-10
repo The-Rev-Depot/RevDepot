@@ -90,18 +90,8 @@ export class ProductDetailsComponent implements OnInit {
     this.router.navigateByUrl('/product-details');
   }
 
-  shirtPro =
-  {
 
-    productId: 1,
-    productName: 'card' ,
-    description: "string",
-    picUrl: "string",
-    productPrice: 15,
-    category: "string",
-    isOnSale: 1
 
-  }
 
 
 
