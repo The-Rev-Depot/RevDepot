@@ -13,14 +13,18 @@
 <mat-sidenav-container class="sidnav-container" hasBackdrop="false">
     <mat-sidenav class="sidenav" mode="over" [(opened)]="opened" position='end' fixedTopGap="64" [autoFocus]="false">
 
-        <div *ngFor="let product of products">
+        <div *ngFor="let item of items">
 
             <mat-card>
-                <mat-card-title>{{ product.productName }}</mat-card-title>
-                <mat-card-subtitle>{{ product.productPrice }}</mat-card-subtitle>
+                <mat-card-title>{{ item.product.productName }}</mat-card-title>
+                <mat-card-subtitle>{{ item.product.productPrice }}</mat-card-subtitle>
                 <br>
-                <img src="{{ product.picUrl }}" />
+                <img src="{{ item.product.picUrl }}" />
                 <br>
+
+                <button class="btn" (click)="decrement(item)">-</button>
+                    {{item.quantity}}
+                <button class="btn" (click)="increment(item)">+</button>
             </mat-card>
 
         </div>

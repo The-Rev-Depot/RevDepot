@@ -37,6 +37,6 @@ public class Transaction {
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
-	@OneToMany(mappedBy = "id")
+	@OneToMany(mappedBy = "itemId")
 	private Set<Item> items;
 }

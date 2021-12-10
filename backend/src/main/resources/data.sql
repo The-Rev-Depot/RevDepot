@@ -1,2 +1,0 @@
-INSERT INTO products (product_id, product_name, product_description, pic_url, product_price, product_rating, product_category, sale_id) VALUES (1, 'Gray T-Shirt', 'made of cotton', 'picture', 60, 4, 'clothes', 1);
-INSERT INTO items (item_id, quanity, product_id) VALUES (1, 12, 1);
