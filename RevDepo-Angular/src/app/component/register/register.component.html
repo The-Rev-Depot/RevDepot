@@ -2,14 +2,14 @@
     <form id="register-form" class="form-container text-center">
       <div>
         <h2 class="fw-bolder mb-4 text-center">Register New User</h2>
-        <input [(ngModel)]="userAccount.username" type="text" placeholder="Username"  class="form-control" [(ngModel)]='userAccount.username' aria-describedby="register-username-help">
+        <input type="text" class="form-control" [(ngModel)]="userAccount.username" name="userAccount.username" placeholder="Username"  aria-describedby="register-username-help">
         <div id="register-username-help" class="form-text text-danger">Choose something unique that you can remember</div>
-        <input [(ngModel)]="userAccount.password" type = "password" placeholder="Password"  class="form-control text-danger" aria-describedby="register-password-help">
+        <input type="password" class="form-control" [(ngModel)]="userAccount.password" name="userAccount.password" placeholder="Password" aria-describedby="register-password-help">
         <div id="register-password-help" class="form-text">~Password Criteria~</div>
-        <input type="text" class="form-control" placeholder="First Name" [(ngModel)]='userAccount.firstName'>
-        <input type="text" class="form-control" placeholder="Last Name" [(ngModel)]='userAccount.lastName'>
-        <input type="email" class="form-control" [(ngModel)]="userAccount.email" placeholder="Email Address">
-        <input type="date" class="form-control" [(ngModel)]='userAccount.birthday' placeholder="Birthdate">
+        <input type="text" class="form-control" placeholder="First Name" [(ngModel)]='userAccount.firstName' name="userAccount.firstName">
+        <input type="text" class="form-control" placeholder="Last Name" [(ngModel)]='userAccount.lastName' name="userAccount.lastName">
+        <input type="email" class="form-control" [(ngModel)]="userAccount.email" name="userAccount.email" placeholder="Email Address">
+        <input type="date" class="form-control" [(ngModel)]='userAccount.birthday' name="userAccount.birthday" placeholder="Birthdate">
         <div class="col">
             <button type="submit" class="btn btn-primary" (click)="registerUser()">Register</button>
         </div>

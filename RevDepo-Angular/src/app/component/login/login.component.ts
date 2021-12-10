@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { anyTypeAnnotation } from "node_modules/@babel/types/lib/index-legacy";
 import { UserServiceService } from "src/app/service/user-service.service";
 
 @Component({
@@ -23,7 +22,9 @@ export class LoginComponent implements OnInit {
   }
 
   userLogin(){
+    console.log(this._username)
     this.userService.userLogin(this._username, this._password).subscribe(data => {
+      console.log(data)
       if (data.success){
         this._userId = data.object.userId;
         this.router.navigate([`/dashboard/`]);
