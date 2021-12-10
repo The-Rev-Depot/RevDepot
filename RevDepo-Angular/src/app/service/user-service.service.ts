@@ -29,6 +29,7 @@ export class UserServiceService {
   }
 
   addUserRequest(newUser: IUser): Observable<any> {
+    console.log(newUser)
     return this.httpClient.post<any>(this.genericService._localServerDomain + `/user`, newUser, {withCredentials: true})
   }
 
