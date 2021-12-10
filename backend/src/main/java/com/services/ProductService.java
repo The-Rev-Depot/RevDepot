@@ -8,7 +8,7 @@ public interface ProductService {
 	
 	public List<Product> getAllDeals();
 	
-	public List<Product> getAllDealsByCategory();
+	public List<Product> getAllDealsByCategory(String category);
 
 	List<Product> getAllProducts();
 }

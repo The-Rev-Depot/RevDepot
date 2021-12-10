@@ -30,8 +30,8 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<Product> getAllDealsByCategory() {
-		return productDao.getAllDealsByCategory();
+	public List<Product> getAllDealsByCategory(String category) {
+		return productDao.getAllDealsByCategory(category);
 	}
 }
 //test
