@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.models.Inventory;
 import com.models.Item;
+import com.models.Product;
 
 public interface InventoryService {
 	
@@ -20,8 +21,12 @@ public interface InventoryService {
 	 * @return		The updated inventory object
 	 */
 	public Inventory subtractItemFromInventory(Item item);
-
 	
+	/**
+	 * Returns the inventory for a given product.
+	 */
+	public Inventory getInventoryByProduct(Product product);
+
 	/**
 	 * Returns all inventory objects in database.
 	 */

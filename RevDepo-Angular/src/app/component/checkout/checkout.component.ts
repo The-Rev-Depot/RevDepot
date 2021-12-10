@@ -1,3 +1,4 @@
+import { HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ICart } from 'src/app/model/cart';
 import { CartService } from 'src/app/service/cart.service';
@@ -10,7 +11,6 @@ import { CartService } from 'src/app/service/cart.service';
 export class CheckoutComponent implements OnInit {
 
   cart?: ICart;
-  displayedColumns: string[] = ['quantity', 'productName', 'productPrice'];//['Quantity', 'Product Image', 'Product', 'Price'];
 
   constructor(private cartService: CartService) { }
 
@@ -27,6 +27,12 @@ export class CheckoutComponent implements OnInit {
     this.cartService.checkoutCart().subscribe(
       (items)=> {
         console.log(items);
+      },
+      // Server responds with error if cart's items go beyond inventory's capacity
+      (error: HttpErrorResponse) => {
+        if (error.status == HttpStatusCode.Conflict) {
+          console.log("Not enough inventory to handle checkout request!");
+        }
       }
     );
   }

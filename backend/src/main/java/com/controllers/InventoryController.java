@@ -3,14 +3,15 @@ package com.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.models.Inventory;
 import com.models.Item;
@@ -38,6 +39,22 @@ public class InventoryController {
 	@PostMapping(value="update")
 	public Item[] updateInventory (@RequestBody Item items[]) {
 		
+		// Check that we have enough inventory to process request
+		boolean hasInventory = true;
+		for (Item item: items) {
+			Inventory inventory = inventoryService.getInventoryByProduct(item.getProduct());
+			if (!(inventory != null && (inventory.getQuantity() - item.getQuantity()) > 0)) {
+				hasInventory = false;
+				break;
+			}
+		}
+		
+		// Respond with error if we're lacking inventory 
+		if (!hasInventory) {
+			throw new ResponseStatusException(HttpStatus.CONFLICT);
+		}
+		
+		// Subtract items from inventory
 		for (Item item : items) {
 			inventoryService.subtractItemFromInventory(item);
 		}

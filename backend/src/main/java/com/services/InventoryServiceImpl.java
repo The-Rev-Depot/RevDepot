@@ -9,6 +9,7 @@ import com.dao.InventoryDao;
 import com.dao.ProductDao;
 import com.models.Inventory;
 import com.models.Item;
+import com.models.Product;
 
 @Service
 public class InventoryServiceImpl implements InventoryService {
@@ -32,14 +33,19 @@ public class InventoryServiceImpl implements InventoryService {
 		// Get inventory object
 		Inventory inventory = inventoryDao.findByProduct(item.getProduct());
 	
-		// Subtract item.quantity from inventory's quantity
+		// Subtract item's quantity from inventory's quantity
 		inventory.setQuantity(inventory.getQuantity() - item.getQuantity());
 		
 		// Update inventory in database
 		return updateInventory(inventory);
 		
 	}
-
+	
+	@Override
+	public Inventory getInventoryByProduct(Product product) {
+		return inventoryDao.findByProduct(product);
+	}
+	
 	@Override
 	public List<Inventory> getAllProducts() {
 		return inventoryDao.findAll();
