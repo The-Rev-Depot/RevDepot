@@ -1,0 +1,26 @@
+<mat-card>
+    <mat-card-title>{{item.product.productName}}</mat-card-title>
+    <form name="itemForm" class="example-form">
+        <mat-form-field class="example-full-width">
+            <mat-label>Quantity: {{item.quantity}}</mat-label>
+            <input form="itemForm" 
+                name="quantityInput" 
+                matInput type="number" 
+                maxlength="2" 
+                min="1" 
+                max="99" 
+                required mdInput 
+                placeholder="Quantity {{item.quantity}}" 
+                [(ngModel)]="item.quantity"
+                [formControl]="quantityControl">
+                
+        </mat-form-field>
+    </form>
+
+    <mat-card-subtitle>Price: {{ item.product.productPrice }}</mat-card-subtitle>
+    <br>
+    <img width="105" height="85" src="{{ item.product.picUrl }}" />
+    <br><br>
+    <!-- <button mat-flat-button color="primary">Update Quantity</button> -->
+    <br />
+</mat-card>

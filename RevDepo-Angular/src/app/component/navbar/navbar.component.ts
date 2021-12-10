@@ -26,7 +26,6 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     this.cart = this.cartService.getCart();
     this.totalPrice = this.cartService.getTotalPrice();
-
   }
 
   toggleSideNav(){
