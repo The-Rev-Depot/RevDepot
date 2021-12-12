@@ -8,7 +8,12 @@
       <div class="col">
         <button type="submit" class="btn btn-primary fw-bolder" (click)="userLogin()">LOGIN</button>
      </div>
-   <a id="reset" class="text-decoration-none text-white" routerLink="forgot-password">Forgot Password?</a>
+     <div>
+      <a id="reset" class="text-decoration-none text-white fw-bold" (click)="forgotpassword()">Forgot Password?</a>
+        </div>
+     <div>
+      <a id="register" class="text-decoration-none fw-bold" routerLink="/register">Register New Account</a>
+     </div>
   </form>
-  <a id="register" class="text-decoration-none" routerLink="/register">Register New Account</a>
+
 </div>

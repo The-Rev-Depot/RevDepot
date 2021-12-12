@@ -1,18 +1,16 @@
-package com.revature.ers.services;
+package com.utility;
 
-import com.revature.ers.models.User;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.models.User;
+import org.springframework.stereotype.Service;
+
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
-import org.springframework.stereotype.Service;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.security.SecureRandom;
 import java.util.Date;
-import java.util.Optional;
 import java.util.Properties;
 
 /**
@@ -32,8 +30,8 @@ public class EmailService {
      */
     public static void sendEmail(User user, String status) {
         try {
-            final String fromEmail = "noreply.ers.rdc@gmail.com"; //requires valid gmail id
-            final String password = "P4ssw0rd!"; // System.getenv("email_password");/// password for gmail id
+            final String fromEmail = "noreply.revaturedepot@gmail.com"; //requires valid gmail id
+            final String password = "Revature-Depot-Primer";
 
             String subject = "";
             String body = "";
@@ -42,15 +40,15 @@ public class EmailService {
             String toEmail = user.getEmail();
 
             if (status == "new"){
-                subject = "ERS - User Registration Confirmation";
+                subject = "RevDepot - User Registration Confirmation";
                 body = "Hi " + fullName.toUpperCase() + ",\n\n " +
-                        "Welcome to Expense Reimbursement System! \n\n" +
+                        "Welcome to Revature Depot! \n\n" +
                         "This is to confirm that your email address was added to the system. \n\n" +
                         "Please click below to login \n\n" +
                         "LINK: " + link;
             }
             else if (status == "forgot") {
-                subject = "ERS - Forgot Password Confirmation";
+                subject = "RevDepot - Forgot Password Confirmation";
                 body = "Hello," + "\n\n " +
                         "This is to confirm that you have successfully reset your password. \n\n" +
                         "New Password: " + user.getPassword() + "\n\n" +
@@ -58,13 +56,13 @@ public class EmailService {
                         "Thank you and have a great day!";
             }
             else if (status == "reset") {
-                subject = "ERS - Reset Password Confirmation";
+                subject = "RevDepot - Reset Password Confirmation";
                 body = "Hi " + fullName.toUpperCase() + ",\n\n " +
                         "This is to confirm that you have successfully updated your password. \n\n" +
                         "Click the link to login: " + link;
             }
             else if (status == "update") {
-                subject = "ERS - Update Profile Confirmation";
+                subject = "RevDepot - Update Profile Confirmation";
                 body = "Hi " + fullName.toUpperCase() + ",\n\n " +
                         "This is to confirm that you have successfully updated your profile \n\n" +
                         "Click the link to view your profile: " + link ;

@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
 import { UserServiceService } from "src/app/service/user-service.service";
 
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit {
   _invalidPasswordMessage: string = "";
   _isFound: boolean = false;
 
-  constructor(private userService: UserServiceService, private router:Router) { }
+  constructor(private userService: UserServiceService, private router:Router, private  dialog:  MatDialog) { }
 
   ngOnInit(): void {
     console.log(JSON.parse(sessionStorage.getItem('userObject')!).object);
@@ -82,4 +83,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  forgotpassword(){
+    alert("This feature is not implemented yet!");
+  }
 }
