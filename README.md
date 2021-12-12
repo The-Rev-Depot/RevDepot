@@ -49,7 +49,7 @@
 * Login/Logout.
 * Reset their password.
     * Receive email with new password
-*View number of items inside the cart
+* View number of items inside the cart
 
 ### TO-DOs
 * Modify their profile information
@@ -87,7 +87,7 @@
 * Jenkins
 
 ## Backend Requirements
-### Backend endpoints (Non-finishedl list)
+### Backend endpoints 
 
 |   Action        	|             Endpoint                	|
 |   ------        	|             --------                	|
@@ -97,14 +97,14 @@
 | Get User by Id	|	GET /revdepot/user/{id}		|
 | Get User by Username	|	GET /revdepot/user/username/{username}	|
 | Get User by Email	|	GET /revdepot/user/email/{email}	|
-|   ------        	|             --------                	|
+
 | Get Deals		|	GET /product/deals		|
 | Get Category		|	GET /product/deals/category	|
 | Get All Products	|	GET /product/view		|
-|   ------        	|             --------                	|
+
 | Update Inventory	|	POST /inventory/update		|
 | Get Items		|	GET /inventory/items		|
-|   ------        	|             --------                	|
+
 | Update Cart		|	PUT /cart/update		|
 | Add to Cart		|	POST /cart/add			|
 | Get Cart by UserId	|	GET /cart/user/{id}		|
