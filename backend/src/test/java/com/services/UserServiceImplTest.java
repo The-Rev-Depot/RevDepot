@@ -3,6 +3,7 @@ package com.services;
 import com.controllers.UserController;
 import com.dao.UserDao;
 import com.models.User;
+import com.utility.EmailService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -10,10 +11,12 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.servlet.http.HttpSession;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -26,14 +29,17 @@ import static org.junit.jupiter.api.Assertions.*;
 class UserServiceImplTest {
     UserService userService;
     BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+    EmailService emailService;
 
+    @Mock
+    JavaMailSender javaMailSender;
     @Mock
     UserDao userDao;
 
     @BeforeEach
     void setUp() {
         this.userService = new UserServiceImpl(userDao);
-
+        this.emailService = new EmailService();
     }
 
     @Test
@@ -116,5 +122,18 @@ class UserServiceImplTest {
         //Assert
         assertEquals(expectedResult, actualResult);
         Mockito.verify(userDao, Mockito.times(1)).findUserByUsername(inputUser.getUsername());
+    }
+
+    @Test
+    void newPassword() {
+        final String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        SecureRandom random = new SecureRandom();
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i<10; i++){
+            int randomIndex = random.nextInt(chars.length());
+            sb.append(chars.charAt(randomIndex));
+        }
+        sb.toString();
+        assertEquals(sb.length(), 10);
     }
 }
