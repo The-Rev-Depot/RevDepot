@@ -97,14 +97,11 @@
 | Get User by Id	|	GET /revdepot/user/{id}		|
 | Get User by Username	|	GET /revdepot/user/username/{username}	|
 | Get User by Email	|	GET /revdepot/user/email/{email}	|
-|   ------        	|             --------                	|
 | Get Deals		|	GET /product/deals		|
 | Get Category		|	GET /product/deals/category	|
 | Get All Products	|	GET /product/view		|
-|   ------        	|             --------                	|
 | Update Inventory	|	POST /inventory/update		|
 | Get Items		|	GET /inventory/items		|
-|   ------        	|             --------                	|
 | Update Cart		|	PUT /cart/update		|
 | Add to Cart		|	POST /cart/add			|
 | Get Cart by UserId	|	GET /cart/user/{id}		|
