@@ -1,6 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
+import { ICart } from 'src/app/model/cart';
+import { IProduct } from 'src/app/model/product';
+import { CartService } from 'src/app/service/cart.service';
+import { UserServiceService} from 'src/app/service/user-service.service'
+import { Router } from '@angular/router';
 import { IItem } from 'src/app/model/item';
 
 @Component({
@@ -9,70 +14,25 @@ import { IItem } from 'src/app/model/item';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  
-  items: IItem[] = [
-    {
-      itemId: 1, quantity: 1, product: {
-        productId: 1,
-        productName: "t-shirt",
-        description: "code like a boss",
-        picUrl: "https://i.ebayimg.com/thumbs/images/g/yzMAAOSwaHZgy1VV/s-l300.jpg",
-        productPrice: 23.99,
-        productRating: 3,
-        category: "clothing",
-        isOnSale: 25,
-      }
-    },
-    {
-      itemId: 2, quantity: 3, product: {
-        productId: 2,
-        productName: "t-shirt",
-        description: "code like a boss",
-        picUrl: "https://i.ebayimg.com/thumbs/images/g/yzMAAOSwaHZgy1VV/s-l300.jpg",
-        productPrice: 23.99,
-        productRating: 3,
-        category: "clothing",
-        isOnSale: 25
-      }
-    },
-    {
-      itemId: 3, quantity: 2, product: {
-        productId: 3,
-        productName: "t-shirt",
-        description: "code like a boss",
-        picUrl: "https://i.ebayimg.com/thumbs/images/g/yzMAAOSwaHZgy1VV/s-l300.jpg",
-        productPrice: 23.99,
-        productRating: 3,
-        category: "clothing",
-        isOnSale: 25,
-      }
-    },
-    {
-      itemId: 4, quantity: 5, product: {
-        productId: 4,
-        productName: "t-shirt",
-        description: "code like a boss",
-        picUrl: "https://i.ebayimg.com/thumbs/images/g/yzMAAOSwaHZgy1VV/s-l300.jpg",
-        productPrice: 23.99,
-        productRating: 3,
-        category: "clothing",
-        isOnSale: 25,
-      }
-    },
-    
-  ]
-
-  //onlyOnce: boolean = true;
-  //count: number = 0;
-  quantityLimit: number = 1;
+  cart?: ICart;
+  totalPrice?: number;
   cartIsEmpty = false;
-  loggedIn = true;
+  loggedIn = false;
   @ViewChild(MatSidenav) sidenav!: MatSidenav;
   events: string[] = [];
   opened: boolean = false;
-  constructor(private http:HttpClient) { }
+  quantityLimit: number = 5;
+
+
+
+
+  constructor(private http:HttpClient, private cartService: CartService, private router: Router, private userService: UserServiceService) { }
 
   ngOnInit(): void {
+    this.cart = this.cartService.getCart();
+    this.totalPrice = this.cartService.getTotalPrice();
+    this.loggedIn = this.userService.checkloggedIn;
+
   }
 
   toggleSideNav(){
@@ -80,6 +40,29 @@ export class NavbarComponent implements OnInit {
     this.sidenav.toggle();
   }
 
+  removeItem(){
+    console.log("item removed");
+    console.log(this.cart?.items);
+  }
+
+  checkoutRoute(){
+    this.router?.navigateByUrl('/checkout');
+  }
+
+  homeRoute(){
+    this.router?.navigateByUrl('/display-products');
+  }
+  loginRoute(){
+    this.router?.navigateByUrl('/login');
+  }
+  updateQuantity(){
+    console.log("is this working?");
+  }
+  logout(){
+    //this will hopefully be replaced by a logout() function in userservice
+    this.userService.checkloggedIn = false;
+    this.loggedIn = false;
+  }
   increment(item: any){
 
     if(item.quantity <= this.quantityLimit){

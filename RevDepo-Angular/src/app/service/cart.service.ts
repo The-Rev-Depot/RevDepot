@@ -14,10 +14,13 @@ import { IItem } from '../model/item';
 export class CartService {
   cart!: ICart;
   constructor(private httpClient: HttpClient) {
-    this.getCart();
-   }
+    this.setCart();
+  }
+  getCart() {
+    return this.cart;
+  }
 
-   addItem(newItem: IItem) {
+  addItem(newItem: IItem) {
     this.cart?.items.push(newItem);
   }
 
@@ -27,50 +30,55 @@ export class CartService {
       this.cart?.items.splice(index, 1);
   }
 
-  getCartItems(){
+  getCartItems() {
     return this.cart.items;
   }
 
-   /**
-    * Calculates the total price of all items in the cart.
-    * @returns The total price
-    */
-   getTotalPrice(): number {
-     let total: number = 0;
+  updateCartQuantity(item: IItem) {
+    let index: number = this.cart.items.indexOf(item);
+    this.cart.items[index].quantity = item.quantity;
+  }
 
-     this.cart?.items.forEach(
-       (value)=>{
+  /**
+   * Calculates the total price of all items in the cart.
+   * @returns The total price
+   */
+  getTotalPrice(): number {
+    let total: number = 0;
+
+    this.cart?.items.forEach(
+      (value) => {
         total += value.product.productPrice * value.quantity;
-       }
-     );
-
-     return total;
-   }
-
-   getTotalQty(): number {
-     let total: number =0;
-
-     this.cart?.items.forEach(
-      (value)=>{
-       total +=  value.quantity;
       }
     );
 
     return total;
-   }
+  }
 
-   checkoutCart(): Observable<IItem[]> {
+  getTotalQty(): number {
+    let total: number = 0;
+
+    this.cart?.items.forEach(
+      (value) => {
+        total += value.quantity;
+      }
+    );
+
+    return total;
+  }
+
+  checkoutCart(): Observable<IItem[]> {
     const httpPost = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     };
-     return this.httpClient.post<IItem[]>(`http://localhost:8080/inventory/update`, this.cart!.items, httpPost);
-   }
+    return this.httpClient.post<IItem[]>(`http://localhost:8080/inventory/update`, this.cart!.items, httpPost);
+  }
 
-   getCart(): ICart {
-     // Hardcoded for now
-    return this.cart = {
+  setCart(): void {
+    // Hardcoded for now
+    this.cart = {
       cartId: 0,
       user: {
         userId: 0,
