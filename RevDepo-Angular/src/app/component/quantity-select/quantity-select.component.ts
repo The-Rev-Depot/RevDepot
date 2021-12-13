@@ -37,7 +37,7 @@ export class QuantitySelectComponent implements OnInit {
   private debounce: number = 20;
   ngOnInit(): void {
       console.log("Product in quantity select",this.product);
-      this.isInCart=false;
+      this.isInCart=this.cartService.isInCart(this.product);
       this.item=this.cartService.getItemFromCart(this.product);
   }
 
