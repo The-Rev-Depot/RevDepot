@@ -24,6 +24,7 @@ export class CheckoutComponent implements OnInit {
    */
   onCheckoutClicked() {
     console.log('checking out');
+    // .subscribe(responseOkFn, catchErrorResponseFn);
     this.cartService.checkoutCart().subscribe(
       (items)=> {
         console.log(items);

@@ -43,7 +43,7 @@ public class InventoryController {
 		boolean hasInventory = true;
 		for (Item item: items) {
 			Inventory inventory = inventoryService.getInventoryByProduct(item.getProduct());
-			if (!(inventory != null && (inventory.getQuantity() - item.getQuantity()) > 0)) {
+			if (!(inventory != null && (inventory.getQuantity() - item.getQuantity()) >= 0)) {
 				hasInventory = false;
 				break;
 			}
