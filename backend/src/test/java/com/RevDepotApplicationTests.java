@@ -49,7 +49,7 @@ class RevDepotApplicationTests {
 	@Test
 	@DisplayName("Testing Inventory Repository")
 	public void testInventory() {
-		Inventory inventory = new Inventory(1, product,1);
+		Inventory inventory = new Inventory(4, product,300);
 		
 		List<Inventory> inventoryList = (List<Inventory>)inventoryDao.findAll();
 		
