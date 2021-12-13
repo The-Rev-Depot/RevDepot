@@ -6,8 +6,9 @@
 }
 
 .title {
+    margin-top: 50px;
     font-family: 'Staatliches', cursive;
-    font-size: 32px;
+    font-size: 52px;
 }
 
 .override {

@@ -59,6 +59,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FilterPipe } from './pipes/filter.pipe';
 import { CurrencyPipe } from '@angular/common';
+import { AllSalesPageComponent } from './component/all-sales-page/all-sales-page.component';
 
 // import { 
 //   MatIconModule, 
@@ -83,7 +84,8 @@ import { CurrencyPipe } from '@angular/common';
     ProductCardComponent,
     SalesDealsComponent,
     ResultPageComponent,
-    FilterPipe
+    FilterPipe,
+    AllSalesPageComponent
   ],
   imports: [
   
