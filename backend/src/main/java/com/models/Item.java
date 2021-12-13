@@ -19,7 +19,7 @@ import lombok.ToString;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "items")
+@Table(name = "item")
 @ToString
 public class Item {
 
