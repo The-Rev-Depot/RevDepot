@@ -65,7 +65,7 @@ export class CartService {
         'Content-Type': 'application/json'
       })
     };
-     return this.httpClient.post<IItem[]>(`http://localhost:8080/inventory/update`, this.cart!.items, httpPost);
+     return this.httpClient.post<IItem[]>(`http://localhost:9999/inventory/update`, this.cart!.items, httpPost);
    }
 
    getCart(): ICart {
@@ -85,7 +85,7 @@ export class CartService {
       items: [
         {
           itemId: 0, quantity: 1, product: {
-            productId: 0,
+            productId: 1,
             productName: "Computer Tower Stand",
             description: "",
             picUrl: "https://material.angular.io/assets/img/examples/shiba2.jpg",
@@ -95,30 +95,30 @@ export class CartService {
             isOnSale: 0
           }
         },
-        {
-          itemId: 1, quantity: 3, product: {
-            productId: 0,
-            productName: "Renpho Powerful Portable Massage Gun",
-            description: "",
-            picUrl: "https://material.angular.io/assets/img/examples/shiba2.jpg",
-            productPrice: 20,
-            productRating: 0,
-            category: "",
-            isOnSale: 0
-          }
-        },
-        {
-          itemId: 2, quantity: 5, product: {
-            productId: 0,
-            productName: "Rollerblade Zetrablade Men's Adult Fitness Inline Skate",
-            description: "",
-            picUrl: "https://material.angular.io/assets/img/examples/shiba2.jpg",
-            productPrice: 50,
-            productRating: 0,
-            category: "",
-            isOnSale: 0
-          }
-        }
+        // {
+        //   itemId: 1, quantity: 3, product: {
+        //     productId: 0,
+        //     productName: "Renpho Powerful Portable Massage Gun",
+        //     description: "",
+        //     picUrl: "https://material.angular.io/assets/img/examples/shiba2.jpg",
+        //     productPrice: 20,
+        //     productRating: 0,
+        //     category: "",
+        //     isOnSale: 0
+        //   }
+        // },
+        // {
+        //   itemId: 2, quantity: 5, product: {
+        //     productId: 0,
+        //     productName: "Rollerblade Zetrablade Men's Adult Fitness Inline Skate",
+        //     description: "",
+        //     picUrl: "https://material.angular.io/assets/img/examples/shiba2.jpg",
+        //     productPrice: 50,
+        //     productRating: 0,
+        //     category: "",
+        //     isOnSale: 0
+        //   }
+        // }
       ]
     };
   }

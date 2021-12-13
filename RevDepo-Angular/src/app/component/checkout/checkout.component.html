@@ -59,7 +59,7 @@
         <h4>Order total : ${{ getTotalPrice() + 10 | number: "1.2-2" }}</h4>
       </div>
 
-      <button mat-raised-button color="primary">Place your order</button>
+      <button mat-raised-button color="primary" (click)="onCheckoutClicked()">Place your order</button>
     </div>
   </div>
 </div>
