@@ -45,6 +45,10 @@ export class NavbarComponent implements OnInit {
     console.log(this.cart?.items);
   }
 
+  getTotalPrice() {
+    return this.cartService.getTotalPrice();
+  }
+
   checkoutRoute(){
     this.router?.navigateByUrl('/checkout');
   }
