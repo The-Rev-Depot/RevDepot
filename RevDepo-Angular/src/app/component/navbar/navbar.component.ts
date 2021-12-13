@@ -21,7 +21,7 @@ export class NavbarComponent implements OnInit {
   @ViewChild(MatSidenav) sidenav!: MatSidenav;
   events: string[] = [];
   opened: boolean = false;
-  quantityLimit: number = 1;
+  quantityLimit: number = 5;
 
 
 
