@@ -55,8 +55,6 @@ public class InventoryServiceImpl implements InventoryService {
 	public int getInventoryQuantity(int ProductId) {
 		if (inventoryDao.existsById(ProductId)) {
 			Inventory productQuantity = inventoryDao.getById(ProductId);
-			System.out.println(productQuantity);
-			System.out.println(productQuantity.getQuantity());
 			return productQuantity.getQuantity();
 		} else {
 			System.out.println("Inventory is not found");
