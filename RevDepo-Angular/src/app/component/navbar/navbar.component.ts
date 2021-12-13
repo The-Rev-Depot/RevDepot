@@ -22,6 +22,7 @@ export class NavbarComponent implements OnInit {
   events: string[] = [];
   opened: boolean = false;
   quantityLimit: number = 5;
+  interval: any;
 
 
 
@@ -65,9 +66,12 @@ export class NavbarComponent implements OnInit {
   }
   increment(item: any){
 
-    if(item.quantity <= this.quantityLimit){
-      item.quantity += 1;
-    }
+    this.interval = setInterval(() => {
+      if(item.quantity < this.quantityLimit){
+        item.quantity += 1;
+      }
+    },200)
+
 
     //if(this.onlyOnce)
       this.http.get<number>('http://localhost:9999/inventory/quantity/' + item.product.productId).subscribe(

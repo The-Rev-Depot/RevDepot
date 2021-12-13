@@ -16,7 +16,7 @@ import lombok.ToString;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "products")
+@Table(name = "product")
 @ToString
 public class Product {
 
@@ -28,17 +28,15 @@ public class Product {
 	private String productName;
 	@Column(name = "product_description")
 	private String productDescription;
-	@Column(name ="pic_url")
+	@Column(name = "pic_url")
 	private String picUrl;
-	@Column(name ="product_price")
+	@Column(name = "product_price")
 	private double productPrice;
-	@Column(name ="product_rating")
+	@Column(name = "product_rating")
 	private float productRating;
 	@Column(name = "product_category")
 	private String productCategory;
-	@Column(name ="sale_id")
+	@Column(name = "sale_id")
 	private int saleId;
 
-	
-	
 }
