@@ -1,0 +1,14 @@
+<mat-card>
+    <mat-card-title>{{item.product.productName}}</mat-card-title>
+    <form name="itemForm" class="example-form">
+        
+        <app-quantity-select [item]="item"></app-quantity-select>
+    </form>
+
+    <mat-card-subtitle>Price: {{ item.product.productPrice }}</mat-card-subtitle>
+    <br>
+    <img width="105" height="85" src="{{ item.product.picUrl }}" />
+    <br><br>
+    <!-- <button mat-flat-button color="primary">Update Quantity</button> -->
+    <br />
+</mat-card>
