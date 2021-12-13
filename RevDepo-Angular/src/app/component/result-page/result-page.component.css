@@ -1,0 +1,6 @@
+.grid-container{
+  display: inline-grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 2em;
+  gap: 4em;
+}
