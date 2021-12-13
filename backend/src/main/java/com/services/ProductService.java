@@ -10,5 +10,8 @@ public interface ProductService {
 	
 	public List<Product> getAllDealsByCategory();
 
+	/**
+	 * Returns all product objects in database.
+	 */
 	List<Product> getAllProducts();
 }

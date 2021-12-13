@@ -14,6 +14,7 @@ import com.models.Item;
 public class InventoryServiceImpl implements InventoryService {
 
 	InventoryDao inventoryDao;
+	//JpaRepository methods
 	
 	@Autowired
 	ProductDao prodDao;

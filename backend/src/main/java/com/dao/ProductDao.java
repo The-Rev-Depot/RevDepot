@@ -11,6 +11,7 @@ import com.models.Product;
 
 public interface ProductDao extends JpaRepository<Product,Integer>{
 	
+	//JpaRepository methods
 	public List<Product> findAll();
 
 	@Query(value = "Select * from revdepot.product where product.sale_id = 10", nativeQuery=true)
