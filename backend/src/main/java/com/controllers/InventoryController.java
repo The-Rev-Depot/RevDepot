@@ -66,5 +66,15 @@ public class InventoryController {
 	public ResponseEntity<List<Inventory>> getAllProducts() {
 		return ResponseEntity.status(200).body(inventoryService.getAllProducts());
 	}
+	
+	@PostMapping(value="getMax")
+	public Item[] checkMaxInventory (@RequestBody Item items[]) {
+		for (Item item : items) {
+			Inventory inventory = inventoryService.getInventoryByProduct(item.getProduct());
+			item.setQuantity(inventory.getQuantity());
+		}
+		
+		return items;
+	}
 }
 

@@ -1,7 +1,8 @@
 <div class="row flex-container" *ngIf="cart">
   <div class="column-left">
     <h2>Item Details</h2>
-    <div *ngFor="let item of cart.items">
+    <p *ngIf="error">Not enough inventory to handle checkout request!</p>
+    <div *ngFor="let item of cart.items;index as i;">
       <mat-card class="product-card mat-elevation-z5">
         <mat-card-title-group>
           <mat-card-title>{{ item.product.productName }} </mat-card-title>
@@ -11,7 +12,9 @@
         </mat-card-title-group>
         <mat-card-content>
           <div class="flex-container">
-            <div>Qty: {{ item.quantity }}</div>
+            <div [ngClass]="limitedSupply [i] ? 'red' : '' " >Qty: {{ item.quantity }}</div>
+            
+          
             <div >
               <p>
                 ${{

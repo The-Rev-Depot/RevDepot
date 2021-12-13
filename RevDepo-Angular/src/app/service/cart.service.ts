@@ -68,6 +68,14 @@ export class CartService {
      return this.httpClient.post<IItem[]>(`http://localhost:9999/inventory/update`, this.cart!.items, httpPost);
    }
 
+   getMax(): Observable<IItem[]> {
+    const httpPost = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+     return this.httpClient.post<IItem[]>(`http://localhost:9999/inventory/getMax`, this.cart!.items, httpPost);
+   }
    getCart(): ICart {
      // Hardcoded for now
     return this.cart = {
@@ -84,7 +92,7 @@ export class CartService {
       },
       items: [
         {
-          itemId: 0, quantity: 1, product: {
+          itemId: 0, quantity: 30, product: {
             productId: 1,
             productName: "Computer Tower Stand",
             description: "",
