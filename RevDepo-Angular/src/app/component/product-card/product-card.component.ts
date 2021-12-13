@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute} from '@angular/router';
-import { IProduct } from 'src/app/model/product';
 import { ProductClass } from 'src/app/model/product-class';
-import { IInventory } from 'src/app/model/inventory';
 import { ProductServiceService } from 'src/app/service/product-service.service';
 import { InventoryClass } from 'src/app/model/inventory-class';
 //import { threadId } from 'worker_threads';
@@ -17,35 +15,21 @@ export class ProductCardComponent implements OnInit {
 
   constructor(private router: Router, private route: ActivatedRoute, private productService:ProductServiceService/*, private result: ResultPageComponent*/) { }
 
-  public product: any;
-  //public shirtPro : product;
-
-  public productId:any;
-  public productName: any;
-  public description: any;
-  public picUrl: any;
-  public productPrice: any;
-  public category: any;
-  public isOnSale: any;
-
   ngOnInit(): void {
-
+    //this method will be called when the component loads, items on sales will populate 
     this.getIProduct();
 
-    //console.log(this.result.getIProduct);
-    //this.result.getIProduct;
   }
 
   productsList: any;
-
+  //initializing arrays to hold data retrieved from database
   public searchResults:any = [];
-  public inventoryList: Array<InventoryClass> = [];
-  public productsArray: Array<ProductClass> = [];
-  public productArray: Array<ProductClass> = [];
-  public tempArray: Array<ProductClass> = [];
-  public tempArray2: Array<ProductClass> = [];
+  public inventoryList: Array<InventoryClass> = []; //holds all items in inventory
+  public productsArray: Array<ProductClass> = []; // holds items that are sorted by saleId
 
 
+
+  //this method calls the getIProducts() method in the product service to retrieve all items
   public getIProduct(): void {
     const dealTitle = Boolean (1);
 
@@ -58,6 +42,7 @@ export class ProductCardComponent implements OnInit {
        }
       // console.log(this.inventoryList);
 
+      //this method sorts items that are on sale and holds them in a diffrent array
        this.getProduct(dealTitle);
      }
    );
@@ -68,7 +53,7 @@ export class ProductCardComponent implements OnInit {
 
   //console.log(dealTitle);
 
-
+  //this checks for the saleId of the products in the inventoryList 
    for(let i =0; i<this.inventoryList.length; i++) {
 
     //console.log(this.inventoryList[i].product.saleId);
@@ -84,98 +69,8 @@ export class ProductCardComponent implements OnInit {
    //console.log("After push: " + this.productsArray);
    }
 
-   this.productArray = [this.productsArray[0]];
-  //console.log(this.productArray);
 }
 
-// public getProductByID(ID:any): void{
-
-//   console.log(ID);
-
-
-//    for(let i =0; i<this.inventoryList.length; i++) {
-
-//     console.log(this.inventoryList[i].product.productId);
-//     console.log(this.inventoryList[i].product);
-
-//     if(this.inventoryList[i].product.productId == ID){
-
-//     console.log("Sorted: " + this.inventoryList[i].product.productId);
-
-//     this.tempArray.push(this.inventoryList[i].product);
-
-//    }
-//    console.log("After push: " + this.tempArray);
-//    }
-
-//    this.tempArray2 = [this.tempArray[0]];
-//   console.log(this.tempArray2);
-// }
-
-
-
- //test
-
- shirtPro =
-  {
-
-    productId: 1,
-    productName: "card",
-    description: "string",
-    picUrl: "string",
-    productPrice: 15,
-    category: "string",
-    isOnSale: 1
-
-  }
-
-
-  shirtPro1 =
-  {
-
-    productId: 2,
-    productName: "dispalycard" ,
-    description: "string",
-    picUrl: "string",
-    productPrice: 15,
-    category: "string",
-    isOnSale: 1
-
-  }
-
-  shirtPro2 =
-  {
-
-    productId: 3,
-    productName: "string" ,
-    description: "string",
-    picUrl: "string",
-    productPrice: 15,
-    category: "string",
-    isOnSale: 1
-
-  }
-
-
-
-  //  moreInfo(id:any)
-  //  {
-  //     //temp move to main method
-  //     //this.productArray = [this.shirtPro,this.shirtPro1,this.shirtPro2];
-
-
-
-  // //   this.result.moreInfoDis;
-
-  //    console.log("google")
-
-  //    let temp = this.getProductByID(id);
-
-
-  //   console.log(temp);
-
-  //    this.router.navigateByUrl('/product-details/' + temp);
-  // }
 
 
 }

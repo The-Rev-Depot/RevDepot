@@ -1,9 +1,6 @@
-import { IProduct } from 'src/app/model/product';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductClass } from 'src/app/model/product-class';
-
-import { IInventory } from 'src/app/model/inventory';
 import { ProductServiceService } from 'src/app/service/product-service.service';
 import { InventoryClass } from 'src/app/model/inventory-class';
 
@@ -14,37 +11,21 @@ import { InventoryClass } from 'src/app/model/inventory-class';
 })
 export class ResultPageComponent implements OnInit {
 
-    //none of these are being used / not essential as far as I can tell
-
-  // inventory : IInventory | undefined;
-  // products :IProduct | undefined;
-  // product : any;
-
-//  public productId:any;
-//  public productName: any;
-//  public description: any;
-//  public picUrl: any;
-//  public productPrice: any;
-//  public category: any;
-//  public isOnSale: any;
-  //items : IProduct | undefined;
-
   productsList: any;
-
+  //initializing arrays to hold data retrieved from database
   public searchResults:any = [];
-  public inventoryList: Array<InventoryClass> = [];
-  public productsArray: Array<ProductClass> = [];
-  public productArray: Array<ProductClass> = [];
-  public tempArray: Array<ProductClass> = [];
-  public tempArray2: Array<ProductClass> = [];
+  public inventoryList: Array<InventoryClass> = []; //holds all items in inventory
+  public productsArray: Array<ProductClass> = []; // holds items that are sorted by category
 
 
   constructor(private router: Router, private route: ActivatedRoute, private productService:ProductServiceService) { }
 
   ngOnInit(): void {
+    //this method will be called when the component loads, items will populate based on category
     this.getIProduct();
   }
 
+  //this method calls the getIProducts() method in the product service to retrieve all items
   public getIProduct(): void {
      const categoryTitle = String (this.route.snapshot.paramMap.get('title'));
 
@@ -57,6 +38,7 @@ export class ResultPageComponent implements OnInit {
         }
         //console.log(this.inventoryList);
 
+        //this method sorts items in that category and holds them in a diffrent array
         this.getProduct(categoryTitle);
       }
     );
@@ -67,7 +49,7 @@ export class ResultPageComponent implements OnInit {
 
     //console.log(categoryTitle);
 
-
+    //this checks for the category of the products in the inventoryList 
      for(let i =0; i<this.inventoryList.length; i++) {
 
       //console.log(this.inventoryList[i].product.productCategory);
@@ -86,46 +68,5 @@ export class ResultPageComponent implements OnInit {
   }
 
 
-  // public getProductByID(ID:any): void{
-
-  //   console.log(ID);
-
-
-  //    for(let i =0; i<this.inventoryList.length; i++) {
-
-  //     console.log(this.inventoryList[i].product.productId);
-  //     console.log(this.inventoryList[i].product);
-
-  //     if(this.inventoryList[i].product.productId == ID){
-
-  //     console.log("Sorted: " + this.inventoryList[i].product.productId);
-
-  //     this.tempArray.push(this.inventoryList[i].product);
-
-  //    }
-  //    console.log("After push: " + this.tempArray);
-  //    }
-
-  //    this.tempArray2 = [this.tempArray[0]];
-  //   console.log(this.tempArray2);
-  // }
-
-//   moreInfo(id:any)
-//   {
-//      //temp move to main method
-//      //this.productArray = [this.shirtPro,this.shirtPro1,this.shirtPro2];
-
-
-
-//  //   this.result.moreInfoDis;
-
-//     console.log("google")
-
-//     let temp = this.getProductByID(id);
-
-//     console.log(temp);
-
-//     this.router.navigateByUrl('/product-details/' + temp);
-//  }
 }
 

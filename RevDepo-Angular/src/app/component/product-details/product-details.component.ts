@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IInventory } from 'src/app/model/inventory';
 import { ProductServiceService } from 'src/app/service/product-service.service';
 import { InventoryClass } from 'src/app/model/inventory-class';
-
-import { IProduct } from 'src/app/model/product';
 import { ProductClass } from 'src/app/model/product-class';
+
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
@@ -13,34 +11,22 @@ import { ProductClass } from 'src/app/model/product-class';
 })
 export class ProductDetailsComponent implements OnInit {
 
-  public product: any;
-  //public shirtPro : product;
-
-  public productId:any;
-  public productName: any;
-  public description: any;
-  public picUrl: any;
-  public productPrice: any;
-  public category: any;
-  public isOnSale: any;
 
   productsList: any;
-
+  //initializing arrays to hold data retrieved from database
   public searchResults:any = [];
-  public inventoryList: Array<InventoryClass> = [];
-  public productsArray: Array<ProductClass> = [];
-  public productArray: Array<ProductClass> = [];
-
-
+  public inventoryList: Array<InventoryClass> = []; //holds all items in inventory
+  public productsArray: Array<ProductClass> = []; // holds item with matching productId
 
 
   constructor(private router: Router, private route: ActivatedRoute, private productService:ProductServiceService) { }
 
   ngOnInit(): void {
+    //this method will be called when the component loads, product will populate based on productId
     this.getIProduct();
   }
 
-
+  //this method calls the getIProducts() method in the product service to retrieve all items
   public getIProduct(): void {
     const idTitle = String (this.route.snapshot.paramMap.get('Id'));
 
@@ -51,8 +37,9 @@ export class ProductDetailsComponent implements OnInit {
        for (let one of this.searchResults) {
          this.inventoryList.push(one);
        }
-       console.log(this.inventoryList);
+      //  console.log(this.inventoryList);
 
+       //this method grabs an item based on its id and hold it in a diffrent array
        this.getProduct(idTitle);
      }
    );
@@ -61,38 +48,25 @@ export class ProductDetailsComponent implements OnInit {
 
  public getProduct(idTitle:any): void{
 
-  console.log(idTitle);
+  // console.log(idTitle);
 
-
+  //this checks for the id of the product in the inventoryList 
    for(let i =0; i<this.inventoryList.length; i++) {
 
-    console.log(this.inventoryList[i].product.productId);
-    console.log(this.inventoryList[i].product);
+    // console.log(this.inventoryList[i].product.productId);
+    // console.log(this.inventoryList[i].product);
 
     if(this.inventoryList[i].product.productId == idTitle){
 
-    console.log("Sorted: " + this.inventoryList[i].product.productId);
+    // console.log("Sorted: " + this.inventoryList[i].product.productId);
 
     this.productsArray.push(this.inventoryList[i].product);
 
    }
-   console.log("After push: " + this.productsArray);
+  //  console.log("After push: " + this.productsArray);
    }
 
-   this.productArray = [this.productsArray[0]];
-  console.log(this.productArray);
 }
-
-  moreInfo()
-  {
-    console.log("google")
-
-    this.router.navigateByUrl('/product-details');
-  }
-
-
-
-
 
 
 

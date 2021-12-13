@@ -4,22 +4,18 @@
 <br>
 <br>
 
-<!-- <p (click)="moreInfo()">Test</p> -->
-
-
-
 <div class="grid-container">
 
-
+  <!-- displays full information about the product -->
   <div *ngFor = "let item of productsArray" class="product-card">
-    <a class="nav-link" routerLink="/result-page/{{item.productCategory}}">{{item.productCategory}} > </a> <!--Futher implementation is needed-->
+    <a class="nav-link" routerLink="/result-page/{{item.productCategory}}">{{item.productCategory}} > </a> <!--BREADCRUMBS - Futher implementation is needed-->
 
     <br>
     <br>
 
 
     <h2>ID#: {{item.productId}}</h2>
-    <img src={{item.picUrl}} /> <!--(click)="moreInfo(item.productId)"-->
+    <img src={{item.picUrl}} />
     <br>
     <h2>{{item.productName}}</h2>
     <p>Price: {{item.productPrice}}</p>

@@ -34,18 +34,6 @@ export class ProductServiceService {
 
   }
 
-  //reroute to product details page
-  public moreInfoDis() : void
-  {
-    console.log("google")
-
-   this.router.navigateByUrl('/product-details');
-  }
-
-  // public getAProduct(): Observable<IProduct> {
-  //  return this.http.get<IProduct>(`${this.url}inventory/items`);
-
-  // }
 
 }
 
