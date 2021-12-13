@@ -4,7 +4,7 @@
       <mat-icon>home</mat-icon>
    </button>
    <span class="example-spacer"></span>
-   <mat-form-field>
+   <mat-form-field *ngIf="router.url !='/checkout'">
       <input type=" text" matInput placeholder="Search">
    </mat-form-field>
    <span class="example-spacer"></span>
