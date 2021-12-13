@@ -42,6 +42,8 @@ export class ProductCardComponent implements OnInit {
   public inventoryList: Array<InventoryClass> = [];
   public productsArray: Array<ProductClass> = [];
   public productArray: Array<ProductClass> = [];
+  public tempArray: Array<ProductClass> = [];
+  public tempArray2: Array<ProductClass> = [];
 
 
   public getIProduct(): void {
@@ -54,7 +56,7 @@ export class ProductCardComponent implements OnInit {
        for (let one of this.searchResults) {
          this.inventoryList.push(one);
        }
-       console.log(this.inventoryList);
+      // console.log(this.inventoryList);
 
        this.getProduct(dealTitle);
      }
@@ -64,33 +66,57 @@ export class ProductCardComponent implements OnInit {
 
  public getProduct(dealTitle:any): void{
 
-  console.log(dealTitle);
+  //console.log(dealTitle);
 
 
    for(let i =0; i<this.inventoryList.length; i++) {
 
-    console.log(this.inventoryList[i].product.saleId);
-    console.log(this.inventoryList[i].product);
+    //console.log(this.inventoryList[i].product.saleId);
+    //console.log(this.inventoryList[i].product);
 
     if(this.inventoryList[i].product.saleId == dealTitle){
 
-    console.log("Sorted: " + this.inventoryList[i].product.saleId);
+    //console.log("Sorted: " + this.inventoryList[i].product.saleId);
 
     this.productsArray.push(this.inventoryList[i].product);
 
    }
-   console.log("After push: " + this.productsArray);
+   //console.log("After push: " + this.productsArray);
    }
 
    this.productArray = [this.productsArray[0]];
-  console.log(this.productArray);
+  //console.log(this.productArray);
 }
 
+// public getProductByID(ID:any): void{
+
+//   console.log(ID);
+
+
+//    for(let i =0; i<this.inventoryList.length; i++) {
+
+//     console.log(this.inventoryList[i].product.productId);
+//     console.log(this.inventoryList[i].product);
+
+//     if(this.inventoryList[i].product.productId == ID){
+
+//     console.log("Sorted: " + this.inventoryList[i].product.productId);
+
+//     this.tempArray.push(this.inventoryList[i].product);
+
+//    }
+//    console.log("After push: " + this.tempArray);
+//    }
+
+//    this.tempArray2 = [this.tempArray[0]];
+//   console.log(this.tempArray2);
+// }
 
 
 
  //test
-  shirtPro =
+
+ shirtPro =
   {
 
     productId: 1,
@@ -132,19 +158,24 @@ export class ProductCardComponent implements OnInit {
 
 
 
-   moreInfo()
-   {
-      //temp move to main method
-      //this.productArray = [this.shirtPro,this.shirtPro1,this.shirtPro2];
+  //  moreInfo(id:any)
+  //  {
+  //     //temp move to main method
+  //     //this.productArray = [this.shirtPro,this.shirtPro1,this.shirtPro2];
 
 
 
-  //   this.result.moreInfoDis;
+  // //   this.result.moreInfoDis;
 
-     console.log("google")
+  //    console.log("google")
 
-     this.router.navigateByUrl('/product-details');
-  }
+  //    let temp = this.getProductByID(id);
+
+
+  //   console.log(temp);
+
+  //    this.router.navigateByUrl('/product-details/' + temp);
+  // }
 
 
 }

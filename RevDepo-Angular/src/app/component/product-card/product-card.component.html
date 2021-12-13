@@ -3,17 +3,19 @@
 
 
 
-    <div *ngFor = "let item of productsArray" class="product-card">
 
-      <!-- basic card commpand -->
-      <h2>ID#: {{item.productId}}</h2>
-      <p>Name: {{item.productName}}</p>
-      <p>Price: {{item.productPrice}}</p>
-      <p>On Sale: {{item.saleId}}</p>
-      <img src={{item.picUrl}} (click)="moreInfo()"/>
-      <a class="nav-link" routerLink="/product-details/{{item.productId}}">link</a>
+  <div *ngFor = "let item of productsArray" class="product-card" routerLink="/product-details/{{item.productId}}">
 
-  </div>
+
+    <img src={{item.picUrl}} /> <!--(click)="moreInfo(item.productId)"-->
+    <br>
+    <a class="nav-link" routerLink="/product-details/{{item.productId}}">{{item.productName}}</a>
+    <p>Price: {{item.productPrice}}</p>
+    <p>Rating: {{item.productRating}}</p>
+    <p>On Sale: On sale</p>
+
+
+</div>
 
 
 
