@@ -1,0 +1,68 @@
+h2, h3, h4{
+  text-shadow: 2px 2px #c2f85c;
+}
+
+.form-register {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.form-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(248, 148, 66);
+  border-radius: 10px;
+  box-shadow: 2px 2px 8px;
+  margin-left:35%;
+  padding: 20px;
+  margin-left: 10px;
+  width: 500px;
+  margin-top: 50px;
+  border-radius: 10px;
+  box-shadow: darkslategray;
+
+}
+
+
+/* Full-width input fields */
+.form-container input[type=text], .form-container input[type=password], .form-container input[type=email], .form-container input[type=date], .form-container textarea{
+  width: 100%;
+  padding: 20px;
+  margin: 5px 0 5px 0;
+  border: saddlebrown;
+  background: #fafafb;
+  border-radius: 5px;
+}
+
+
+/* When the inputs get focus, do something */
+.form-container input[type=text]:focus, .form-container input[type=password]:focus, .form-container input[type=email]:focus, .form-container input[type=date]:focus, .form-container textarea:focus{
+  background-color: lightyellow;
+  outline:none;
+}
+
+/* Set a style for the submit/login button */
+.form-container .btn {
+  background-color:   #3333ff;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-top:10px;
+  opacity: 0.8;
+  font-weight: bolder;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
