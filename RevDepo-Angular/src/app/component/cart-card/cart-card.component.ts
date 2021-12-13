@@ -15,7 +15,7 @@ export class CartCardComponent implements OnInit {
   constructor(){}
   
   ngOnInit(): void {
-    
+    console.log('when card is made',this.item.product);
   }
   
 }

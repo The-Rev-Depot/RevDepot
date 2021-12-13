@@ -1,12 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { isNgTemplate } from '@angular/compiler';
-import { isDelegatedFactoryMetadata } from '@angular/compiler/src/render3/r3_factory';
-import { getLocaleDateTimeFormat } from '@angular/common';
-
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ICart } from '../model/cart';
 import { IItem } from '../model/item';
+import { IProduct } from '../model/product';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +19,39 @@ export class CartService {
   }
 
   addItem(newItem: IItem) {
-    this.cart?.items.push(newItem);
+    if(!this.isInCart(newItem.product)){
+      this.cart?.items.push(newItem);
+    }
+  }
+
+  isInCart(product: IProduct): boolean{
+    console.log(`passed product: `, product);
+    for(let element of this.cart.items){
+      console.log(`each product: `, element);
+      if(element.product.productId==product.productId){
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  getItemFromCart(product: IProduct): IItem{
+    console.log(`passed product: `, product);
+    for(let element of this.cart.items){
+      console.log(`each product: `, element);
+      if(element.product.productId==product.productId){
+        return element;
+      }
+    }
+    return {itemId:-1, quantity:-1, product};
+  }
+
+  addProductToCart(newProduct: IProduct){
+    if(!this.isInCart(newProduct)){
+      this.cart?.items.push({ itemId: 0,quantity: 1,product: newProduct});
+    }
+    
   }
 
   removeItem(item: IItem) {
@@ -93,7 +123,7 @@ export class CartService {
       items: [
         {
           itemId: 0, quantity: 1, product: {
-            productId: 0,
+            productId: 1,
             productName: "Computer Tower Stand",
             description: "",
             picUrl: "https://material.angular.io/assets/img/examples/shiba2.jpg",
@@ -105,7 +135,7 @@ export class CartService {
         },
         {
           itemId: 1, quantity: 3, product: {
-            productId: 0,
+            productId: 2,
             productName: "Renpho Powerful Portable Massage Gun",
             description: "",
             picUrl: "https://material.angular.io/assets/img/examples/shiba2.jpg",
@@ -117,7 +147,7 @@ export class CartService {
         },
         {
           itemId: 2, quantity: 5, product: {
-            productId: 0,
+            productId: 3,
             productName: "Rollerblade Zetrablade Men's Adult Fitness Inline Skate",
             description: "",
             picUrl: "https://material.angular.io/assets/img/examples/shiba2.jpg",
