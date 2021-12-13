@@ -58,6 +58,7 @@ import { CartService } from './service/cart.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FilterPipe } from './pipes/filter.pipe';
+import { CurrencyPipe } from '@angular/common';
 
 // import { 
 //   MatIconModule, 
@@ -133,7 +134,7 @@ import { FilterPipe } from './pipes/filter.pipe';
     MatCardModule
     
   ],
-  providers: [HttpClient, CartService],
+  providers: [HttpClient, CartService, CurrencyPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

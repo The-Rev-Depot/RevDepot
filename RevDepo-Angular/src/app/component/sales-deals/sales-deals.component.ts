@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { IProduct } from 'src/app/model/product';
 import { SalesServiceService } from 'src/app/service/sales-service.service';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-sales-deals',
@@ -20,10 +21,10 @@ export class SalesDealsComponent implements OnInit {
     productId: 1,
     productName: "card",
     description: "string",
-    picUrl: "string",
+    picUrl: "https://www.picclickimg.com/d/l400/pict/184892613206_/Code-Like-a-Boss-T-Shirt-Sz-S-Small.jpg",
     productPrice: 15,
     category: "string",
-    isOnSale: 1
+    isOnSale: 10
 
   }
   shirtPro1 =
@@ -32,10 +33,10 @@ export class SalesDealsComponent implements OnInit {
     productId: 2,
     productName: "dispalycard" ,
     description: "string",
-    picUrl: "string",
+    picUrl: "https://www.picclickimg.com/d/l400/pict/184892613206_/Code-Like-a-Boss-T-Shirt-Sz-S-Small.jpg",
     productPrice: 15,
     category: "string",
-    isOnSale: 1
+    isOnSale: 10
 
   }
   shirtPro2 =
@@ -44,10 +45,10 @@ export class SalesDealsComponent implements OnInit {
     productId: 3,
     productName: "string" ,
     description: "string",
-    picUrl: "string",
+    picUrl: "https://www.picclickimg.com/d/l400/pict/184892613206_/Code-Like-a-Boss-T-Shirt-Sz-S-Small.jpg",
     productPrice: 15,
     category: "string",
-    isOnSale: 1
+    isOnSale: 15
 
   }
   shirtPro3 =
@@ -56,10 +57,10 @@ export class SalesDealsComponent implements OnInit {
     productId: 3,
     productName: "string" ,
     description: "string",
-    picUrl: "string",
+    picUrl: "https://www.picclickimg.com/d/l400/pict/184892613206_/Code-Like-a-Boss-T-Shirt-Sz-S-Small.jpg",
     productPrice: 15,
     category: "string",
-    isOnSale: 1
+    isOnSale: 10
 
   }
   shirtPro4 =
@@ -68,10 +69,58 @@ export class SalesDealsComponent implements OnInit {
     productId: 3,
     productName: "string" ,
     description: "string",
-    picUrl: "string",
+    picUrl: "https://www.picclickimg.com/d/l400/pict/184892613206_/Code-Like-a-Boss-T-Shirt-Sz-S-Small.jpg",
     productPrice: 15,
     category: "string",
-    isOnSale: 1
+    isOnSale: 15
+
+  }
+  shirtPro5 =
+  {
+
+    productId: 3,
+    productName: "string" ,
+    description: "string",
+    picUrl: "https://www.picclickimg.com/d/l400/pict/184892613206_/Code-Like-a-Boss-T-Shirt-Sz-S-Small.jpg",
+    productPrice: 15,
+    category: "string",
+    isOnSale: 20
+
+  }
+  shirtPro6 =
+  {
+
+    productId: 3,
+    productName: "string" ,
+    description: "string",
+    picUrl: "https://www.picclickimg.com/d/l400/pict/184892613206_/Code-Like-a-Boss-T-Shirt-Sz-S-Small.jpg",
+    productPrice: 15,
+    category: "string",
+    isOnSale: 20
+
+  }
+  shirtPro7 =
+  {
+
+    productId: 3,
+    productName: "string" ,
+    description: "string",
+    picUrl: "https://www.picclickimg.com/d/l400/pict/184892613206_/Code-Like-a-Boss-T-Shirt-Sz-S-Small.jpg",
+    productPrice: 15,
+    category: "string",
+    isOnSale: 10
+
+  }
+  shirtPro8 =
+  {
+
+    productId: 3,
+    productName: "string" ,
+    description: "string",
+    picUrl: "https://www.picclickimg.com/d/l400/pict/184892613206_/Code-Like-a-Boss-T-Shirt-Sz-S-Small.jpg",
+    productPrice: 15,
+    category: "string",
+    isOnSale: 15
 
   }
 
@@ -83,7 +132,10 @@ export class SalesDealsComponent implements OnInit {
     this.productsOnSaleByCategory = this.getProductsOnSaleByCategory();
 
     // delete next line for production
-    this.productsOnSale = [this.shirtPro,this.shirtPro1,this.shirtPro2,this.shirtPro3,this.shirtPro4]
+    this.productsOnSale = [this.shirtPro,this.shirtPro1,this.shirtPro2,this.shirtPro3,this.shirtPro4,this.shirtPro5,this.shirtPro6,this.shirtPro7,this.shirtPro8]
+    for(let x = 0; x < this.productsOnSale.length; x++){
+      this.applySalesPrice(this.productsOnSale[x]);
+    }
   }
 
   private getProductsOnSale() {
@@ -92,5 +144,13 @@ export class SalesDealsComponent implements OnInit {
 
   private getProductsOnSaleByCategory() {
     return this.service.getAllItemsOnSaleByCategory();
+  }
+
+  private applySalesPrice(product:IProduct) {
+    const saleValue = product.isOnSale/100;
+    const price = product.productPrice;
+    const amountOff = price * saleValue;
+    product.productPrice = price-amountOff;
+    return product;
   }
 }
