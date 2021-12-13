@@ -33,24 +33,14 @@
             <form class="example-form">
                <mat-form-field class="example-full-width">
                   <mat-label>Quantity: {{item.quantity}}</mat-label>
-                  <input matInput 
-                     type="number" 
-                     maxlength="3" 
-                     min="1" 
-                     max="100" 
-                     required 
-                     mdInput 
-                     placeholder="Quantity {{item.quantity}}" 
-                     onkeydown="return false"
-                     >
+                  <button class="btn" (click)="decrement(item)">-</button>
+                    {{item.quantity}}
+                <button class="btn" (click)="increment(item)">+</button>
                </mat-form-field>
             </form>
             <mat-card-subtitle>Price: {{ item.product.productPrice }}</mat-card-subtitle>
             <br>
             <img  width="105" height="85" src="{{ item.product.picUrl }}" />
-            <br><br>
-            <button mat-flat-button color="primary" (click)="removeItem()">Update Quantity</button>
-            <br/>
          </mat-card>
       </div>
    </div>

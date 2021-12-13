@@ -10,19 +10,19 @@ import com.models.Product;
 
 @Service
 public class ProductServiceImpl implements ProductService {
-	
+
 	private ProductDao productDao;
-	
+
 	@Autowired
 	public ProductServiceImpl(ProductDao productDao) {
 		this.productDao = productDao;
 	}
-	
+
 	@Override
 	public List<Product> getAllProducts() {
 		return productDao.findAll();
 	}
-	
+
 	@Override
 	public List<Product> getAllDeals() {
 		// TODO Auto-generated method stub
