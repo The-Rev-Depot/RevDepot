@@ -22,7 +22,7 @@ import lombok.ToString;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "transactions")
+@Table(name = "transaction")
 @ToString
 public class Transaction {
 

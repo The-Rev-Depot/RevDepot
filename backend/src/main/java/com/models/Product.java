@@ -16,7 +16,7 @@ import lombok.ToString;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "products")
+@Table(name = "product")
 @ToString
 public class Product {
 
