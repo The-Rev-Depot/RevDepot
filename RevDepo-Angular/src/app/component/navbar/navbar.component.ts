@@ -21,12 +21,12 @@ export class NavbarComponent implements OnInit {
   @ViewChild(MatSidenav) sidenav!: MatSidenav;
   events: string[] = [];
   opened: boolean = false;
-  quantityLimit: number = 5;
+  
 
 
 
 
-  constructor(private http:HttpClient, private cartService: CartService, private router: Router, private userService: UserServiceService) { }
+  constructor(private cartService: CartService, private router: Router, private userService: UserServiceService) { }
 
   ngOnInit(): void {
     this.cart = this.cartService.getCart();
@@ -63,25 +63,6 @@ export class NavbarComponent implements OnInit {
     this.userService.checkloggedIn = false;
     this.loggedIn = false;
   }
-  increment(item: any){
-
-    if(item.quantity <= this.quantityLimit){
-      item.quantity += 1;
-    }
-
-    //if(this.onlyOnce)
-      this.http.get<number>('http://localhost:9999/inventory/quantity/' + item.product.productId).subscribe(
-        (response) => {
-          this.quantityLimit = response;
-       }
-    );
-
-  }
-
-  decrement(item: any){
-    if(item.quantity > 1){
-      item.quantity -= 1;
-    }
-  }
+  
 
 }

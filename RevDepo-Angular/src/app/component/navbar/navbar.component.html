@@ -28,16 +28,7 @@
       fixedInViewport>
       <div *ngIf="cart">
          <div *ngFor="let item of cart.items">
-            <mat-card>
-               <mat-card-title>{{item.product.productName}}</mat-card-title>
-               <mat-label>Quantity: {{item.quantity}}</mat-label>
-               <button class="btn" (click)="decrement(item)">-</button>
-               {{item.quantity}}
-               <button class="btn" (click)="increment(item)">+</button>
-               <mat-card-subtitle>Price: {{ item.product.productPrice }}</mat-card-subtitle>
-               <br>
-               <img width="105" height="85" src="{{ item.product.picUrl }}" />
-            </mat-card>
+            <app-cart-card [item]="item"></app-cart-card>
          </div>
       </div>
       <h3 *ngIf="cartIsEmpty">Cart is currently empty.</h3>

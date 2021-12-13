@@ -59,6 +59,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FilterPipe } from './pipes/filter.pipe';
 import { CartCardComponent } from './component/cart-card/cart-card.component';
+import { QuantitySelectComponent } from './component/quantity-select/quantity-select.component';
 
 // import { 
 //   MatIconModule, 
@@ -84,7 +85,8 @@ import { CartCardComponent } from './component/cart-card/cart-card.component';
     SalesDealsComponent,
     ResultPageComponent,
     FilterPipe,
-    CartCardComponent
+    CartCardComponent,
+    QuantitySelectComponent
   ],
   imports: [
   
