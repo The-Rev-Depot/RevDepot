@@ -58,6 +58,7 @@ import { CartService } from './service/cart.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FilterPipe } from './pipes/filter.pipe';
+import { CartCardComponent } from './component/cart-card/cart-card.component';
 
 // import { 
 //   MatIconModule, 
@@ -82,7 +83,8 @@ import { FilterPipe } from './pipes/filter.pipe';
     ProductCardComponent,
     SalesDealsComponent,
     ResultPageComponent,
-    FilterPipe
+    FilterPipe,
+    CartCardComponent
   ],
   imports: [
   

@@ -14,8 +14,11 @@ import { IItem } from '../model/item';
 export class CartService {
   cart!: ICart;
   constructor(private httpClient: HttpClient) {
-    this.getCart();
-   }
+    this.setCart();
+  }
+  getCart() {
+    return this.cart;
+  }
 
    addItem(newItem: IItem) {
     this.cart?.items.push(newItem);
@@ -29,6 +32,11 @@ export class CartService {
 
   getCartItems(){
     return this.cart.items;
+  }
+
+  updateCartQuantity(item: IItem){
+    let index: number = this.cart.items.indexOf(item);
+    this.cart.items[index].quantity=item.quantity;
   }
 
    /**
@@ -68,9 +76,9 @@ export class CartService {
      return this.httpClient.post<IItem[]>(`http://localhost:8080/inventory/update`, this.cart!.items, httpPost);
    }
 
-   getCart(): ICart {
+   setCart(): void {
      // Hardcoded for now
-    return this.cart = {
+    this.cart = {
       cartId: 0,
       user: {
         userId: 0,
