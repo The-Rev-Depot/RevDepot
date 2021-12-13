@@ -6,18 +6,29 @@
 <ul>
 
 </ul> -->
-<!-- <h4>Product List:</h4>
+
+
+
+<div class="md-form">
+    <input type="search" [(ngModel)]="searchText" placeholder="Search Products" >
+    <p> <b>SearchText:</b> {{ searchText | lowercase}}</p>
+ </div>
+ 
+ <ul *ngFor = "let f of filteredList(searchText)">
+   <li> {{ f.productName }} </li>
+
+ </ul>
+
+
+  <!-- <ul *ngFor="let p of product | filter: searchText">
+    <li>{{p.productName}}</li>
+  </ul> -->
+
+<h3>Product List (based on 'product' list directly):</h3>
 <div>
   <ul *ngFor = 'let p of product'>
     <li>
       {{ p.productName }}
     </li>    
   </ul>
-</div> -->
-
-<div class="md-form">
-    <input type="search" [(ngModel)]="searchText" placeholder="Search Products">
-  </div>
-  <ul *ngFor="let p of product | filter: searchText">
-    <li>{{p.productName}}</li>
-  </ul>
+</div>
