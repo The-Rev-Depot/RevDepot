@@ -3,6 +3,7 @@ package com.controllers;
 import com.models.Response;
 import com.models.User;
 import com.services.UserService;
+import com.utility.EmailService;
 import com.utility.JwtUtility;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.apache.tomcat.util.codec.binary.StringUtils;
@@ -24,13 +25,14 @@ import static org.junit.jupiter.api.Assertions.*;
 class UserControllerTest {
     UserController userController;
     JwtUtility jwtUtility;
+    EmailService emailService;
 
     @Mock
     UserService userService;
 
     @BeforeEach
     void setUp() {
-        this.userController = new UserController(userService, jwtUtility);
+        this.userController = new UserController(userService, jwtUtility, emailService);
     }
 
     @Test
