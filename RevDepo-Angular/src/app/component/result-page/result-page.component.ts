@@ -1,9 +1,6 @@
-import { IProduct } from 'src/app/model/product';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductClass } from 'src/app/model/product-class';
-
-import { IInventory } from 'src/app/model/inventory';
 import { ProductServiceService } from 'src/app/service/product-service.service';
 import { InventoryClass } from 'src/app/model/inventory-class';
 
@@ -14,36 +11,23 @@ import { InventoryClass } from 'src/app/model/inventory-class';
 })
 export class ResultPageComponent implements OnInit {
 
-    //none of these are being used / not essential as far as I can tell
-
-  // inventory : IInventory | undefined;
-  // products :IProduct | undefined;
-  // product : any;
-
-//  public productId:any;
-//  public productName: any;
-//  public description: any;
-//  public picUrl: any;
-//  public productPrice: any;
-//  public category: any;
-//  public isOnSale: any;
-  //items : IProduct | undefined; 
-
   productsList: any;
-
+  //initializing arrays to hold data retrieved from database
   public searchResults:any = [];
-  public inventoryList: Array<InventoryClass> = [];
-  public productsArray: Array<ProductClass> = [];
+  public inventoryList: Array<InventoryClass> = []; //holds all items in inventory
+  public productsArray: Array<ProductClass> = []; // holds items that are sorted by category
 
 
-  constructor(private router: Router, private route: ActivatedRoute,private productService:ProductServiceService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private productService:ProductServiceService) { }
 
   ngOnInit(): void {
+    //this method will be called when the component loads, items will populate based on category
     this.getIProduct();
   }
 
+  //this method calls the getIProducts() method in the product service to retrieve all items
   public getIProduct(): void {
-     const categoryTitle = String (this.route.snapshot.paramMap.get('title'));
+     const categoryTitle = String (this.route.snapshot.paramMap.get('category'));
 
     this.productService.getIProduct().subscribe(
       (data) => {
@@ -52,8 +36,9 @@ export class ResultPageComponent implements OnInit {
         for (let one of this.searchResults) {
           this.inventoryList.push(one);
         }
-        console.log(this.inventoryList);
+        //console.log(this.inventoryList);
 
+        //this method sorts items in that category and holds them in a diffrent array
         this.getProduct(categoryTitle);
       }
     );
@@ -62,29 +47,26 @@ export class ResultPageComponent implements OnInit {
 
   public getProduct(categoryTitle:string): void{
 
+    //console.log(categoryTitle);
+
+    //this checks for the category of the products in the inventoryList 
      for(let i =0; i<this.inventoryList.length; i++) {
 
-      if(this.inventoryList[i].product.category == categoryTitle){
+      //console.log(this.inventoryList[i].product.productCategory);
+     // console.log(this.inventoryList[i].product);
 
-      console.log("Sorted: " + this.inventoryList[i].product.category);
+      if(this.inventoryList[i].product.productCategory == categoryTitle){
+
+      //console.log("Sorted: " + this.inventoryList[i].product.productCategory);
 
       this.productsArray.push(this.inventoryList[i].product);
 
      }
-     console.log("After push: " + this.productsArray);
+    // console.log("After push: " + this.productsArray);
      }
 
   }
 
-  public moreInfo() {
-        // console.log("google")
-        // console.log(this.productsList);
-        // console.log(this.productsList[0]);
-        // this.product=this.productsList[0];
-        // console.log("Single item: " + this.product);
-        // console.log(this.product.productId);
-    console.log(this.productsList[0].product.category);
 
-  }
 }
 
