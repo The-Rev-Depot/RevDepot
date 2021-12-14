@@ -19,9 +19,7 @@ export class CartCardComponent implements OnInit {
   }
   removeItem(){
     this.cartService.removeItem(this.item);
+   
   }
-  checkCartQuantity(){
-  this.checkCartQuantity();
-  
-}
+ 
 }

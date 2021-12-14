@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { isNgTemplate } from '@angular/compiler';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { ICart } from '../model/cart';
 import { IItem } from '../model/item';
 import { IProduct } from '../model/product';
@@ -11,11 +11,11 @@ import { IProduct } from '../model/product';
 })
 export class CartService {
   cart!: ICart;
-  cartIsEmpty: boolean = true;
+  cartIsEmpty!: boolean; 
   constructor(private httpClient: HttpClient) {
     this.setCart();
-    this.checkCartQuantity();
   }
+
   getCart() {
     return this.cart;
   }
@@ -62,9 +62,16 @@ export class CartService {
     let index: number | undefined = this.cart.items.indexOf(item);
     if (index != undefined)
       this.cart?.items.splice(index, 1);
+      if(this.cart?.items.length == 0){
+        console.log("cart is empty");
+        this.cartIsEmpty = true;
+        console.log(this.cartIsEmpty);
+      }
+      
     
   }
   else{
+  
     return;
   }
 }
@@ -114,17 +121,7 @@ export class CartService {
     return this.httpClient.post<IItem[]>(`http://localhost:8080/inventory/update`, this.cart!.items, httpPost);
   }
   
-  checkCartQuantity(): boolean{
-    if(this.getCartItems.length > 0){
-      this.cartIsEmpty = false
-      return false;
-    }
-    else if (this.getCartItems.length == 0){
-      this.cartIsEmpty = true;
-      return true;
-    }
-    return true;
-  }
+
 
   setCart(): void {
     // Hardcoded for now
