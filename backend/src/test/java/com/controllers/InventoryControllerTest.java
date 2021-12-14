@@ -1,9 +1,9 @@
 package com.controllers;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,8 +11,8 @@ import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.models.Inventory;
+import com.models.Item;
 import com.services.InventoryService;
-import com.services.InventoryServiceImpl;
 
 @SpringBootTest
 public class InventoryControllerTest {
@@ -32,12 +32,14 @@ public class InventoryControllerTest {
 	void updateInventoryTest() {
 		// Arrange
 		Inventory expectedInventory = new Inventory();
+		Item expectedItems[] = { new Item(), new Item(), new Item()};
 		
 		// Act
-		//Inventory actualInventory = inventoryController.updateInventory(expectedInventory);
+		Item actualItems[] = inventoryController.updateInventory(expectedItems);
 		
 		// Assert
-		verify(inventoryService, times(1)).updateInventory(expectedInventory);
+		verify(inventoryService, times(expectedItems.length)).subtractItemFromInventory(any(Item.class));
+		assertArrayEquals(expectedItems, actualItems);
 	}
 	
 }

@@ -119,14 +119,20 @@ export class CartService {
         'Content-Type': 'application/json'
       })
     };
-    return this.httpClient.post<IItem[]>(`http://localhost:8080/inventory/update`, this.cart!.items, httpPost);
-  }
-  
+     return this.httpClient.post<IItem[]>(`http://localhost:9999/inventory/update`, this.cart!.items, httpPost);
+   }
 
-
-  setCart(): void {
-    // Hardcoded for now
-    this.cart = {
+   getMax(): Observable<IItem[]> {
+    const httpPost = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+     return this.httpClient.post<IItem[]>(`http://localhost:9999/inventory/getMax`, this.cart!.items, httpPost);
+   }
+   getCart(): ICart {
+     // Hardcoded for now
+    return this.cart = {
       cartId: 0,
       user: {
         userId: 0,
@@ -140,7 +146,7 @@ export class CartService {
       },
       items: [
         {
-          itemId: 0, quantity: 1, product: {
+          itemId: 0, quantity: 5, product: {
             productId: 1,
             productName: "Computer Tower Stand",
             description: "",
@@ -151,7 +157,7 @@ export class CartService {
             isOnSale: 0
           }
         },
-        {
+       /* {
           itemId: 1, quantity: 3, product: {
             productId: 2,
             productName: "Renpho Powerful Portable Massage Gun",
@@ -174,7 +180,7 @@ export class CartService {
             category: "",
             isOnSale: 0
           }
-        }
+        }*/
       ]
     };
   }
