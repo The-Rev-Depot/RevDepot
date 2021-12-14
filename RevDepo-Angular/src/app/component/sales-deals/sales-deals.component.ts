@@ -16,7 +16,7 @@ export class SalesDealsComponent implements OnInit {
 
   title = "Ongoing Sales"
   placeholder:any = []
-  productsOnSale: Array<IProduct> = []
+  productsOnSale:any = []
   productsOnSaleByCategory:any = []
   url = "http://localhost:9999/product/deals";
 
@@ -138,16 +138,17 @@ export class SalesDealsComponent implements OnInit {
         this.productsOnSale = response;
         console.log(this.productsOnSale);
       })
-    // this.service.getAllItemsOnSale().subscribe((response: any) => {
-    //   this.productsOnSale = response;
-    // });
-    this.getProductsOnSale();
     
-    //  for(let x = 0; x < this.productsOnSale.length; x++){
-    //   this.applySalesPrice(this.productsOnSale[x]);
-    // }
+    //this.getProductsOnSale();
+    
+     for(let x = 0; x < this.productsOnSale.length; x++){
+      this.applySalesPrice(this.productsOnSale[x]);
+    }
   }
 
+  printProducts() {
+    console.log(this.productsOnSale);
+  }
 
   public getProductsOnSale():void {
     console.log("2");
@@ -164,9 +165,9 @@ export class SalesDealsComponent implements OnInit {
     );
   }
 
-  private getProductsOnSaleByCategory() {
-    return this.service.getAllItemsOnSaleByCategory(this.category);
-  }
+  // private getProductsOnSaleByCategory() {
+  //   return this.service.getAllItemsOnSaleByCategory(this.category);
+  // }
 
   private applySalesPrice(product:IProduct) {
     const saleValue = product.isOnSale/100;
