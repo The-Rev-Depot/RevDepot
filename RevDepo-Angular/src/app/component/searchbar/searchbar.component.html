@@ -1,34 +1,15 @@
-<p>searchbar works!</p>
-
-<!-- <div class="md-form">
-    <input type="search" placeholder="Search Products">
-</div>
-<ul>
-
-</ul> -->
-
-
-
 <div class="md-form">
     <input type="search" [(ngModel)]="searchText" placeholder="Search Products" >
-    <p> <b>SearchText:</b> {{ searchText | lowercase}}</p>
- </div>
+ 
+
+ <p *ngIf = "filteredList(searchText).length == 0 && searchText != '' ">
+   It appears no items match your search. 
+   Please check the spelling.
+  </p>
  
  <ul *ngFor = "let f of filteredList(searchText)">
    <li> {{ f.productName }} </li>
 
  </ul>
 
-
-  <!-- <ul *ngFor="let p of product | filter: searchText">
-    <li>{{p.productName}}</li>
-  </ul> -->
-
-<h3>Product List (based on 'product' list directly):</h3>
-<div>
-  <ul *ngFor = 'let p of product'>
-    <li>
-      {{ p.productName }}
-    </li>    
-  </ul>
 </div>
