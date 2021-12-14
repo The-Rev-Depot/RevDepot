@@ -13,7 +13,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'product-details/:Id', component: ProductDetailsComponent},
-  {path: 'result-page/:title', component: ResultPageComponent},
+  {path: 'result-page/:category', component: ResultPageComponent},
   {path: 'checkout', component: CheckoutComponent},
   {path: 'searchbar', component:SearchbarComponent},
   {path: '**', redirectTo: 'display-products'},
