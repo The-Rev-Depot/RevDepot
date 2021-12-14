@@ -1,14 +1,3 @@
-<p>display-products works!</p>
-
-
-<div class="container" id="fullcontainer">
-
-  <div id="topNav">
-    
-    <!-- <app-searchbar></app-searchbar> -->
-  </div>
-
-
 
 
 <div id="homeCon" class="container">
@@ -27,18 +16,17 @@
     </a>
   </div>
 
-  <h5 class="indigo-text h5 mb-4">Photography</h5>
-
   </div>
 
 
 
 <div id="items" class="container">
   <div id="deals"><!--make this a round-about careinsel* section-->
-    <h3>Deals</h3><!--data bind product info, need a new select statement for only items on sale,(onSale varible)-->
+    <h3>Deals</h3><!--data bind product info-->
     <div id="itemCon">
 
-      <app-product-card></app-product-card>
+     
+      <app-product-card></app-product-card>  <!-- component that holds products that are on sale -->
 
       <!--
       <div *ngFor = "let todo of todosArray" class="todo-card" onclick="reroute">
@@ -55,27 +43,24 @@
     </div>
   </div>
 
-
+  <br>
+  <br>
 
 
   <div id="categories">
-    <h3>Categories</h3>
+    <h3>Categories</h3> <!-- this section routes to a sorted results page based on category that is clicked -->
     <div id="catButtons" class="grid-container">
       <a id = "spacing" *ngFor="let category of categoriesArray" class="col-1-4" routerLink="/result-page/{{category.title}}">
         <div>
             <h4>{{category.title | uppercase}}</h4>
-        </div>  
+        </div>
       </a>
     </div>
     <br>
     <br>
-    
+
     <!--how does search and sort team want to display results-->
 
-
-
-
-
   </div>
 
 
@@ -87,5 +72,5 @@
   </div>
 
 
-</div>
+
 
