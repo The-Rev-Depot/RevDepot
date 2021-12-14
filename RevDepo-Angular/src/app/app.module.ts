@@ -58,6 +58,8 @@ import { CartService } from './service/cart.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FilterPipe } from './pipes/filter.pipe';
+import { CurrencyPipe } from '@angular/common';
+import { AllSalesPageComponent } from './component/all-sales-page/all-sales-page.component';
 import { CartCardComponent } from './component/cart-card/cart-card.component';
 import { QuantitySelectComponent } from './component/quantity-select/quantity-select.component';
 
@@ -85,6 +87,7 @@ import { QuantitySelectComponent } from './component/quantity-select/quantity-se
     SalesDealsComponent,
     ResultPageComponent,
     FilterPipe,
+    AllSalesPageComponent,
     CartCardComponent,
     QuantitySelectComponent
   ],
@@ -137,7 +140,7 @@ import { QuantitySelectComponent } from './component/quantity-select/quantity-se
     MatCardModule
     
   ],
-  providers: [HttpClient, CartService],
+  providers: [HttpClient, CartService, CurrencyPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

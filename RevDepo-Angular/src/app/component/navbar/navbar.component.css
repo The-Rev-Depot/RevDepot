@@ -16,4 +16,19 @@
   width: 300px;
 }
 
+.navvbar {
+  background-color: black;
+  color: #FFFFFF;
+  ;
+}
+
+.pointerHover {
+  cursor: pointer;
+}
+.btn {
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
+  padding: 0px;
+}
 
