@@ -15,6 +15,7 @@ export class CheckoutComponent implements OnInit {
   loggedIn: boolean = true;
   error: boolean = false;
   limitedSupply: boolean [] = [false];
+  checkoutFinished: boolean = false;
 
   constructor(private cartService: CartService, private router: Router) { }
 
@@ -38,6 +39,7 @@ export class CheckoutComponent implements OnInit {
     this.cartService.checkoutCart().subscribe(
       (items)=> {
         console.log(items);
+        this.checkoutFinished = true;
       },
       // Server responds with error if cart's items go beyond inventory's capacity
       (error: HttpErrorResponse) => {
