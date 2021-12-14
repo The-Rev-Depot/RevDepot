@@ -23,8 +23,10 @@ export class CartService {
   addItem(newItem: IItem) {
     if(!this.isInCart(newItem.product)){
       this.cart?.items.push(newItem);
+      this.cartIsEmpty = false;
     }
-    else{return;} 
+    else{return;
+    } 
   }
 
   isInCart(product: IProduct): boolean{
@@ -63,9 +65,8 @@ export class CartService {
     if (index != undefined)
       this.cart?.items.splice(index, 1);
       if(this.cart?.items.length == 0){
-        console.log("cart is empty");
         this.cartIsEmpty = true;
-        console.log(this.cartIsEmpty);
+      
       }
       
     
