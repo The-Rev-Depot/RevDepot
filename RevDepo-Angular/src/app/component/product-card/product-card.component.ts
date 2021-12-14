@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute} from '@angular/router';
-import { IProduct } from 'src/app/model/product';
+import { ProductClass } from 'src/app/model/product-class';
+import { ProductServiceService } from 'src/app/service/product-service.service';
+import { InventoryClass } from 'src/app/model/inventory-class';
 //import { threadId } from 'worker_threads';
 //import { ResultPageComponent } from '../result-page/result-page.component';
 
@@ -11,74 +13,64 @@ import { IProduct } from 'src/app/model/product';
 })
 export class ProductCardComponent implements OnInit {
 
-  constructor(private router: Router /*, private result: ResultPageComponent*/) { }
-
-  public product: any;
-  //public shirtPro : product;
-
-  public productId:any;
-  public productName: any;
-  public description: any;
-  public picUrl: any;
-  public productPrice: any;
-  public category: any;
-  public isOnSale: any;
+  constructor(private router: Router, private route: ActivatedRoute, private productService:ProductServiceService/*, private result: ResultPageComponent*/) { }
 
   ngOnInit(): void {
-    //console.log(this.result.getIProduct);
-    //this.result.getIProduct;
-  }
-
-  shirtPro =
-  {
-
-    productId: 1,
-    productName: "card",
-    description: "string",
-    picUrl: "string",
-    productPrice: 15,
-    category: "string",
-    isOnSale: 1
+    //this method will be called when the component loads, items on sales will populate 
+    this.getIProduct();
 
   }
 
+  productsList: any;
+  //initializing arrays to hold data retrieved from database
+  public searchResults:any = [];
+  public inventoryList: Array<InventoryClass> = []; //holds all items in inventory
+  public productsArray: Array<ProductClass> = []; // holds items that are sorted by saleId
 
-  shirtPro1 =
-  {
 
-    productId: 2,
-    productName: "dispalycard" ,
-    description: "string",
-    picUrl: "string",
-    productPrice: 15,
-    category: "string",
-    isOnSale: 1
 
-  }
+  //this method calls the getIProducts() method in the product service to retrieve all items
+  public getIProduct(): void {
+    const dealTitle = Boolean (1);
 
-  shirtPro2 =
-  {
+   this.productService.getIProduct().subscribe(
+     (data) => {
+       this.searchResults = data;
 
-    productId: 3,
-    productName: "string" ,
-    description: "string",
-    picUrl: "string",
-    productPrice: 15,
-    category: "string",
-    isOnSale: 1
+       for (let one of this.searchResults) {
+         this.inventoryList.push(one);
+       }
+      // console.log(this.inventoryList);
 
-  }
+      //this method sorts items that are on sale and holds them in a diffrent array
+       this.getProduct(dealTitle);
+     }
+   );
+ }
 
-  productsArray = [this.shirtPro,this.shirtPro1,this.shirtPro2];
 
-   moreInfo()
-   {
-  //   this.result.moreInfoDis;
+ public getProduct(dealTitle:any): void{
 
-     console.log("google")
+  //console.log(dealTitle);
 
-     this.router.navigateByUrl('/product-details');
-  }
+  //this checks for the saleId of the products in the inventoryList 
+   for(let i =0; i<this.inventoryList.length; i++) {
+
+    //console.log(this.inventoryList[i].product.saleId);
+    //console.log(this.inventoryList[i].product);
+
+    if(this.inventoryList[i].product.saleId == dealTitle){
+
+    //console.log("Sorted: " + this.inventoryList[i].product.saleId);
+
+    this.productsArray.push(this.inventoryList[i].product);
+
+   }
+   //console.log("After push: " + this.productsArray);
+   }
+
+}
+
 
 
 }

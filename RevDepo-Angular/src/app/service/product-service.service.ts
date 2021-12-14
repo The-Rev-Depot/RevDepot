@@ -9,7 +9,7 @@ import { IProduct } from '../model/product';
 })
 export class ProductServiceService {
 
-  private url= `http://localhost:8080/`;
+  private url= `http://localhost:9999/`;
   public productsArray : any;
   public product : any;
 
@@ -18,10 +18,10 @@ export class ProductServiceService {
 
   //Get Request to get all products
   public getIProduct(): Observable<IProduct[]> {
-    //return this.http.get<IProduct[]>(`${this.url}inventory/items`) 
-    return this.http.get('http://localhost:8080/inventory/items') as Observable<IProduct[]>;
+    //return this.http.get<IProduct[]>(`${this.url}inventory/items`)
+    return this.http.get('http://localhost:9999/inventory/items') as Observable<IProduct[]>;
   }
-  
+
 
   /**
    * pops off one product when calling getIProduct method
@@ -34,18 +34,6 @@ export class ProductServiceService {
 
   }
 
-  //reroute to product details page
-  public moreInfoDis() : void
-  {
-    console.log("google")
-
-   this.router.navigateByUrl('/product-details');
-  }
-
-  // public getAProduct(): Observable<IProduct> {
-  //  return this.http.get<IProduct>(`${this.url}inventory/items`);
-
-  // }
 }
 
 

@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { IProduct } from 'src/app/model/product';
 import { SalesServiceService } from 'src/app/service/sales-service.service';
 import { CurrencyPipe } from '@angular/common';
+import { CartService } from 'src/app/service/cart.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sales-deals',
@@ -125,7 +127,7 @@ export class SalesDealsComponent implements OnInit {
   }
 
 
-  constructor(private service:SalesServiceService) { }
+  constructor(private service:SalesServiceService, private cartService: CartService, private router:Router) { }
 
   ngOnInit(): void {
     this.productsOnSale = this.getProductsOnSale();
@@ -152,5 +154,13 @@ export class SalesDealsComponent implements OnInit {
     const amountOff = price * saleValue;
     product.productPrice = price-amountOff;
     return product;
+  }
+
+  addItemToCart(product:IProduct) {
+    this.cartService.addProductToCart(product);
+  }
+
+  moreInfo(){
+    this.router.navigateByUrl("/product-details")
   }
 }

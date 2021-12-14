@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductServiceService } from 'src/app/service/product-service.service';
+import { InventoryClass } from 'src/app/model/inventory-class';
+import { ProductClass } from 'src/app/model/product-class';
 
 @Component({
   selector: 'app-product-details',
@@ -9,45 +11,63 @@ import { ProductServiceService } from 'src/app/service/product-service.service';
 })
 export class ProductDetailsComponent implements OnInit {
 
-  public product: any;
-  //public shirtPro : product;
 
-  public productId:any;
-  public productName: any;
-  public description: any;
-  public picUrl: any;
-  public productPrice: any;
-  public category: any;
-  public isOnSale: any;
+  productsList: any;
+  //initializing arrays to hold data retrieved from database
+  public searchResults:any = [];
+  public inventoryList: Array<InventoryClass> = []; //holds all items in inventory
+  public productsArray: Array<ProductClass> = []; // holds item with matching productId
 
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private route: ActivatedRoute, private productService:ProductServiceService) { }
 
   ngOnInit(): void {
+    //this method will be called when the component loads, product will populate based on productId
+    this.getIProduct();
   }
 
-  shirtPro =
-  {
+  //this method calls the getIProducts() method in the product service to retrieve all items
+  public getIProduct(): void {
+    const idTitle = String (this.route.snapshot.paramMap.get('Id'));
 
-    productId: 1,
-    productName: 'card' ,
-    description: "string",
-    picUrl: "string",
-    productPrice: 15,
-    category: "string",
-    isOnSale: 1
+   this.productService.getIProduct().subscribe(
+     (data) => {
+       this.searchResults = data;
 
-  }
+       for (let one of this.searchResults) {
+         this.inventoryList.push(one);
+       }
+      //  console.log(this.inventoryList);
 
-  productsArray = [this.shirtPro];
+       //this method grabs an item based on its id and hold it in a diffrent array
+       this.getProduct(idTitle);
+     }
+   );
+ }
 
 
-  moreInfo()
-  {
-    console.log("google")
+ public getProduct(idTitle:any): void{
 
-    this.router.navigateByUrl('/product-details');
-  }
+  // console.log(idTitle);
+
+  //this checks for the id of the product in the inventoryList 
+   for(let i =0; i<this.inventoryList.length; i++) {
+
+    // console.log(this.inventoryList[i].product.productId);
+    // console.log(this.inventoryList[i].product);
+
+    if(this.inventoryList[i].product.productId == idTitle){
+
+    // console.log("Sorted: " + this.inventoryList[i].product.productId);
+
+    this.productsArray.push(this.inventoryList[i].product);
+
+   }
+  //  console.log("After push: " + this.productsArray);
+   }
+
+}
+
 
 
 }
