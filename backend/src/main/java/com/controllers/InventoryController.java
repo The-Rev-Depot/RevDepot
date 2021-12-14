@@ -98,7 +98,7 @@ public class InventoryController {
 		
 		return  itemList.toArray();
 	}
-}
+
 
 	@GetMapping(value = "/quantity/{productId}")
 	public int getInventoryQuantity(@PathVariable("productId") int id) {
