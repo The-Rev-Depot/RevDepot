@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { IProduct } from 'src/app/model/product';
 import { SalesServiceService } from 'src/app/service/sales-service.service';
 
@@ -13,6 +14,7 @@ export class AllSalesPageComponent implements OnInit {
   title = "All Sale Items"
   productsOnSale:any = []
   productsOnSaleByCategory:any = []
+  category = ""
 
   shirtPro =
   {
@@ -124,11 +126,12 @@ export class AllSalesPageComponent implements OnInit {
   }
 
 
-  constructor(private service:SalesServiceService) { }
+  constructor(private service:SalesServiceService, private router:Router) { }
 
   ngOnInit(): void {
     this.productsOnSale = this.getProductsOnSale();
     this.productsOnSaleByCategory = this.getProductsOnSaleByCategory();
+    this.category = this.router.url;
 
     // delete next line for production
     this.productsOnSale = [this.shirtPro,this.shirtPro1,this.shirtPro2,this.shirtPro3,this.shirtPro4,this.shirtPro5,this.shirtPro6,this.shirtPro7,this.shirtPro8]
@@ -142,7 +145,7 @@ export class AllSalesPageComponent implements OnInit {
   }
 
   private getProductsOnSaleByCategory() {
-    return this.service.getAllItemsOnSaleByCategory();
+    return this.service.getAllItemsOnSaleByCategory(this.category);
   }
 
   private applySalesPrice(product:IProduct) {

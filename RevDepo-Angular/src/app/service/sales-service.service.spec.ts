@@ -10,31 +10,52 @@ fdescribe('SalesServiceService', () => {
   let service: SalesServiceService;
   let httpClientSpy: any;
 
-  const mockObjects: IProduct[] = [{
-    productId: 0,
-    productName: "test name",
-    description: "test description",
-    picUrl: "com",
-    productPrice: 10.99,
-    category: "category",
-    isOnSale: 10,
-    productRating:5
+  const mockObjects1: IProduct[] = [{
+    productId: 1,
+    productName: "t-shirt",
+    description: "made of cotton",
+    picUrl: "https://www.picclickimg.com/d/l400/pict/184892613206_/Code-Like-a-Boss-T-Shirt-Sz-S-Small.jpg",
+    productPrice: 23.99,
+    category: "clothes",
+    isOnSale: 1,
+    productRating:3.5
   },
   {
-    productId: 1,
-    productName: "test name",
-    description: "test description",
-    picUrl: "com",
-    productPrice: 10.99,
-    category: "category",
+    productId: 3,
+    productName: "T-Shirt - Black",
+    description: 'Black T-shirt with the phrase "CODE LIKE A BOSS" on front. Revature Logo on back. Various sizes.',
+    picUrl: "https://i.ebayimg.com/thumbs/images/g/yzMAAOSwaHZgy1VV/s-l300.jpg",
+    productPrice: 12.99,
+    category: "apparel",
     isOnSale: 10,
-    productRating:5
+    productRating:3.9
+  }, 
+  {
+    productId: 6,
+    productName: "Sticker",
+    description: 'I love pie sticker',
+    picUrl: "https://backendbase.com/i/p/i-love-pie-30ded-1.png",
+    productPrice: 0.99,
+    category: "Misc.",
+    isOnSale: 10,
+    productRating:4.9
+  }]
+
+  const mockObjects2: IProduct[] = [{
+    productId: 1,
+    productName: "t-shirt",
+    description: "made of cotton",
+    picUrl: "https://www.picclickimg.com/d/l400/pict/184892613206_/Code-Like-a-Boss-T-Shirt-Sz-S-Small.jpg",
+    productPrice: 23.99,
+    category: "clothes",
+    isOnSale: 1,
+    productRating:3.5
   }]
   
   beforeEach(() => {
     httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
     service = new SalesServiceService(httpClientSpy);
-    httpClientSpy.get.and.returnValue(of(mockObjects));
+    httpClientSpy.get.and.returnValue(of(mockObjects1));
   })
 
   it('should be created', () => {
@@ -43,10 +64,10 @@ fdescribe('SalesServiceService', () => {
 
 
   it('it should return a list where the observable equals the mock Data', (done: DoneFn) => {
-    httpClientSpy.get.and.returnValue(of(mockObjects));
+    httpClientSpy.get.and.returnValue(of(mockObjects1));
     service.getAllItemsOnSale().subscribe(
       ( productsOnSale: any[]) => {
-        expect(productsOnSale).toEqual(mockObjects);
+        expect(productsOnSale).toEqual(mockObjects1);
         done();
       }
     ) 
@@ -54,10 +75,10 @@ fdescribe('SalesServiceService', () => {
 
 
   it('should return a list of products by category that equals mock data', (done:DoneFn) => {
-    httpClientSpy.get.and.returnValue(of(mockObjects));
-    service.getAllItemsOnSaleByCategory().subscribe(
+    httpClientSpy.get.and.returnValue(of(mockObjects2));
+    service.getAllItemsOnSaleByCategory("clothes").subscribe(
       (productsOnSale: any[]) => {
-        expect(productsOnSale).toEqual(mockObjects);
+        expect(productsOnSale).toEqual(mockObjects2);
         done();
       }
     )

@@ -165,7 +165,7 @@ export class SalesDealsComponent implements OnInit {
   }
 
   private getProductsOnSaleByCategory() {
-    return this.service.getAllItemsOnSaleByCategory();
+    return this.service.getAllItemsOnSaleByCategory(this.category);
   }
 
   private applySalesPrice(product:IProduct) {

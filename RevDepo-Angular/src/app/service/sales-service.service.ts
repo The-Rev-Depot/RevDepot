@@ -30,8 +30,8 @@ export class SalesServiceService {
     return this.allDeals;
   }
 
-  getAllItemsOnSaleByCategory(): Observable<any[]> {
-    this.http.get<any>(this.urlCategory).subscribe(
+  getAllItemsOnSaleByCategory(category: string): Observable<any[]> {
+    this.http.get<any>(category).subscribe(
       response => {
         this.dealsByCategory = response;
       })
