@@ -1,24 +1,27 @@
-
+<div *ngIf="productsArray" class="grid-container">
 <div class="grid-container">
 
 
 
-    <div *ngFor = "let shirtPro of productsArray" class="product-card" (click)="moreInfo()">
+  <!-- each div routes to product details page based on product id -->
+  <div *ngFor = "let item of productsArray" class="product-card" routerLink="/product-details/{{item.productId}}">
 
 
-      <h2>ID#: {{shirtPro.productId}}</h2>
-      <p>Name: {{shirtPro.productName}}</p>
-      <p>Price: {{shirtPro.productPrice}}</p>
-      <p>On Sale: {{shirtPro.isOnSale}}</p>
-      <img src={{shirtPro.picUrl}}/>
-      <a class="nav-link" routerLink="/product-details">link</a>
-
-  </div>
+    <img src={{item.picUrl}} />
+    <br>
+    <a class="nav-link" routerLink="/product-details/{{item.productId}}">{{item.productName}}</a>
+    <p>Price: {{item.productPrice}}</p>
+    <p>Rating: {{item.productRating}}</p>
+    <p>On Sale: On sale</p>
 
 
-
+</div>
 
 
 
 
+
+
+
+</div>
 </div>

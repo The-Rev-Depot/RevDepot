@@ -2,9 +2,33 @@
   flex: 1 1 auto;
 }
 
+.mat-sidenav-container {
+  position: fixed!important;
+  height: 100%;
+  min-height: 100%;
+  width: 100%;
+  min-width: 100%;
+}
+
 
 .sidenav {
   
   width: 300px;
+}
+
+.navvbar {
+  background-color: black;
+  color: #FFFFFF;
+  ;
+}
+
+.pointerHover {
+  cursor: pointer;
+}
+.btn {
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
+  padding: 0px;
 }
 

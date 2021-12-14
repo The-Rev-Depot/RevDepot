@@ -11,22 +11,29 @@ export class SalesServiceService {
 
   allDeals:any = [];
   dealsByCategory:any = [];
-  url = "http://localhost:8080/product/deals";
-  urlCategory = "http://localhost:8080/product/deals/category";
+  url = "http://localhost:9999/product/deals";
+  urlCategory = "http://localhost:9999/product/deals/category"; 
 
-  getAllItemsOnSale(): Observable<any[]> {
-    this.http.get<any>(this.url).subscribe(
-      response => {
-        this.allDeals = response;
-      })
-      return of(this.allDeals);
+  ngOnInit(): void {
+    this.getAllItemsOnSale();
   }
 
-  getAllItemsOnSaleByCategory(): Observable<any[]> {
-    this.http.get<any>(this.urlCategory).subscribe(
+  getAllItemsOnSale(): any {
+    return this.http.get<any>(this.url).subscribe(
+      response => {
+        this.allDeals = response;
+        console.log("1",this.allDeals);
+      })
+  }
+
+  getAllDeals(){
+    return this.allDeals;
+  }
+
+  getAllItemsOnSaleByCategory(category: string): Observable<any[]> {
+    this.http.get<any>(category).subscribe(
       response => {
         this.dealsByCategory = response;
-        console.log(this.dealsByCategory);
       })
       return of(this.dealsByCategory);
   }
