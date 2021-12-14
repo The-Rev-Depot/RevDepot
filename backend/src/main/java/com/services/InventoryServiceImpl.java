@@ -1,7 +1,9 @@
 package com.services;
 
 import java.util.List;
+import java.util.Optional;
 
+import org.hibernate.TransientObjectException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,7 @@ import com.models.Product;
 @Service
 public class InventoryServiceImpl implements InventoryService {
 
+	@Autowired
 	InventoryDao inventoryDao;
 	
 	@Autowired
@@ -43,7 +46,16 @@ public class InventoryServiceImpl implements InventoryService {
 	
 	@Override
 	public Inventory getInventoryByProduct(Product product) {
-		return inventoryDao.findByProduct(product);
+		
+		Optional<Product> persistedProduct = prodDao.findById(product.getProductId());
+		
+		if (persistedProduct.isPresent()) {
+			return inventoryDao.findByProduct(product);
+		} else {
+			System.out.println("That product may not exist in the database");
+			return null;
+		}
+
 	}
 	
 	@Override

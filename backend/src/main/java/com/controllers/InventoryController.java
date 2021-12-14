@@ -1,6 +1,9 @@
 package com.controllers;
 
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.ListIterator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -65,6 +68,26 @@ public class InventoryController {
 	@GetMapping("/items")
 	public ResponseEntity<List<Inventory>> getAllProducts() {
 		return ResponseEntity.status(200).body(inventoryService.getAllProducts());
+	}
+	
+	@PostMapping(value="getMax")
+	public Object[] checkMaxInventory (@RequestBody Item items[]) {
+		List<Item> itemList = new LinkedList<Item>(Arrays.asList(items));
+		ListIterator<Item> iterator = itemList.listIterator();
+		
+		while (iterator.hasNext()) {
+			Item item = iterator.next();
+			Inventory inventory = inventoryService.getInventoryByProduct(item.getProduct());
+			if (inventory != null) {
+				item.setQuantity(inventory.getQuantity());
+			} else {
+				itemList.remove(item);
+			}		
+		}
+
+		
+		
+		return  itemList.toArray();
 	}
 }
 
