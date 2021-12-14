@@ -16,6 +16,7 @@ export class SalesDealsComponent implements OnInit {
   title = "Ongoing Sales"
   productsOnSale:any = []
   productsOnSaleByCategory:any = []
+  category = ""
 
   shirtPro =
   {
@@ -132,6 +133,7 @@ export class SalesDealsComponent implements OnInit {
   ngOnInit(): void {
     this.productsOnSale = this.getProductsOnSale();
     this.productsOnSaleByCategory = this.getProductsOnSaleByCategory();
+    this.category = this.router.url;
 
     // delete next line for production
     this.productsOnSale = [this.shirtPro,this.shirtPro1,this.shirtPro2,this.shirtPro3,this.shirtPro4,this.shirtPro5,this.shirtPro6,this.shirtPro7,this.shirtPro8]
@@ -145,7 +147,7 @@ export class SalesDealsComponent implements OnInit {
   }
 
   private getProductsOnSaleByCategory() {
-    return this.service.getAllItemsOnSaleByCategory();
+    return this.service.getAllItemsOnSaleByCategory(this.category);
   }
 
   private applySalesPrice(product:IProduct) {

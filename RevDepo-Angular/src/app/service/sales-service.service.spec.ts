@@ -40,6 +40,17 @@ fdescribe('SalesServiceService', () => {
     isOnSale: 10,
     productRating:4.9
   }]
+
+  const mockObjects2: IProduct[] = [{
+    productId: 1,
+    productName: "t-shirt",
+    description: "made of cotton",
+    picUrl: "https://www.picclickimg.com/d/l400/pict/184892613206_/Code-Like-a-Boss-T-Shirt-Sz-S-Small.jpg",
+    productPrice: 23.99,
+    category: "clothes",
+    isOnSale: 1,
+    productRating:3.5
+  }]
   
   beforeEach(() => {
     httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
@@ -64,10 +75,10 @@ fdescribe('SalesServiceService', () => {
 
 
   it('should return a list of products by category that equals mock data', (done:DoneFn) => {
-    httpClientSpy.get.and.returnValue(of(mockObjects1));
-    service.getAllItemsOnSaleByCategory().subscribe(
+    httpClientSpy.get.and.returnValue(of(mockObjects2));
+    service.getAllItemsOnSaleByCategory("clothes").subscribe(
       (productsOnSale: any[]) => {
-        expect(productsOnSale).toEqual(mockObjects1);
+        expect(productsOnSale).toEqual(mockObjects2);
         done();
       }
     )
