@@ -2,15 +2,15 @@ import { TestBed,inject } from '@angular/core/testing';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import { of } from 'rxjs';
 import { SalesServiceService } from './sales-service.service';
-import { Product } from '../model/product';
+import { IProduct } from '../model/product';
 import { HttpEvent, HttpEventType } from '@angular/common/http';
 
 
-fdescribe('SalesServiceService', () => {
+describe('SalesServiceService', () => {
   let service: SalesServiceService;
   let httpClientSpy: any;
 
-  const mockObjects: Product[] = [{
+  const mockObjects: IProduct[] = [{
     productId: 0,
     productName: "test name",
     description: "test description",
