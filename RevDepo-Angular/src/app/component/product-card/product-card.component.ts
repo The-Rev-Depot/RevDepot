@@ -16,7 +16,7 @@ export class ProductCardComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute, private productService:ProductServiceService/*, private result: ResultPageComponent*/) { }
 
   ngOnInit(): void {
-    //this method will be called when the component loads, items on sales will populate 
+    //this method will be called when the component loads, items on sales will populate
     this.getIProduct();
 
   }
@@ -49,11 +49,11 @@ export class ProductCardComponent implements OnInit {
  }
 
 
- public getProduct(dealTitle:any): void{
+ public getProduct(dealTitle:any){
 
   //console.log(dealTitle);
 
-  //this checks for the saleId of the products in the inventoryList 
+  //this checks for the saleId of the products in the inventoryList
    for(let i =0; i<this.inventoryList.length; i++) {
 
     //console.log(this.inventoryList[i].product.saleId);
@@ -68,7 +68,7 @@ export class ProductCardComponent implements OnInit {
    }
    //console.log("After push: " + this.productsArray);
    }
-
+   return this.productsArray[0];
 }
 
 

@@ -28,10 +28,10 @@
 
         <h3 *ngIf="cartIsEmpty">Cart is currently empty.</h3>
         <mat-divider></mat-divider>
-       
+
         <h4>Total: </h4>
         <mat-divider></mat-divider>
-        <button mat-flat-button color="primary">Checkout</button>
+        <button mat-flat-button color="primary"  routerLink="/checkout/"  (click)="sidenav.toggle()">Checkout</button>
     </mat-sidenav>
     <mat-sidenav-content>
         <router-outlet></router-outlet>
