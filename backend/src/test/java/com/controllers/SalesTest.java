@@ -76,7 +76,7 @@ public class SalesTest {
 		Product[] products = mapFromJson(productResp, Product[].class);
 		
 		// Asserts that more than 0 items are returned
-		assertEquals(products[0].getSaleId(), 10);
+		assertEquals(products[0].getSaleId(), 1);
 	}
 	
 	@Test
