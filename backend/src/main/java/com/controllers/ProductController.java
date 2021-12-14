@@ -32,6 +32,13 @@ public class ProductController {
 		return new ResponseEntity<List<Product>>(pService.getAllDealsByCategory(category), HttpStatus.OK);
 	}
 	
+	/**
+	 * Grab all items from the product table to put into an array to send to the frontend. 
+	 * Use getAllProducts in inventoryController instead
+	 * 				This would be called by the getIProduct() in the frontend apart of the product-service
+	 * @param 			http://localhost:XXXX/product/view 
+	 * @return 			The entire product table in an array
+	 */
 	@GetMapping("/view")
 	public ResponseEntity<List<Product>> getAllProducts() {
 		return ResponseEntity.status(200).body(pService.getAllProducts());

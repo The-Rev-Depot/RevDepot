@@ -12,7 +12,8 @@ import com.models.Product;
 public class ProductServiceImpl implements ProductService {
 
 	private ProductDao productDao;
-
+	//JpaRepository methods
+	
 	@Autowired
 	public ProductServiceImpl(ProductDao productDao) {
 		this.productDao = productDao;

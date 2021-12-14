@@ -46,7 +46,13 @@ public class InventoryController {
 
 		return items;
 	}
-
+	
+	/**
+	 * Grab all items from the inventory table to put into an array to send to the frontend.
+	 * 				This is called by the getIProduct() in the frontend apart of the product-service
+	 * @param 			http://localhost:XXXX/inventory/items 
+	 * @return 			The entire inventory table in an array
+	 */
 	@GetMapping("/items")
 	public ResponseEntity<List<Inventory>> getAllProducts() {
 		return ResponseEntity.status(200).body(inventoryService.getAllProducts());

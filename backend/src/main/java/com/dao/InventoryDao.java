@@ -9,6 +9,7 @@ import com.models.Product;
 
 public interface InventoryDao extends JpaRepository<Inventory, Integer> {
 
+	//JpaRepository methods
 	public Inventory findByProduct(Product product);
 
 	public List<Inventory> findAll();
