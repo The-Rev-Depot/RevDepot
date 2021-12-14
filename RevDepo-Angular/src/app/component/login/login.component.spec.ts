@@ -1,7 +1,7 @@
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing'
-// import { CommandOptions } from 'node_module/commander/typings';
+//import { CommandOptions } from 'node_module/commander/typings';
 
 import { LoginComponent } from 'src/app/component/login/login.component';
 import { By } from '@angular/platform-browser';

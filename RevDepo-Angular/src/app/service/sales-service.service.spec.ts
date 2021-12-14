@@ -3,6 +3,7 @@ import {HttpClientTestingModule, HttpTestingController} from '@angular/common/ht
 import { of } from 'rxjs';
 import { SalesServiceService } from './sales-service.service';
 import { IProduct } from '../model/product';
+import { ProductClass } from 'src/app/model/product-class';
 import { HttpEvent, HttpEventType } from '@angular/common/http';
 
 
@@ -51,7 +52,7 @@ describe('SalesServiceService', () => {
     isOnSale: 1,
     productRating:3.5
   }]
-  
+
   beforeEach(() => {
     httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
     service = new SalesServiceService(httpClientSpy);
@@ -70,7 +71,7 @@ describe('SalesServiceService', () => {
         expect(productsOnSale).toEqual(mockObjects1);
         done();
       }
-    ) 
+    )
   })
 
 
@@ -84,5 +85,5 @@ describe('SalesServiceService', () => {
     )
   })
 
-  
+
 });
