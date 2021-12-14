@@ -32,6 +32,7 @@ export class NavbarComponent implements OnInit {
     this.cart = this.cartService.getCart();
     this.totalPrice = this.cartService.getTotalPrice();
     this.loggedIn = this.userService.checkloggedIn;
+    this.cartIsEmpty = this.cartService.checkCartQuantity();
 
   }
 

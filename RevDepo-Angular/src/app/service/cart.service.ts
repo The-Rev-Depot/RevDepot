@@ -11,8 +11,10 @@ import { IProduct } from '../model/product';
 })
 export class CartService {
   cart!: ICart;
+  cartIsEmpty: boolean = true;
   constructor(private httpClient: HttpClient) {
     this.setCart();
+    this.checkCartQuantity();
   }
   getCart() {
     return this.cart;
@@ -110,6 +112,18 @@ export class CartService {
       })
     };
     return this.httpClient.post<IItem[]>(`http://localhost:8080/inventory/update`, this.cart!.items, httpPost);
+  }
+  
+  checkCartQuantity(): boolean{
+    if(this.getCartItems.length > 0){
+      this.cartIsEmpty = false
+      return false;
+    }
+    else if (this.getCartItems.length == 0){
+      this.cartIsEmpty = true;
+      return true;
+    }
+    return true;
   }
 
   setCart(): void {

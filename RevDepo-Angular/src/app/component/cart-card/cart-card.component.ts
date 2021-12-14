@@ -12,10 +12,16 @@ import { CartService } from 'src/app/service/cart.service';
 export class CartCardComponent implements OnInit {
   @Input() item!: IItem;
   
-  constructor(){}
+  constructor(private cartService: CartService){}
   
   ngOnInit(): void {
     console.log('when card is made',this.item.product);
   }
+  removeItem(){
+    this.cartService.removeItem(this.item);
+  }
+  checkCartQuantity(){
+  this.checkCartQuantity();
   
+}
 }
