@@ -8,3 +8,12 @@
   width: 300px;
 }
 
+.navvbar {
+  background-color: black;
+  color: #FFFFFF;
+  ;
+}
+
+.pointerHover {
+  cursor: pointer;
+}
