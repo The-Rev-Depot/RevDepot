@@ -55,4 +55,10 @@ describe('LoginComponent', () => {
     expect(component.userLogin).toHaveBeenCalled();
 
   })
+
+  it('should remove the username', ()=>{
+    expect(component._invalidUsernameMessage).toContain("testing");
+    component.removeUsername();
+    expect(component._invalidUsernameMessage).toBeFalsy();
+  })
 });

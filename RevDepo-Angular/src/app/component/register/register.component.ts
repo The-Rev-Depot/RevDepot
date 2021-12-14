@@ -27,7 +27,7 @@ export class RegisterComponent implements OnInit {
     firstName: '',
     lastName: '',
     email: '',
-    urlProPic: '',
+    urlProPic: 'https://picsum.photos/200',
     birthday: '',
   }
 
