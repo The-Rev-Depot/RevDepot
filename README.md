@@ -49,7 +49,7 @@
 * Login/Logout.
 * Reset their password.
     * Receive email with new password
-*View number of items inside the cart
+* View number of items inside the cart
 
 ### TO-DOs
 * Modify their profile information
@@ -87,7 +87,7 @@
 * Jenkins
 
 ## Backend Requirements
-### Backend endpoints (Non-finishedl list)
+### Backend endpoints 
 
 |   Action        	|             Endpoint                	|
 |   ------        	|             --------                	|
