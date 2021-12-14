@@ -29,7 +29,7 @@ var item1 =  {
   }); 
   service = TestBed.inject(CartService);
   console.log("before cart is set");
-  service.setCart();
+  service.getCart();
   console.log("after cart is set");
 }); 
   it('should be created', () => {

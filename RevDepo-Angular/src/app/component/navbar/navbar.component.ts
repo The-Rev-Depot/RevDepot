@@ -54,7 +54,8 @@ export class NavbarComponent implements OnInit {
   }
 
   checkoutRoute(){
-    this.router?.navigateByUrl('/checkout');
+     this.router?.navigateByUrl('/checkout');
+
   }
 
   homeRoute(){

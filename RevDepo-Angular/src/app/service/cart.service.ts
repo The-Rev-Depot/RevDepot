@@ -12,11 +12,9 @@ import { IProduct } from '../model/product';
 export class CartService {
   cart!: ICart;
   cartIsEmpty!: boolean; 
+
   constructor(private httpClient: HttpClient) {}
 
-  getCart() {
-    return this.cart;
-  }
 
   addItem(newItem: IItem) {
     if(!this.isInCart(newItem.product)){
@@ -54,8 +52,13 @@ export class CartService {
     if(!this.isInCart(newProduct)){
       this.cart?.items.push({ itemId: 0,quantity: 1,product: newProduct});
     }
+    else{
+      return;
+    }
     
   }
+
+
 
   removeItem(item: IItem) {
     if(this.isInCart(item.product)){
@@ -128,58 +131,23 @@ export class CartService {
     };
      return this.httpClient.post<IItem[]>(`http://localhost:9999/inventory/getMax`, this.cart!.items, httpPost);
    }
-  //  getCart(): ICart {
-  //    // Hardcoded for now
-  //   return this.cart = {
-  //     cartId: 0,
-  //     user: {
-  //       userId: 0,
-  //       username: "",
-  //       password: "",
-  //       firstName: "",
-  //       lastName: "",
-  //       email: "",
-  //       urlProPic: "",
-  //       birthday: ""
-  //     },
-  //     items: [
-  //       {
-  //         itemId: 0, quantity: 5, product: {
-  //           productId: 1,
-  //           productName: "Computer Tower Stand",
-  //           description: "",
-  //           picUrl: "https://material.angular.io/assets/img/examples/shiba2.jpg",
-  //           productPrice: 15,
-  //           productRating: 0,
-  //           category: "",
-  //           isOnSale: 0
-  //         }
-  //       },
-  //      /* {
-  //         itemId: 1, quantity: 3, product: {
-  //           productId: 2,
-  //           productName: "Renpho Powerful Portable Massage Gun",
-  //           description: "",
-  //           picUrl: "https://material.angular.io/assets/img/examples/shiba2.jpg",
-  //           productPrice: 20,
-  //           productRating: 0,
-  //           category: "",
-  //           isOnSale: 0
-  //         }
-  //       },
-  //       {
-  //         itemId: 2, quantity: 5, product: {
-  //           productId: 3,
-  //           productName: "Rollerblade Zetrablade Men's Adult Fitness Inline Skate",
-  //           description: "",
-  //           picUrl: "https://material.angular.io/assets/img/examples/shiba2.jpg",
-  //           productPrice: 50,
-  //           productRating: 0,
-  //           category: "",
-  //           isOnSale: 0
-  //         }
-  //       }*/
-  //     ]
-  //   };
-  // }
+    getCart(): ICart {
+     // Hardcoded for now
+    return this.cart = {
+       cartId: 0,
+
+       //Needs to be updated with an actual user.
+      user: {
+        userId: 0,
+        username: "",
+        password: "",
+        firstName: "",
+        lastName: "",
+        email: "",
+        urlProPic: "",
+        birthday: ""
+      },
+      items: []
+     };
+   }
 }
