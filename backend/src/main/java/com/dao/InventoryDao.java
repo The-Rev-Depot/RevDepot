@@ -7,14 +7,15 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.models.Inventory;
 import com.models.Product;
 
-public interface InventoryDao extends JpaRepository<Inventory, Integer>{
+public interface InventoryDao extends JpaRepository<Inventory, Integer> {
 
 	//JpaRepository methods
 	public Inventory findByProduct(Product product);
+
 	public List<Inventory> findAll();
 
+	public Inventory findByProduct(int productId);
+
 //	public List<Inventory> findByCategory(String category);
-	
+
 }
-
-
