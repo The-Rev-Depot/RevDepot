@@ -5,6 +5,7 @@ import { SalesServiceService } from 'src/app/service/sales-service.service';
 import { CurrencyPipe } from '@angular/common';
 import { CartService } from 'src/app/service/cart.service';
 import { Router } from '@angular/router';
+import { ProductClass} from 'src/app/model/product-class';
 
 @Component({
   selector: 'app-sales-deals',
@@ -14,134 +15,153 @@ import { Router } from '@angular/router';
 export class SalesDealsComponent implements OnInit {
 
   title = "Ongoing Sales"
-  productsOnSale:any = []
+  placeholder:any = []
+  productsOnSale: Array<IProduct> = []
   productsOnSaleByCategory:any = []
+  url = "http://localhost:9999/product/deals";
 
-  shirtPro =
-  {
+  // shirtPro =
+  // {
 
-    productId: 1,
-    productName: "card",
-    description: "string",
-    picUrl: "https://www.picclickimg.com/d/l400/pict/184892613206_/Code-Like-a-Boss-T-Shirt-Sz-S-Small.jpg",
-    productPrice: 15,
-    category: "string",
-    isOnSale: 10
+  //   productId: 1,
+  //   productName: "card",
+  //   description: "string",
+  //   picUrl: "https://www.picclickimg.com/d/l400/pict/184892613206_/Code-Like-a-Boss-T-Shirt-Sz-S-Small.jpg",
+  //   productPrice: 15,
+  //   category: "string",
+  //   isOnSale: 10
 
-  }
-  shirtPro1 =
-  {
+  // }
+  // shirtPro1 =
+  // {
 
-    productId: 2,
-    productName: "dispalycard" ,
-    description: "string",
-    picUrl: "https://www.picclickimg.com/d/l400/pict/184892613206_/Code-Like-a-Boss-T-Shirt-Sz-S-Small.jpg",
-    productPrice: 15,
-    category: "string",
-    isOnSale: 10
+  //   productId: 2,
+  //   productName: "dispalycard" ,
+  //   description: "string",
+  //   picUrl: "https://www.picclickimg.com/d/l400/pict/184892613206_/Code-Like-a-Boss-T-Shirt-Sz-S-Small.jpg",
+  //   productPrice: 15,
+  //   category: "string",
+  //   isOnSale: 10
 
-  }
-  shirtPro2 =
-  {
+  // }
+  // shirtPro2 =
+  // {
 
-    productId: 3,
-    productName: "string" ,
-    description: "string",
-    picUrl: "https://www.picclickimg.com/d/l400/pict/184892613206_/Code-Like-a-Boss-T-Shirt-Sz-S-Small.jpg",
-    productPrice: 15,
-    category: "string",
-    isOnSale: 15
+  //   productId: 3,
+  //   productName: "string" ,
+  //   description: "string",
+  //   picUrl: "https://www.picclickimg.com/d/l400/pict/184892613206_/Code-Like-a-Boss-T-Shirt-Sz-S-Small.jpg",
+  //   productPrice: 15,
+  //   category: "string",
+  //   isOnSale: 15
 
-  }
-  shirtPro3 =
-  {
+  // }
+  // shirtPro3 =
+  // {
 
-    productId: 3,
-    productName: "string" ,
-    description: "string",
-    picUrl: "https://www.picclickimg.com/d/l400/pict/184892613206_/Code-Like-a-Boss-T-Shirt-Sz-S-Small.jpg",
-    productPrice: 15,
-    category: "string",
-    isOnSale: 10
+  //   productId: 3,
+  //   productName: "string" ,
+  //   description: "string",
+  //   picUrl: "https://www.picclickimg.com/d/l400/pict/184892613206_/Code-Like-a-Boss-T-Shirt-Sz-S-Small.jpg",
+  //   productPrice: 15,
+  //   category: "string",
+  //   isOnSale: 10
 
-  }
-  shirtPro4 =
-  {
+  // }
+  // shirtPro4 =
+  // {
 
-    productId: 3,
-    productName: "string" ,
-    description: "string",
-    picUrl: "https://www.picclickimg.com/d/l400/pict/184892613206_/Code-Like-a-Boss-T-Shirt-Sz-S-Small.jpg",
-    productPrice: 15,
-    category: "string",
-    isOnSale: 15
+  //   productId: 3,
+  //   productName: "string" ,
+  //   description: "string",
+  //   picUrl: "https://www.picclickimg.com/d/l400/pict/184892613206_/Code-Like-a-Boss-T-Shirt-Sz-S-Small.jpg",
+  //   productPrice: 15,
+  //   category: "string",
+  //   isOnSale: 15
 
-  }
-  shirtPro5 =
-  {
+  // }
+  // shirtPro5 =
+  // {
 
-    productId: 3,
-    productName: "string" ,
-    description: "string",
-    picUrl: "https://www.picclickimg.com/d/l400/pict/184892613206_/Code-Like-a-Boss-T-Shirt-Sz-S-Small.jpg",
-    productPrice: 15,
-    category: "string",
-    isOnSale: 20
+  //   productId: 3,
+  //   productName: "string" ,
+  //   description: "string",
+  //   picUrl: "https://www.picclickimg.com/d/l400/pict/184892613206_/Code-Like-a-Boss-T-Shirt-Sz-S-Small.jpg",
+  //   productPrice: 15,
+  //   category: "string",
+  //   isOnSale: 20
 
-  }
-  shirtPro6 =
-  {
+  // }
+  // shirtPro6 =
+  // {
 
-    productId: 3,
-    productName: "string" ,
-    description: "string",
-    picUrl: "https://www.picclickimg.com/d/l400/pict/184892613206_/Code-Like-a-Boss-T-Shirt-Sz-S-Small.jpg",
-    productPrice: 15,
-    category: "string",
-    isOnSale: 20
+  //   productId: 3,
+  //   productName: "string" ,
+  //   description: "string",
+  //   picUrl: "https://www.picclickimg.com/d/l400/pict/184892613206_/Code-Like-a-Boss-T-Shirt-Sz-S-Small.jpg",
+  //   productPrice: 15,
+  //   category: "string",
+  //   isOnSale: 20
 
-  }
-  shirtPro7 =
-  {
+  // }
+  // shirtPro7 =
+  // {
 
-    productId: 3,
-    productName: "string" ,
-    description: "string",
-    picUrl: "https://www.picclickimg.com/d/l400/pict/184892613206_/Code-Like-a-Boss-T-Shirt-Sz-S-Small.jpg",
-    productPrice: 15,
-    category: "string",
-    isOnSale: 10
+  //   productId: 3,
+  //   productName: "string" ,
+  //   description: "string",
+  //   picUrl: "https://www.picclickimg.com/d/l400/pict/184892613206_/Code-Like-a-Boss-T-Shirt-Sz-S-Small.jpg",
+  //   productPrice: 15,
+  //   category: "string",
+  //   isOnSale: 10
 
-  }
-  shirtPro8 =
-  {
+  // }
+  // shirtPro8 =
+  // {
 
-    productId: 3,
-    productName: "string" ,
-    description: "string",
-    picUrl: "https://www.picclickimg.com/d/l400/pict/184892613206_/Code-Like-a-Boss-T-Shirt-Sz-S-Small.jpg",
-    productPrice: 15,
-    category: "string",
-    isOnSale: 15
+  //   productId: 3,
+  //   productName: "string" ,
+  //   description: "string",
+  //   picUrl: "https://www.picclickimg.com/d/l400/pict/184892613206_/Code-Like-a-Boss-T-Shirt-Sz-S-Small.jpg",
+  //   productPrice: 15,
+  //   category: "string",
+  //   isOnSale: 15
 
-  }
+  // }
 
 
-  constructor(private service:SalesServiceService, private cartService: CartService, private router:Router) { }
+  constructor(private service:SalesServiceService, private cartService: CartService, private router:Router, private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.productsOnSale = this.getProductsOnSale();
-    this.productsOnSaleByCategory = this.getProductsOnSaleByCategory();
-
-    // delete next line for production
-    this.productsOnSale = [this.shirtPro,this.shirtPro1,this.shirtPro2,this.shirtPro3,this.shirtPro4,this.shirtPro5,this.shirtPro6,this.shirtPro7,this.shirtPro8]
-    for(let x = 0; x < this.productsOnSale.length; x++){
-      this.applySalesPrice(this.productsOnSale[x]);
-    }
+    this.http.get<any>(this.url).subscribe(
+      response => {
+        this.productsOnSale = response;
+        console.log(this.productsOnSale);
+      })
+    // this.service.getAllItemsOnSale().subscribe((response: any) => {
+    //   this.productsOnSale = response;
+    // });
+    this.getProductsOnSale();
+    
+    //  for(let x = 0; x < this.productsOnSale.length; x++){
+    //   this.applySalesPrice(this.productsOnSale[x]);
+    // }
   }
 
-  private getProductsOnSale() {
-    return this.service.getAllItemsOnSale();
+
+  public getProductsOnSale():void {
+    console.log("2");
+    this.service.getAllItemsOnSale().subscribe(
+      (data:any) => {
+        this.placeholder = data;
+        console.log("3");
+        for (let one of this.placeholder) {
+          this.productsOnSale.push(one);
+        }
+       console.log(this.productsOnSale);
+ 
+      }
+    );
   }
 
   private getProductsOnSaleByCategory() {
@@ -156,11 +176,14 @@ export class SalesDealsComponent implements OnInit {
     return product;
   }
 
+
   addItemToCart(product:IProduct) {
     this.cartService.addProductToCart(product);
   }
 
-  moreInfo(){
-    this.router.navigateByUrl("/product-details")
+  moreInfo(product:IProduct){
+    const id = product.productId;
+    this.router.navigateByUrl("/product-details/{{id}}")
   }
 }
+

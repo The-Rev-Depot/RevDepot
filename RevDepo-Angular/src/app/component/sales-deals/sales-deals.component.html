@@ -1,9 +1,9 @@
 <div class="row justify-content-center">
-    <h2 class="col-md-2 title">{{title}}</h2>
+    <h2 class="col-md-2 title" (click)="getProductsOnSale()">{{title}}</h2>
 </div>
-<div class="row justify-content-center">
+<div class="row justify-content-center" >
     <div class="col-md-2" *ngFor="let product of productsOnSale; let i=index">
-            <mat-card class="mat" *ngIf="i<6"  (click)="moreInfo()">
+            <mat-card class="mat" +  routerLink="/product-details/{{product.productId}}">
                 <img class="cardImg" src="{{ product.picUrl }}" />
                 <mat-card-title>{{ product.productName }}</mat-card-title>
                 <br>
