@@ -8,7 +8,7 @@
   </p>
  
  <ul *ngFor = "let f of filteredList(searchText)">
-   <li> {{ f.productName }} </li>
+   <li routerLink = "/product-details/{{ f.productId }}"> {{ f.productName }} </li>
 
  </ul>
 

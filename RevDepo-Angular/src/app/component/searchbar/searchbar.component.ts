@@ -5,7 +5,8 @@ import { FilterPipe } from 'src/app/pipes/filter.pipe';
 import { ProductServiceService } from 'src/app/service/product-service.service';
 import { IProduct } from 'src/app/model/product';
 import { HttpErrorResponse } from '@angular/common/http';
-import { query } from '@angular/animations';
+import { Router, ActivatedRoute } from '@angular/router';
+// import { ResultPageComponent } from '../result-page/result-page.component';
 
 @Component({
   selector: 'app-searchbar',
@@ -35,47 +36,12 @@ export class SearchbarComponent implements OnInit {
 
   constructor(
     private productService : ProductServiceService,
-    private filter : FilterPipe,
-    private mockProductService : MockProductServiceService
+    private router : Router,
+    private route : ActivatedRoute,
+    // private result : ResultPageComponent
    ){ }
 
   public searchText : string = "";
-
-
-  // public letterCheck(element:any, index:any, array:any, text:string) {
-  //   // element is the productName as a string
-  //   let count:number = 0;
-  //   let output: string = "NOT ENOUGH LETTERS MATCH";
-
-  //   console.log(`letterCheck element: ${element}`);
-
-
-  //   console.log(`letterCheck text: ${text}`);
-
-  //   let name : string = element.productName;
-  //   console.log(`letterCheck name: ${name}`);
-  //   console.log(`letterCheck text: ${text}`);
-
-
-
-  //   for (let i = 0; i<name.length; i ++) {
-  //     for (let s = 0 ; s<text.length; s++) {
-  //       if (text.toLowerCase().charAt(s) == name.toLowerCase().charAt(i)) {
-  //         count ++ ;
-
-  //       }
-  //     }
-  //   }
-    
-  //   if (count > 0) {
-  //     output = element;
-
-  //   }
-
-  //   return output;
-
-  // }
-
 
   /**
    * This function takes in an array and a string of text and returns a new array
