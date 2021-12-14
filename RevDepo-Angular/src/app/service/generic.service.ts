@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class GenericService {
 
   public _localClientDomain: string = 'http://localhost:4200/revdepot';
-  public _localServerDomain: string = 'http://localhost:9999/revdepot';
+  public _localServerDomain: string = 'http://localhost:8080/revdepot';
 
   constructor() { }
 }

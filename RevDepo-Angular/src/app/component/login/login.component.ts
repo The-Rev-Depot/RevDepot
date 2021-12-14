@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
-import { anyTypeAnnotation } from "node_modules/@babel/types/lib/index-legacy";
 import { UserServiceService } from "src/app/service/user-service.service";
 
 @Component({
@@ -17,16 +17,19 @@ export class LoginComponent implements OnInit {
   _invalidPasswordMessage: string = "";
   _isFound: boolean = false;
 
-  constructor(private userService: UserServiceService, private router:Router) { }
+  constructor(private userService: UserServiceService, private router:Router, private  dialog:  MatDialog) { }
 
   ngOnInit(): void {
+    console.log(JSON.parse(sessionStorage.getItem('userObject')!).object);
   }
 
   userLogin(){
+    console.log(this._username)
     this.userService.userLogin(this._username, this._password).subscribe(data => {
+      console.log(data)
       if (data.success){
-        this._userId = data.object.userId;
-        this.router.navigate([`/dashboard/`]);
+        sessionStorage.setItem('userObject', JSON.stringify(data));
+        this.router.navigate([`/display-products/`]);
       } else {
         this._invalidPasswordMessage = "Invalid password";
       }
@@ -80,4 +83,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  forgotpassword(){
+    alert("This feature is not implemented yet!");
+  }
 }

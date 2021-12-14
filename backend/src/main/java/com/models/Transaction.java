@@ -28,15 +28,15 @@ public class Transaction {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name ="transaction_id")
+	@Column(name = "transaction_id")
 	private int transactionId;
-	@Column(name ="transaction_date")
+	@Column(name = "transaction_date")
 	private Date transactionDate;
 	@Column(name = "transaction_cost")
 	private double cost;
 	@ManyToOne(optional = false)
-	@JoinColumn(name="user_id", nullable = false)
+	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
-	@OneToMany(mappedBy="itemId")
+	@OneToMany(mappedBy = "itemId")
 	private Set<Item> items;
 }
