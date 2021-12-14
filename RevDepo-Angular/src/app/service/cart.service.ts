@@ -22,6 +22,7 @@ export class CartService {
     if(!this.isInCart(newItem.product)){
       this.cart?.items.push(newItem);
     }
+    else{return;} 
   }
 
   isInCart(product: IProduct): boolean{
@@ -55,11 +56,16 @@ export class CartService {
   }
 
   removeItem(item: IItem) {
+    if(this.isInCart(item.product)){
     let index: number | undefined = this.cart.items.indexOf(item);
     if (index != undefined)
       this.cart?.items.splice(index, 1);
+    
   }
-
+  else{
+    return;
+  }
+}
   getCartItems() {
     return this.cart.items;
   }
