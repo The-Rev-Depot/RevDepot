@@ -27,7 +27,7 @@ export class ResultPageComponent implements OnInit {
 
   //this method calls the getIProducts() method in the product service to retrieve all items
   public getIProduct(): void {
-     const categoryTitle = String (this.route.snapshot.paramMap.get('title'));
+     const categoryTitle = String (this.route.snapshot.paramMap.get('category'));
 
     this.productService.getIProduct().subscribe(
       (data) => {
