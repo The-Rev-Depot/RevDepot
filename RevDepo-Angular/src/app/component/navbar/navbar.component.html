@@ -1,45 +1,38 @@
 <!-- <app-searchbar></app-searchbar> -->
 <mat-toolbar color="primary" class="fixed-header">
-   <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="homeRoute()">
-      <mat-icon>home</mat-icon>
-   </button>
-   <span class="example-spacer"></span>
-   <mat-form-field *ngIf="router.url !='/checkout'">
-      <input type=" text" matInput placeholder="Search">
-   </mat-form-field>
-   <span class="example-spacer"></span>
-  <div *ngIf="router.url !='/checkout'">
-   <div *ngIf="loggedIn">
-      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon"
-         (click)="sidenav.toggle()">
-         <mat-icon *ngIf="!opened">shopping_cart</mat-icon>
-         <mat-icon *ngIf="opened">arrow_forward_ios</mat-icon>
-      </button>
-      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="logout()">
-         Logout
-      </button>
-   </div>
-</div>
-   <button *ngIf="!loggedIn" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon"
-      (click)="loginRoute()">
-      Login
-   </button>
+	<button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="homeRoute()">
+		<mat-icon>home</mat-icon>
+	</button> <span class="example-spacer"></span>
+	<mat-form-field *ngIf="router.url !='/checkout'">
+		<input type=" text" matInput placeholder="Search"> </mat-form-field> <span class="example-spacer"></span>
+	<div *ngIf="router.url !='/checkout'">
+		<div *ngIf="loggedIn">
+			<button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="sidenav.toggle()">
+				<mat-icon *ngIf="!opened">shopping_cart</mat-icon>
+				<mat-icon *ngIf="opened">arrow_forward_ios</mat-icon>
+			</button>
+			<button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="logout()"> Logout </button>
+		</div>
+	</div>
+	<button *ngIf="!loggedIn" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="loginRoute()"> Login </button>
 </mat-toolbar>
+<!--side navigation for cart-->
 <mat-sidenav-container class="sidnav-container" hasBackdrop="false" autosize>
-   <mat-sidenav class="sidenav" mode="over" [(opened)]="opened" position='end' fixedTopGap="64" [autoFocus]="false"
-      fixedInViewport>
-      <div *ngIf="cart">
-         <div *ngFor="let item of cart.items">
-            <app-cart-card [item]="item"></app-cart-card>
-         </div>
-      </div>
-      <h3 *ngIf="cartIsEmpty">Cart is currently empty.</h3>
-      <mat-divider></mat-divider>
-      <h4>Total: {{getTotalPrice()}}</h4>
-      <mat-divider></mat-divider>
-      <button mat-flat-button color="primary" (click)="checkoutRoute()" (click)="sidenav.toggle()">Checkout</button>
-   </mat-sidenav>
-   <mat-sidenav-content>
-      <router-outlet></router-outlet>
-   </mat-sidenav-content>
+	<mat-sidenav class="sidenav" mode="over" [(opened)]="opened" position='end' fixedTopGap="64" [autoFocus]="false" fixedInViewport>
+		<div *ngIf="cart">
+			<div *ngFor="let item of cart.items">
+				<app-cart-card [item]="item"></app-cart-card>
+			</div>
+		</div>
+		<h3 *ngIf="isEmpty">Cart is currently empty.</h3>
+		<mat-divider></mat-divider>
+		<div *ngIf="!isEmpty">
+			<h4>Total: {{getTotalPrice()}}</h4>
+			<mat-divider></mat-divider>
+			<button mat-flat-button color="primary" (click)="checkoutRoute()" (click)="sidenav.toggle()">Checkout</button>
+		</div>
+	</mat-sidenav>
+	<mat-sidenav-content>
+		<router-outlet></router-outlet>
+	</mat-sidenav-content>
 </mat-sidenav-container>

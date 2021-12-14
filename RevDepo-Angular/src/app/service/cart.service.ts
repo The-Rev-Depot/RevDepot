@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { isNgTemplate } from '@angular/compiler';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { ICart } from '../model/cart';
 import { IItem } from '../model/item';
 import { IProduct } from '../model/product';
@@ -11,9 +11,11 @@ import { IProduct } from '../model/product';
 })
 export class CartService {
   cart!: ICart;
+  cartIsEmpty!: boolean; 
   constructor(private httpClient: HttpClient) {
     this.setCart();
   }
+
   getCart() {
     return this.cart;
   }
@@ -21,7 +23,10 @@ export class CartService {
   addItem(newItem: IItem) {
     if(!this.isInCart(newItem.product)){
       this.cart?.items.push(newItem);
+      this.cartIsEmpty = false;
     }
+    else{return;
+    } 
   }
 
   isInCart(product: IProduct): boolean{
@@ -55,11 +60,22 @@ export class CartService {
   }
 
   removeItem(item: IItem) {
+    if(this.isInCart(item.product)){
     let index: number | undefined = this.cart.items.indexOf(item);
     if (index != undefined)
       this.cart?.items.splice(index, 1);
+      if(this.cart?.items.length == 0){
+        this.cartIsEmpty = true;
+      
+      }
+      
+    
   }
-
+  else{
+  
+    return;
+  }
+}
   getCartItems() {
     return this.cart.items;
   }
@@ -105,6 +121,8 @@ export class CartService {
     };
     return this.httpClient.post<IItem[]>(`http://localhost:8080/inventory/update`, this.cart!.items, httpPost);
   }
+  
+
 
   setCart(): void {
     // Hardcoded for now

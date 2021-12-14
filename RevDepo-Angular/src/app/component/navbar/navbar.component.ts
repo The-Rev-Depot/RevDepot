@@ -16,7 +16,7 @@ import { IItem } from 'src/app/model/item';
 export class NavbarComponent implements OnInit {
   cart?: ICart;
   totalPrice?: number;
-  cartIsEmpty = false;
+  cartIsEmpty!: boolean;
   loggedIn = false;
   @ViewChild(MatSidenav) sidenav!: MatSidenav;
   events: string[] = [];
@@ -26,13 +26,21 @@ export class NavbarComponent implements OnInit {
 
 
 
-  constructor(private cartService: CartService, public router: Router, private userService: UserServiceService) { }
+  constructor(private cartService: CartService, public router: Router, private userService: UserServiceService) { 
+
+    this.cartIsEmpty = this.cartService.cartIsEmpty;
+
+  }
 
   ngOnInit(): void {
     this.cart = this.cartService.getCart();
     this.totalPrice = this.cartService.getTotalPrice();
     this.loggedIn = this.userService.checkloggedIn;
+    this.cartIsEmpty = this.cartService.cartIsEmpty;
 
+  }
+  get isEmpty():boolean{
+    return this.cartService.cartIsEmpty;
   }
 
   toggleSideNav(){
@@ -40,10 +48,6 @@ export class NavbarComponent implements OnInit {
     this.sidenav.toggle();
   }
 
-  removeItem(){
-    console.log("item removed");
-    console.log(this.cart?.items);
-  }
 
   getTotalPrice() {
     return this.cartService.getTotalPrice();
@@ -64,7 +68,7 @@ export class NavbarComponent implements OnInit {
   }
   logout(){
     //this will hopefully be replaced by a logout() function in userservice
-    this.userService.checkloggedIn = false;
+    this.userService.logout();
     this.loggedIn = false;
   }
   

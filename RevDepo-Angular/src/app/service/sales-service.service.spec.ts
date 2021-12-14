@@ -6,7 +6,7 @@ import { IProduct } from '../model/product';
 import { HttpEvent, HttpEventType } from '@angular/common/http';
 
 
-fdescribe('SalesServiceService', () => {
+describe('SalesServiceService', () => {
   let service: SalesServiceService;
   let httpClientSpy: any;
 
