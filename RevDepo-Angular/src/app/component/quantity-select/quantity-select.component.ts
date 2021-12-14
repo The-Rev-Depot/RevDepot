@@ -3,6 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { IItem } from 'src/app/model/item';
+import { IProduct } from 'src/app/model/product';
 import { CartService } from 'src/app/service/cart.service';
 
 @Component({
@@ -11,17 +12,33 @@ import { CartService } from 'src/app/service/cart.service';
   styleUrls: ['./quantity-select.component.css']
 })
 export class QuantitySelectComponent implements OnInit {
-  @Input() item!: IItem;
+  @Input() product!: IProduct;
+  item!:IItem;
   quantityLimit: number = 99;
   interval: number = 400;
   intervalCount: number = 0;
   timeoutHandler: any;
   longhold: boolean = false;
-  constructor(private http: HttpClient, private cartService: CartService) { }
+  isInCart: boolean = true;
+  constructor(private http: HttpClient, private cartService: CartService) { 
+  }
+
+  addToCart(){
+    this.item = {
+      itemId: 0,
+      quantity: 1,
+      product: this.product}
+    this.cartService.addProductToCart(this.product);
+    this.isInCart = true;
+    this.item=this.cartService.getItemFromCart(this.product);
+  }
 
   quantityControl!: FormControl;
   private debounce: number = 20;
   ngOnInit(): void {
+      console.log("Product in quantity select",this.product);
+      this.isInCart=this.cartService.isInCart(this.product);
+      this.item=this.cartService.getItemFromCart(this.product);
   }
 
   increment() {
