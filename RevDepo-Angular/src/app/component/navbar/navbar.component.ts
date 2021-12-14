@@ -64,7 +64,7 @@ export class NavbarComponent implements OnInit {
   }
   logout(){
     //this will hopefully be replaced by a logout() function in userservice
-    this.userService.checkloggedIn = false;
+    this.userService.logout();
     this.loggedIn = false;
   }
   
