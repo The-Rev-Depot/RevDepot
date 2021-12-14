@@ -13,7 +13,7 @@ public interface ProductDao extends JpaRepository<Product,Integer>{
 	
 	public List<Product> findAll();
 
-	@Query(value = "Select * from product where product.sale_id = 10", nativeQuery=true)
+	@Query(value = "Select * from product where product.sale_id > 0", nativeQuery=true)
 	List<Product> getAllDeals();
 	
 	@Query(value = "Select * from product where product_category = ?1", nativeQuery = true)
