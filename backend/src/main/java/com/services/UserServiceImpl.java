@@ -2,11 +2,13 @@ package com.services;
 
 import com.dao.UserDao;
 import com.models.User;
+import com.utility.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.security.SecureRandom;
 import java.util.List;
 import java.util.Optional;
 
@@ -121,5 +123,28 @@ public class UserServiceImpl implements UserService{
         } catch(Exception ex){
             return null;
         }
+    }
+
+    /**
+     * Used to generate a new, random password that is visible to the user in the email they receive after
+     * selecting "Forgot Password?" on the front end, and opening the email that they receive.
+     *
+     * @return  a string representing the user's new password used to sign into the front end
+     */
+    @Override
+    public String newPassword(String email){
+        final String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        SecureRandom random = new SecureRandom();
+        StringBuilder sb = new StringBuilder();
+
+        for(int i = 0; i<10; i++){
+            int randomIndex = random.nextInt(chars.length());
+            sb.append(chars.charAt(randomIndex));
+        }
+        User newUser = new User();
+        newUser.setEmail(email);
+        newUser.setPassword(sb.toString());
+        EmailService.sendEmail(newUser, "forgot");
+        return sb.toString();
     }
 }

@@ -6,5 +6,5 @@ export interface IProduct {
     productPrice: number,
     productRating: number,
     category: string,
-    isOnSale: number
+    isOnSale: number,
 }

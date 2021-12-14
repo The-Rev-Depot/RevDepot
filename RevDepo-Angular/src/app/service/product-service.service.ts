@@ -46,7 +46,6 @@ export class ProductServiceService {
   //  return this.http.get<IProduct>(`${this.url}inventory/items`);
 
   // }
-
 }
 
 
