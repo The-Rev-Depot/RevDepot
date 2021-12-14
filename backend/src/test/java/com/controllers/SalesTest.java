@@ -81,7 +81,7 @@ public class SalesTest {
 	
 	@Test
 	void testGetDealsByCategory() throws Exception {
-		restURL = new URL(baseURL + ":" + port + "/product/deals/category");
+		restURL = new URL(baseURL + ":" + port + "/product/deals/clothes");
 		
 		//get products from db		
 		MvcResult mvcResult = mvc
@@ -92,7 +92,7 @@ public class SalesTest {
 		Product[] products = mapFromJson(productResp, Product[].class);
 		
 		// Assert that more than 0 items are returned
-		assertEquals(products[0].getProductCategory(),"category");
+		assertEquals(products[0].getProductCategory(),"clothes");
 	}
 	
 }
