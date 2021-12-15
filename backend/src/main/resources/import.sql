@@ -1,4 +1,4 @@
-INSERT INTO product(product_id, product_name, product_description, pic_url, product_price, product_rating, product_category, sale_id) VALUES (1, 't-shirt', 'made of cotton', 'https://www.picclickimg.com/d/l400/pict/184892613206_/Code-Like-a-Boss-T-Shirt-Sz-S-Small.jpg', 23.99, 3.5, 'clothes', 1);
+INSERT INTO product(product_id, product_name, product_description, pic_url, product_price, product_rating, product_category, sale_id) VALUES (1, 't-shirt', 'made of cotton', 'https://www.picclickimg.com/d/l400/pict/184892613206_/Code-Like-a-Boss-T-Shirt-Sz-S-Small.jpg', 23, 3.5, 'clothes', 15);
 INSERT INTO item(item_id, quantity, product_id) VALUES (1, 3, 1);
 INSERT INTO inventory(inventory_id, product_id, quantity) VALUES (1, 1, 20);
 
