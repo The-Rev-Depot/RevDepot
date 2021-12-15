@@ -17,6 +17,7 @@ var item1 =  {
   }
 }
 
+<<<<<<< HEAD
  var item2 =   {
       itemId: 1, quantity: 3, product: {
         productId: 0,
@@ -44,29 +45,43 @@ var item1 =  {
   
 
   
+=======
+>>>>>>> user_login_jwt
   let service: CartService;
 
 
   beforeEach(() => {
-    TestBed.configureTestingModule({  
+    TestBed.configureTestingModule({
     imports: [
         HttpClientModule,
       ]
-   
-  }); 
+
+  });
   service = TestBed.inject(CartService);
+<<<<<<< HEAD
   service.getCart();
 
 }); 
+=======
+  console.log("before cart is set");
+  service.getCart();
+  console.log("after cart is set");
+});
+>>>>>>> user_login_jwt
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
   it('should not add item that already exists', () =>{
+<<<<<<< HEAD
     service.addItem(item1);
     service.addItem(item2);
     service.addItem(item3);
     var itemArrayLength = service.getCartItems().length;
+=======
+
+    var itemArrayLength = service.getCart().items.length;
+>>>>>>> user_login_jwt
 
     service.addItem(item1);
     expect(service.getCartItems().length).toEqual(itemArrayLength);
@@ -128,7 +143,7 @@ var item1 =  {
     expect(service.getCartItems().length).toBe(itemArrayLength);
 
   });
-  
+
   it('should add a PRODUCT that does not exist', () =>{
     var product22 =   {
         productId: 33,
@@ -139,16 +154,22 @@ var item1 =  {
         productRating: 0,
         category: "",
         isOnSale: 0
-      
+
     }
     var itemArrayLength = service.getCartItems().length;
 
     service.addProductToCart(product22);
     expect(service.getCartItems().length).toEqual(itemArrayLength +1);
   });
+<<<<<<< HEAD
   
   it('should NOT add a PRODUCT that already exists', () =>{
     var product22 =   {
+=======
+
+  it('should NOT add a PRODUCT that does exist', () =>{
+    var item2 =   {
+>>>>>>> user_login_jwt
       productId: 1,
     productName: "Computer Tower Stand",
     description: "",
@@ -157,7 +178,7 @@ var item1 =  {
     productRating: 0,
     category: "",
     isOnSale: 0
-      
+
     }
     var itemArrayLength = service.getCart().items.length;
 

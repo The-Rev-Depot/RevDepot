@@ -10,8 +10,6 @@ import { Router } from '@angular/router';
 })
 export class UserServiceService {
 
-  checkloggedIn = true;
-
   constructor(private httpClient: HttpClient, private genericService: GenericService, private router: Router) {
   }
 
@@ -28,6 +26,10 @@ export class UserServiceService {
 
   getUserByUsername(username: string) {
     return this.httpClient.get<any>(this.genericService._localServerDomain  + `/user/username/${username}`, {withCredentials: true});
+  }
+
+  getUserById(userId: number) {
+    return this.httpClient.get<any>(this.genericService._localServerDomain  + `/user/${userId}`, {withCredentials: true});
   }
 
   addUserRequest(newUser: IUser): Observable<any> {
