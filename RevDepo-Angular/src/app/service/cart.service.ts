@@ -11,12 +11,12 @@ import { IProduct } from '../model/product';
 })
 export class CartService {
   cart!: ICart;
-  cartIsEmpty!: boolean;
-  constructor(private httpClient: HttpClient) { }
+  cartIsEmpty!: boolean; 
 
-  // getCart() {
-  //   return this.cart;
-  // }
+  constructor(private httpClient: HttpClient) {
+
+  }
+
 
   addItem(newItem: IItem) {
     if (!this.isInCart(newItem.product)) {
@@ -55,8 +55,13 @@ export class CartService {
     if (!this.isInCart(newProduct)) {
       this.cart?.items.push({ itemId: 0, quantity: 1, product: newProduct });
     }
-
+    else{
+      return;
+    }
+    
   }
+
+
 
   removeItem(item: IItem) {
     if (this.isInCart(item.product)) {
