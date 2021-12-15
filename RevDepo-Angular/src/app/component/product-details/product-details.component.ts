@@ -29,6 +29,7 @@ export class ProductDetailsComponent implements OnInit {
   //this method calls the getIProducts() method in the product service to retrieve all items
   public getIProduct(): void {
     const idTitle = String (this.route.snapshot.paramMap.get('Id'));
+    console.log(`getIProduct | idTitle: ${this.route.snapshot.paramMap.get('Id')}`)
 
    this.productService.getIProduct().subscribe(
      (data) => {
@@ -53,7 +54,7 @@ export class ProductDetailsComponent implements OnInit {
   //this checks for the id of the product in the inventoryList 
    for(let i =0; i<this.inventoryList.length; i++) {
 
-    // console.log(this.inventoryList[i].product.productId);
+    console.log("getProduct | this.inventoryList[i].product.productId :", this.inventoryList[i].product);
     // console.log(this.inventoryList[i].product);
 
     if(this.inventoryList[i].product.productId == idTitle){
@@ -61,6 +62,7 @@ export class ProductDetailsComponent implements OnInit {
     // console.log("Sorted: " + this.inventoryList[i].product.productId);
 
     this.productsArray.push(this.inventoryList[i].product);
+    console.log(`getProduct | productsArray : ${this.productsArray} `)
 
    }
   //  console.log("After push: " + this.productsArray);
