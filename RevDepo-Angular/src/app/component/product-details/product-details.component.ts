@@ -54,7 +54,10 @@ export class ProductDetailsComponent implements OnInit {
   //this checks for the id of the product in the inventoryList 
    for(let i =0; i<this.inventoryList.length; i++) {
 
-    console.log("getProduct | this.inventoryList[i].product.productId :", this.inventoryList[i].product);
+    console.log("getProduct | this.inventoryList[i]:", this.inventoryList[i]);
+    console.log("getProduct | this.inventoryList[i].product:", this.inventoryList[i].product);
+    console.log("getProduct | this.inventoryList[i].product.productId:", this.inventoryList[i].product.productId);
+
     // console.log(this.inventoryList[i].product);
 
     if(this.inventoryList[i].product.productId == idTitle){

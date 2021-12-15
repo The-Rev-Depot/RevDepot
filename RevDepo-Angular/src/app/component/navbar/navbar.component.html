@@ -3,6 +3,8 @@
 <mat-toolbar color="primary">
     <span routerLink = "/">The Rev Depot</span>
     <span class="example-spacer"></span>
+    <app-searchbar></app-searchbar>
+    <span class="example-spacer"></span>
     <button *ngIf="loggedIn" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon"
         (click)="sidenav.toggle()">
         <mat-icon *ngIf="!opened">shopping_cart</mat-icon>
