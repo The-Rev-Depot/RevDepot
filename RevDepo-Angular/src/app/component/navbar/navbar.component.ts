@@ -40,7 +40,8 @@ export class NavbarComponent implements OnInit {
 
   }
   get isEmpty():boolean{
-    return this.cartService.cartIsEmpty;
+    this.cartIsEmpty = this.cartService.cartIsEmpty;
+    return this.cartIsEmpty;
   }
 
   toggleSideNav(){

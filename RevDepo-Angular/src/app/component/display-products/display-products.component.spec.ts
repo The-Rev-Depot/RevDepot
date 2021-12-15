@@ -5,7 +5,7 @@ import { ProductClass } from 'src/app/model/product-class';
 import { By } from '@angular/platform-browser';
 import { UpperCasePipe } from '@angular/common';
 
-fdescribe('DisplayProductsComponent', () => {
+describe('DisplayProductsComponent', () => {
   let component: DisplayProductsComponent;
   let fixture: ComponentFixture<DisplayProductsComponent>;
 
