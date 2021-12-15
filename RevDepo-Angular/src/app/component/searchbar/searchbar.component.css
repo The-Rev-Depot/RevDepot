@@ -1,4 +1,11 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
 
+.navinput{
+    color: black;
+}
 
+.navul {
+    overflow: visible;
+    z-index: 1;
+}

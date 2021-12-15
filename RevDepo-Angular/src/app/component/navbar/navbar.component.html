@@ -1,10 +1,16 @@
 <!-- <app-searchbar></app-searchbar> -->
-<mat-toolbar color="primary" class="fixed-header">
+<mat-toolbar  class="fixed-header navvbar" >
 	<button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="homeRoute()">
 		<mat-icon>home</mat-icon>
 	</button> <span class="example-spacer"></span>
-	<mat-form-field *ngIf="router.url !='/checkout'">
-		<input type=" text" matInput placeholder="Search"> </mat-form-field> <span class="example-spacer"></span>
+	<!-- <mat-form-field *ngIf="router.url !='/checkout'"> -->
+		<!-- <input type=" text" matInput placeholder="Search">  -->
+		
+	<!-- </mat-form-field>  -->
+	<app-searchbar></app-searchbar>
+	<span class="example-spacer">
+
+	</span>
 	<div *ngIf="router.url !='/checkout'">
 		<div *ngIf="loggedIn">
 			<button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="sidenav.toggle()">
