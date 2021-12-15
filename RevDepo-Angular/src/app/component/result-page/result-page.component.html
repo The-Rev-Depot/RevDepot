@@ -1,10 +1,10 @@
-<div *ngIf="productsArray" class="grid-container">
+<div  class="grid-container">
 
 <!-- <a class="nav-link" routerLink="/">Home</a> -->
 
 <!-- <app-product-card></app-product-card> this only sorts by saleId at the moment...refactor to have all sort methods-->
 
-<div class="grid-container">
+<div *ngIf=productsArray class="grid-container">
 
 
   <!-- each div routes to product details page based on product id -->
@@ -27,4 +27,29 @@
 
 
 </div>
+
+<div *ngIf=inventoryList class="grid-container">
+
+
+  <!-- each div routes to product details page based on product id -->
+    <div *ngFor = "let item of inventoryList" class="product-card" routerLink="/product-details/{{item.productId}}">
+
+
+      <img src={{item.picUrl}} />
+      <br>
+      <a class="nav-link" routerLink="/product-details/{{item.productId}}">{{item.productName}}</a>
+      <p>Price: {{item.productPrice}}</p>
+      <p>Rating: {{item.productRating}}</p>
+      <p>On Sale: On sale</p>
+
+
+  </div>
+
+
+
+
+
+
+</div>
+
 

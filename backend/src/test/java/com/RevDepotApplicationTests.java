@@ -30,6 +30,8 @@ class RevDepotApplicationTests {
 
 	Product product = new Product(1, "rev pro shirt","shirt with revature logo", "https://i.ebayimg.com/thumbs/images/g/yzMAAOSwaHZgy1VV/s-l300.jpg ",
 			15, newFloat, "apparel", 1);
+	INSERT INTO product (product_name, product_description, pic_url, product_price, product_rating, product_category, sale_id) VALUES
+	('T-Shirt - Grey', 'Grey T-shirt with the phrase "GIVE LIKE A BOSS" on front. Revature Logo on back. Various sizes.', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuoxnmro43rbVWEgIHsThMV1grQVuiH5wWTQ&usqp=CAU', 14.99, 4.3, 'Apparel', 0);
 	
 	
 	//for some reason this test is not passing, the list of products being requested is out of order...

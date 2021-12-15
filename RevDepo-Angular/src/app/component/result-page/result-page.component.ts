@@ -14,7 +14,7 @@ export class ResultPageComponent implements OnInit {
   productsList: any;
   //initializing arrays to hold data retrieved from database
   public searchResults:any = [];
-  public inventoryList: Array<InventoryClass> = []; //holds all items in inventory
+  public inventoryList: Array<any> = []; //holds all items in inventory
   public productsArray: Array<ProductClass> = []; // holds items that are sorted by category
 
 
@@ -49,17 +49,17 @@ export class ResultPageComponent implements OnInit {
 
     //console.log(categoryTitle);
 
-    //this checks for the category of the products in the inventoryList 
+    //this checks for the category of the products in the inventoryList
      for(let i =0; i<this.inventoryList.length; i++) {
 
       //console.log(this.inventoryList[i].product.productCategory);
      // console.log(this.inventoryList[i].product);
 
-      if(this.inventoryList[i].product.productCategory == categoryTitle){
+      if(this.inventoryList[i].productCategory == categoryTitle){
 
       //console.log("Sorted: " + this.inventoryList[i].product.productCategory);
 
-      this.productsArray.push(this.inventoryList[i].product);
+      this.productsArray.push(this.inventoryList[i]);
 
      }
     // console.log("After push: " + this.productsArray);
