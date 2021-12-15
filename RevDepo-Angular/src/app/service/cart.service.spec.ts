@@ -3,7 +3,7 @@ import { ComponentFixtureAutoDetect, TestBed } from '@angular/core/testing';
 
 import { CartService } from './cart.service';
 
-fdescribe('CartService', () => {
+describe('CartService', () => {
 var item1 =  {
   itemId: 0, quantity: 1, product: {
     productId: 1,
