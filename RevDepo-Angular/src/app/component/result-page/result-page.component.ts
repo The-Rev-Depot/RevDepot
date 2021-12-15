@@ -56,7 +56,7 @@ export class ResultPageComponent implements OnInit {
      // console.log(this.inventoryList[i].product);
 
       if(this.inventoryList[i].productCategory == categoryTitle){
-
+        console.log(categoryTitle);
       console.log("Sorted: " , this.inventoryList[i]);
 
       this.productsArray.push(this.inventoryList[i]);
