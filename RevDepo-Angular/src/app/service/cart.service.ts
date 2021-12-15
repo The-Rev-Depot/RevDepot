@@ -13,7 +13,9 @@ export class CartService {
   cart!: ICart;
   cartIsEmpty!: boolean; 
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) {
+
+  }
 
 
   addItem(newItem: IItem) {
@@ -132,6 +134,8 @@ export class CartService {
      return this.httpClient.post<IItem[]>(`http://localhost:9999/inventory/getMax`, this.cart!.items, httpPost);
    }
     getCart(): ICart {
+      this.cartIsEmpty = true;
+   
      // Hardcoded for now
     return this.cart = {
        cartId: 0,
@@ -148,6 +152,9 @@ export class CartService {
         birthday: ""
       },
       items: []
+   
      };
+   
    }
+   
 }
