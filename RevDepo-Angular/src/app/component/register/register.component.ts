@@ -74,8 +74,4 @@ export class RegisterComponent implements OnInit {
     this._password = "";
   }
 
-  // temporary and transfered to nabvar
-  logout(){
-    this.userService.logout();
-  }
 }

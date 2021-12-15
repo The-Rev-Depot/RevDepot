@@ -3,7 +3,7 @@ import { ComponentFixtureAutoDetect, TestBed } from '@angular/core/testing';
 
 import { CartService } from './cart.service';
 
-fdescribe('CartService', () => {
+describe('CartService', () => {
 var item1 =  {
   itemId: 0, quantity: 1, product: {
     productId: 1,
@@ -16,28 +16,28 @@ var item1 =  {
     isOnSale: 0
   }
 }
-  
+
   let service: CartService;
 
 
   beforeEach(() => {
-    TestBed.configureTestingModule({  
+    TestBed.configureTestingModule({
     imports: [
         HttpClientModule,
       ]
-   
-  }); 
+
+  });
   service = TestBed.inject(CartService);
   console.log("before cart is set");
-  service.setCart();
+  service.getCart();
   console.log("after cart is set");
-}); 
+});
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
   it('should not add item that already exists', () =>{
-   
+
     var itemArrayLength = service.getCart().items.length;
 
     service.addItem(item1);
@@ -92,7 +92,7 @@ var item1 =  {
     expect(service.getCartItems().length).toBe(itemArrayLength);
 
   });
-  
+
   it('should add a PRODUCT that does not exist', () =>{
     var item2 =   {
         productId: 33,
@@ -103,14 +103,14 @@ var item1 =  {
         productRating: 0,
         category: "",
         isOnSale: 0
-      
+
     }
     var itemArrayLength = service.getCart().items.length;
 
     service.addProductToCart(item2);
     expect(service.getCart().items.length).toEqual(itemArrayLength +1);
   });
-  
+
   it('should NOT add a PRODUCT that does exist', () =>{
     var item2 =   {
       productId: 1,
@@ -121,7 +121,7 @@ var item1 =  {
     productRating: 0,
     category: "",
     isOnSale: 0
-      
+
     }
     var itemArrayLength = service.getCart().items.length;
 

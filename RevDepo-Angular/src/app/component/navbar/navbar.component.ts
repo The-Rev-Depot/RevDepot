@@ -21,12 +21,12 @@ export class NavbarComponent implements OnInit {
   @ViewChild(MatSidenav) sidenav!: MatSidenav;
   events: string[] = [];
   opened: boolean = false;
-  
 
 
 
 
-  constructor(private cartService: CartService, public router: Router, private userService: UserServiceService) { 
+
+  constructor(private cartService: CartService, public router: Router, private userService: UserServiceService) {
 
     this.cartIsEmpty = this.cartService.cartIsEmpty;
 
@@ -35,9 +35,14 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     this.cart = this.cartService.getCart();
     this.totalPrice = this.cartService.getTotalPrice();
-    this.loggedIn = this.userService.checkloggedIn;
     this.cartIsEmpty = this.cartService.cartIsEmpty;
 
+    console.log(JSON.parse(sessionStorage.getItem('userObject')!).object);
+    if (JSON.parse(sessionStorage.getItem('userObject')!).object == null){
+      this.loggedIn = false;
+    } else {
+      this.loggedIn = true;
+    }
   }
   get isEmpty():boolean{
     return this.cartService.cartIsEmpty;
@@ -71,6 +76,6 @@ export class NavbarComponent implements OnInit {
     this.userService.logout();
     this.loggedIn = false;
   }
-  
+
 
 }
