@@ -164,5 +164,42 @@ var item1 =  {
     service.addProductToCart(product22);
     expect(service.getCart().items.length).toEqual(itemArrayLength);
   });
+  it('should total items in cart', () =>{
+   
+    service.addItem(item1);
+    service.addItem(item2);
+    var total = (item1.product.productPrice * item1.quantity) + (item2.product.productPrice * item2.quantity);
+   
+    expect(service.getTotalPrice()).toEqual(total);
+  });
+  it('should return true if item is in cart', () =>{
+    
+    service.addItem(item1);
+    service.addItem(item2);
+   
+    expect(service.isInCart(item1.product)).toBeTruthy();
+   
+  });
+  it('should return false if item is not in cart', () =>{
+    var item22 =  {
+      itemId: 4, quantity: 4, product: {
+        productId: 33,
+        productName: "Not in the cart Item",
+        description: "",
+        picUrl: "Not a pic url",
+        productPrice: 13,
+        productRating: 0,
+        category: "",
+        isOnSale: 0
+      }
+    }
+    service.addItem(item1);
+    service.addItem(item2);
+   
+    expect(service.isInCart(item22.product)).toBeFalsy();
+  });
+  
+
+  
 
 });
