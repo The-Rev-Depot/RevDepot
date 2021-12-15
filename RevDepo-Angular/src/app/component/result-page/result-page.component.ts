@@ -11,12 +11,12 @@ import { InventoryClass } from 'src/app/model/inventory-class';
 })
 export class ResultPageComponent implements OnInit {
 
-  productsList: any;
+  public hide: boolean = false;
   //initializing arrays to hold data retrieved from database
   public searchResults:any = [];
-  public inventoryList: Array<InventoryClass> = []; //holds all items in inventory
+  public inventoryList: Array<any> = []; //holds all items in inventory
   public productsArray: Array<ProductClass> = []; // holds items that are sorted by category
-
+  public productArray: Array<ProductClass> = [];//holds all
 
   constructor(private router: Router, private route: ActivatedRoute, private productService:ProductServiceService) { }
 
@@ -27,7 +27,7 @@ export class ResultPageComponent implements OnInit {
 
   //this method calls the getIProducts() method in the product service to retrieve all items
   public getIProduct(): void {
-     const categoryTitle = String (this.route.snapshot.paramMap.get('title'));
+     const categoryTitle = String (this.route.snapshot.paramMap.get('category'));
 
     this.productService.getIProduct().subscribe(
       (data) => {
@@ -49,18 +49,25 @@ export class ResultPageComponent implements OnInit {
 
     //console.log(categoryTitle);
 
-    //this checks for the category of the products in the inventoryList 
+    //this checks for the category of the products in the inventoryList
      for(let i =0; i<this.inventoryList.length; i++) {
 
       //console.log(this.inventoryList[i].product.productCategory);
      // console.log(this.inventoryList[i].product);
 
-      if(this.inventoryList[i].product.productCategory == categoryTitle){
+      if(this.inventoryList[i].productCategory == categoryTitle){
 
-      //console.log("Sorted: " + this.inventoryList[i].product.productCategory);
+      console.log("Sorted: " , this.inventoryList[i]);
 
-      this.productsArray.push(this.inventoryList[i].product);
+      this.productsArray.push(this.inventoryList[i]);
+      this.hide = true;
+      console.log(this.hide);
 
+     }
+     else{
+      this.productArray.push(this.inventoryList[i]);
+      this.hide = false;
+      console.log(this.hide);
      }
     // console.log("After push: " + this.productsArray);
      }

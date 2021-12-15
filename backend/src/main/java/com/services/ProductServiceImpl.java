@@ -10,7 +10,7 @@ import com.models.Product;
 
 @Service
 public class ProductServiceImpl implements ProductService {
-	
+
 	private ProductDao productDao;
 	//JpaRepository methods
 	
@@ -18,12 +18,12 @@ public class ProductServiceImpl implements ProductService {
 	public ProductServiceImpl(ProductDao productDao) {
 		this.productDao = productDao;
 	}
-	
+
 	@Override
 	public List<Product> getAllProducts() {
 		return productDao.findAll();
 	}
-	
+
 	@Override
 	public List<Product> getAllDeals() {
 		// TODO Auto-generated method stub
@@ -31,8 +31,8 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<Product> getAllDealsByCategory() {
-		return productDao.getAllDealsByCategory();
+	public List<Product> getAllDealsByCategory(String category) {
+		return productDao.getAllDealsByCategory(category);
 	}
 }
 //test

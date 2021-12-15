@@ -47,12 +47,13 @@
 * Register as a new user
     * Receive welcome email
 * Login/Logout.
-* Reset their password.
-    * Receive email with new password
+
 * View number of items inside the cart
 
 ### TO-DOs
 * Modify their profile information
+* Reset their password.
+    * Receive email with new password
 * Upload picture (using AWS: S3) 
 * Add item reviews
 * Bookmark the product item

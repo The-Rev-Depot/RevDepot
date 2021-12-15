@@ -1,1 +1,25 @@
-<p>sales-deals works!</p>
+<div class="row justify-content-center">
+    <h2 class="col-md-2 title" (click)="getProductsOnSale()">{{title}}</h2>
+</div>
+<div class="row justify-content-center" >
+    <div class="col-md-2" *ngFor="let product of productsOnSale; let i=index">
+        <mat-card class="mat" routerLink="/product-details/{{product.productId}}" *ngIf="i<6">
+            <img class="cardImg" src="{{ product.picUrl }}" />
+            <mat-card-title>{{ product.productName }}</mat-card-title>
+            <br>
+            <mat-card-title>NOW:  {{ product.productPrice | currency }} </mat-card-title>
+            <mat-card-actions>
+                <button class="override addBtn" (click)="addItemToCart(product)">
+                    <mat-icon>add</mat-icon>
+                </button> Add to Cart
+            </mat-card-actions>
+        </mat-card>
+</div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-md-2">
+        <a routerLink="/allsales" class="graytext">See More</a>
+    </div>
+</div>
+    
+    

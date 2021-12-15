@@ -13,7 +13,7 @@ export class ProductServiceService {
   public productsArray : any;
   public product : any;
 
-  constructor(private http:HttpClient, private router: Router) { }
+  constructor(private http:HttpClient) { }
 
 
   //Get Request to get all products
@@ -33,7 +33,6 @@ export class ProductServiceService {
     return this.product;
 
   }
-
 
 }
 

@@ -16,7 +16,7 @@ export class ProductCardComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute, private productService:ProductServiceService/*, private result: ResultPageComponent*/) { }
 
   ngOnInit(): void {
-    //this method will be called when the component loads, items on sales will populate 
+    //this method will be called when the component loads, items on sales will populate
     this.getIProduct();
 
   }
@@ -24,7 +24,7 @@ export class ProductCardComponent implements OnInit {
   productsList: any;
   //initializing arrays to hold data retrieved from database
   public searchResults:any = [];
-  public inventoryList: Array<InventoryClass> = []; //holds all items in inventory
+  public inventoryList: Array<any> = []; //holds all items in inventory
   public productsArray: Array<ProductClass> = []; // holds items that are sorted by saleId
 
 
@@ -49,26 +49,28 @@ export class ProductCardComponent implements OnInit {
  }
 
 
- public getProduct(dealTitle:any): void{
+ public getProduct(dealTitle:any){
 
   //console.log(dealTitle);
 
-  //this checks for the saleId of the products in the inventoryList 
+  //this checks for the saleId of the products in the inventoryList
    for(let i =0; i<this.inventoryList.length; i++) {
 
     //console.log(this.inventoryList[i].product.saleId);
     //console.log(this.inventoryList[i].product);
 
-    if(this.inventoryList[i].product.saleId == dealTitle){
+
+    // ask about this ===================================================
+    if(this.inventoryList[i].saleId == dealTitle){
 
     //console.log("Sorted: " + this.inventoryList[i].product.saleId);
 
-    this.productsArray.push(this.inventoryList[i].product);
+    this.productsArray.push(this.inventoryList[i]);
 
    }
    //console.log("After push: " + this.productsArray);
    }
-
+   return this.productsArray[0];
 }
 
 
