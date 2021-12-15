@@ -24,7 +24,7 @@ export class ProductCardComponent implements OnInit {
   productsList: any;
   //initializing arrays to hold data retrieved from database
   public searchResults:any = [];
-  public inventoryList: Array<InventoryClass> = []; //holds all items in inventory
+  public inventoryList: Array<any> = []; //holds all items in inventory
   public productsArray: Array<ProductClass> = []; // holds items that are sorted by saleId
 
 
@@ -59,11 +59,13 @@ export class ProductCardComponent implements OnInit {
     //console.log(this.inventoryList[i].product.saleId);
     //console.log(this.inventoryList[i].product);
 
-    if(this.inventoryList[i].product.saleId == dealTitle){
+
+    // ask about this ===================================================
+    if(this.inventoryList[i].saleId == dealTitle){
 
     //console.log("Sorted: " + this.inventoryList[i].product.saleId);
 
-    this.productsArray.push(this.inventoryList[i].product);
+    this.productsArray.push(this.inventoryList[i]);
 
    }
    //console.log("After push: " + this.productsArray);
