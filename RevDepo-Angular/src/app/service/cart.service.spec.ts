@@ -3,7 +3,7 @@ import { ComponentFixtureAutoDetect, TestBed } from '@angular/core/testing';
 
 import { CartService } from './cart.service';
 
-fdescribe('CartService', () => {
+describe('CartService', () => {
 var item1 =  {
   itemId: 0, quantity: 1, product: {
     productId: 1,
@@ -29,7 +29,7 @@ var item1 =  {
   }); 
   service = TestBed.inject(CartService);
   console.log("before cart is set");
-  service.setCart();
+  service.getCart();
   console.log("after cart is set");
 }); 
   it('should be created', () => {
