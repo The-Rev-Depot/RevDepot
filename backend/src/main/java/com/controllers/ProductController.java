@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,11 +27,18 @@ public class ProductController {
 	}
 	
 	@CrossOrigin(origins = "4200")
-	@GetMapping(path = "/deals/category", produces = "application/json")
-	public ResponseEntity<List<Product>> getAllDealsByCategory() {
-		return new ResponseEntity<List<Product>>(pService.getAllDealsByCategory(), HttpStatus.OK);
+	@GetMapping(path = "/deals/{category}", produces = "application/json")
+	public ResponseEntity<List<Product>> getAllDealsByCategory(@PathVariable("category") String category) {
+		return new ResponseEntity<List<Product>>(pService.getAllDealsByCategory(category), HttpStatus.OK);
 	}
 	
+	/**
+	 * Grab all items from the product table to put into an array to send to the frontend. 
+	 * Use getAllProducts in inventoryController instead
+	 * 				This would be called by the getIProduct() in the frontend apart of the product-service
+	 * @param 			http://localhost:XXXX/product/view 
+	 * @return 			The entire product table in an array
+	 */
 	@GetMapping("/view")
 	public ResponseEntity<List<Product>> getAllProducts() {
 		return ResponseEntity.status(200).body(pService.getAllProducts());

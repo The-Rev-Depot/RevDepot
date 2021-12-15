@@ -20,7 +20,9 @@ export class LoginComponent implements OnInit {
   constructor(private userService: UserServiceService, private router:Router, private  dialog:  MatDialog) { }
 
   ngOnInit(): void {
-    console.log(JSON.parse(sessionStorage.getItem('userObject')!).object);
+    if (JSON.parse(sessionStorage.getItem('userObject')!).object != null){
+      console.log(JSON.parse(sessionStorage.getItem('userObject')!).object);
+    }
   }
 
   userLogin(){
@@ -29,7 +31,7 @@ export class LoginComponent implements OnInit {
       console.log(data)
       if (data.success){
         sessionStorage.setItem('userObject', JSON.stringify(data));
-        this.router.navigate([`/display-products/`]);
+        this.router.navigate([`/display-products`]);
       } else {
         this._invalidPasswordMessage = "Invalid password";
       }
