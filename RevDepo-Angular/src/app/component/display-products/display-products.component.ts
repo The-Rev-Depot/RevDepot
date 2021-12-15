@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class DisplayProductsComponent implements OnInit {
 
   //category headers that appear in categories section
-  Apparel = "apparel"
+  Apparel = "Apparel"
 
   Stationary =  "stationary"
 
