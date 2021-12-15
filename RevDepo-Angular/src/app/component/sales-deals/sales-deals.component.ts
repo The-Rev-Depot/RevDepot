@@ -133,12 +133,6 @@ export class SalesDealsComponent implements OnInit {
   constructor(private service:SalesServiceService, private cartService: CartService, private router:Router, private http: HttpClient) { }
 
   ngOnInit(): void {
-    // this.http.get<any>(this.url).subscribe(
-    //   response => {
-    //     this.productsOnSale = response;
-    //     console.log(this.productsOnSale);
-    //   })
-    
     this.productsOnSale = this.getProductsOnSale();
      
   }
@@ -149,7 +143,6 @@ export class SalesDealsComponent implements OnInit {
 
 
   getProductsOnSale() {
-    console.log("2");
     this.http.get<any>(this.url).subscribe(
       response => {
         this.productsOnSale = response;
@@ -168,7 +161,6 @@ export class SalesDealsComponent implements OnInit {
     const price = product.productPrice;
     const amountOff = price * saleValue;
     product.productPrice = price-amountOff;
-    console.log(saleValue, price, amountOff, product.productPrice);
     return product;
   }
 
