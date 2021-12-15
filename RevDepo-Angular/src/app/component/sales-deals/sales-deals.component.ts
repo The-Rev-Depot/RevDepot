@@ -6,6 +6,7 @@ import { CurrencyPipe } from '@angular/common';
 import { CartService } from 'src/app/service/cart.service';
 import { Router } from '@angular/router';
 import { ProductClass} from 'src/app/model/product-class';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-sales-deals',
@@ -19,6 +20,7 @@ export class SalesDealsComponent implements OnInit {
   productsOnSale:any = []
   productsOnSaleByCategory:any = []
   url = "http://localhost:9999/product/deals";
+  categoryUrl = "http://localhost:9999/product/deals/category"
 
   // shirtPro =
   // {
@@ -130,53 +132,45 @@ export class SalesDealsComponent implements OnInit {
   // }
 
 
-  constructor(private service:SalesServiceService, private cartService: CartService, private router:Router, private http: HttpClient) { }
+  constructor(private cartService: CartService, private router:Router, private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.http.get<any>(this.url).subscribe(
-      response => {
-        this.productsOnSale = response;
-        console.log(this.productsOnSale);
-      })
-    
-    //this.getProductsOnSale();
-    
-     for(let x = 0; x < this.productsOnSale.length; x++){
-      this.applySalesPrice(this.productsOnSale[x]);
-    }
+    this.productsOnSale = this.getProductsOnSale();
+     
   }
 
   printProducts() {
     console.log(this.productsOnSale);
   }
 
-  public getProductsOnSale():void {
-    console.log("2");
-    this.service.getAllItemsOnSale().subscribe(
-      (data:any) => {
-        this.placeholder = data;
-        console.log("3");
-        for (let one of this.placeholder) {
-          this.productsOnSale.push(one);
+
+  getProductsOnSale():any {
+    return this.http.get<any>(this.url).subscribe(
+      response => {
+        this.productsOnSale = response;
+        for(let x = 0; x < this.productsOnSale.length; x++){
+          this.applySalesPrice(this.productsOnSale[x]);
         }
-       console.log(this.productsOnSale);
- 
-      }
-    );
+      })
   }
 
-  // private getProductsOnSaleByCategory() {
-  //   return this.service.getAllItemsOnSaleByCategory(this.category);
-  // }
+  getProductsOnSaleByCategory(category:string): any {
+    this.http.get<any>(this.url + "/" + category).subscribe(
+      response => {
+        this.productsOnSale = response;
+        for(let x = 0; x < this.productsOnSale.length; x++){
+          this.applySalesPrice(this.productsOnSale[x]);
+        }
+      })
+  }
 
-  private applySalesPrice(product:IProduct) {
-    const saleValue = product.isOnSale/100;
+  private applySalesPrice(product:any) {
+    const saleValue = product.saleId/100;
     const price = product.productPrice;
     const amountOff = price * saleValue;
     product.productPrice = price-amountOff;
     return product;
   }
-
 
   addItemToCart(product:IProduct) {
     this.cartService.addProductToCart(product);

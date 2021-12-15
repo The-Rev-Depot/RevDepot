@@ -16,14 +16,16 @@ export class SalesServiceService {
 
   ngOnInit(): void {
     this.getAllItemsOnSale();
+    console.log(this.allDeals);
   }
 
   getAllItemsOnSale(): any {
-    return this.http.get<any>(this.url).subscribe(
+    this.http.get<any>(this.url).subscribe(
       response => {
         this.allDeals = response;
         console.log("1",this.allDeals);
       })
+      return of(this.allDeals);
   }
 
   getAllDeals(){
