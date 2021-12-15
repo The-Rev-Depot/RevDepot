@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
+import { CartService } from "src/app/service/cart.service";
 import { UserServiceService } from "src/app/service/user-service.service";
 
 @Component({
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
   _invalidPasswordMessage: string = "";
   _isFound: boolean = false;
 
-  constructor(private userService: UserServiceService, private router:Router, private  dialog:  MatDialog) { }
+  constructor(private userService: UserServiceService, private router:Router, private  dialog:  MatDialog, private cartService: CartService) { }
 
   ngOnInit(): void {
     if (JSON.parse(sessionStorage.getItem('userObject')!).object != null){
@@ -31,6 +32,7 @@ export class LoginComponent implements OnInit {
       console.log(data)
       if (data.success){
         sessionStorage.setItem('userObject', JSON.stringify(data));
+        /* this.cartService.setCart(data.object) */
         this.router.navigate([`/display-products`]);
       } else {
         this._invalidPasswordMessage = "Invalid password";
