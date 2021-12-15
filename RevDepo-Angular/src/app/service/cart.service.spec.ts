@@ -172,6 +172,20 @@ var item1 =  {
    
     expect(service.getTotalPrice()).toEqual(total);
   });
+  it('should DYNAMICALLY total items in cart', () =>{
+   
+    service.addItem(item1);
+    service.addItem(item2);
+    var total = (item1.product.productPrice * item1.quantity) + (item2.product.productPrice * item2.quantity);
+   
+    expect(service.getTotalPrice()).toEqual(total);
+
+    service.removeItem(item2);
+    var newTotal = item1.product.productPrice * item1.quantity;
+    expect(service.getTotalPrice()).toEqual(newTotal);
+  });
+
+
   it('should return true if item is in cart', () =>{
     
     service.addItem(item1);
