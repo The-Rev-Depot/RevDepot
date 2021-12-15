@@ -48,14 +48,12 @@ export class CheckoutComponent implements OnInit {
           this.cartService.getMax().subscribe((items) => {
             console.log(items);
             for (let i = 0; i < items.length; i++) {
+              // Remember which items have insufficient inventory
               if (this.cart!.items[i].quantity != items[i].quantity ) {
                 this.limitedSupply[i] = true;
-                
               }
-
             }
-            
-           
+            // Set items in cart to 
             this.cart!.items = items;
             this.error = true;
           });
@@ -72,6 +70,9 @@ export class CheckoutComponent implements OnInit {
     return this.cartService.getTotalQty();
   }
 
+  /**
+   * Confirms if the user is logged in and reroutes them to the login component if not.
+   */
   checkLogin() {
     if (JSON.parse(sessionStorage.getItem('userObject')!).object == null){
       this.loggedIn = false;
