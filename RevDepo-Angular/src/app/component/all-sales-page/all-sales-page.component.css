@@ -11,6 +11,10 @@
     font-size: 52px;
 }
 
+.mbtm {
+    margin-bottom: 75px;
+}
+
 .override {
     border: none;
     display: inline-flex;

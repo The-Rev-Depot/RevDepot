@@ -133,44 +133,31 @@ export class SalesDealsComponent implements OnInit {
   constructor(private service:SalesServiceService, private cartService: CartService, private router:Router, private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.http.get<any>(this.url).subscribe(
-      response => {
-        this.productsOnSale = response;
-        console.log(this.productsOnSale);
-      })
-    
-    //this.getProductsOnSale();
-    
-     for(let x = 0; x < this.productsOnSale.length; x++){
-      this.applySalesPrice(this.productsOnSale[x]);
-    }
+    this.productsOnSale = this.getProductsOnSale();
+     
   }
 
   printProducts() {
     console.log(this.productsOnSale);
   }
 
-  public getProductsOnSale():void {
-    console.log("2");
-    this.service.getAllItemsOnSale().subscribe(
-      (data:any) => {
-        this.placeholder = data;
-        console.log("3");
-        for (let one of this.placeholder) {
-          this.productsOnSale.push(one);
+
+  getProductsOnSale() {
+    this.http.get<any>(this.url).subscribe(
+      response => {
+        this.productsOnSale = response;
+        for(let x = 0; x < this.productsOnSale.length; x++){
+          this.applySalesPrice(this.productsOnSale[x]);
         }
-       console.log(this.productsOnSale);
- 
-      }
-    );
+      })
   }
 
   // private getProductsOnSaleByCategory() {
   //   return this.service.getAllItemsOnSaleByCategory(this.category);
   // }
 
-  private applySalesPrice(product:IProduct) {
-    const saleValue = product.isOnSale/100;
+  private applySalesPrice(product:any) {
+    const saleValue = product.saleId/100;
     const price = product.productPrice;
     const amountOff = price * saleValue;
     product.productPrice = price-amountOff;
