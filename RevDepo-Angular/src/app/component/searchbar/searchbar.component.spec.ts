@@ -39,6 +39,10 @@ fdescribe('SearchbarComponent', () => {
     expect(component.searchText).toBe("");
   });
 
+  it('mockProduct should be an array of length 3', () => {
+    expect(component.mockProduct.length).toEqual(3);
+  });
+
   it('checkLetter should return an array', () => {
     expect(component.checkLetter(component.mockProduct,"mug"))
     .toEqual([{
