@@ -26,14 +26,15 @@
 			<div *ngFor="let item of cart.items">
 				<app-cart-card [item]="item"></app-cart-card>
 			</div>
-		</div>
-		<h3 *ngIf="isEmpty">Cart is currently empty.</h3>
+		
+		<h3 *ngIf="cartIsEmpty">Cart is currently empty.</h3>
 		<mat-divider></mat-divider>
-		<div *ngIf="!isEmpty">
+		<div *ngIf="!cartIsEmpty">
 			<h4>Total: {{getTotalPrice()}}</h4>
 			<mat-divider></mat-divider>
 			<button mat-flat-button color="primary" (click)="checkoutRoute()" (click)="sidenav.toggle()">Checkout</button>
 		</div>
+	</div>
 	</mat-sidenav>
 	<mat-sidenav-content>
 		<router-outlet></router-outlet>

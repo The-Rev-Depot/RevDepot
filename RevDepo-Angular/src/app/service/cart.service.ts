@@ -12,7 +12,11 @@ import { IProduct } from '../model/product';
 })
 export class CartService {
   cart!: ICart;
-  cartIsEmpty!: boolean;
+
+  private isLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private cartIsEmpty: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
+  loggedInMessage = this.isLoggedIn.asObservable();
+  cartIsEmptyMessage = this.cartIsEmpty.asObservable();
 
   constructor(private httpClient: HttpClient) {
     this.cart = {
@@ -29,12 +33,21 @@ export class CartService {
       },
       items: []
     }
+    
+  }
+
+  setIsLoggedIn(message: boolean) {
+    this.isLoggedIn.next(message)
+  }
+
+  setCartIsEmpty(message: boolean) {
+    this.cartIsEmpty.next(message)
   }
 
   addItem(newItem: IItem) {
     if (!this.isInCart(newItem.product)) {
       this.cart?.items.push(newItem);
-      this.cartIsEmpty = false;
+      this.setCartIsEmpty(false);
     }
     else {
       return;
@@ -67,6 +80,7 @@ export class CartService {
   addProductToCart(newProduct: IProduct) {
     if (!this.isInCart(newProduct)) {
       this.cart?.items.push({ itemId: 0, quantity: 1, product: newProduct });
+      this.setCartIsEmpty(false);
     }
     else {
       return;
@@ -80,7 +94,7 @@ export class CartService {
       if (index != undefined)
         this.cart?.items.splice(index, 1);
       if (this.cart?.items.length == 0) {
-        this.cartIsEmpty = true;
+        this.setCartIsEmpty(true);
 
       }
     }
@@ -155,6 +169,11 @@ export class CartService {
       this.cart.cartId = data.cartId;
       this.cart.items = data.items;
       this.cart.user = user;
+      if(data.items.length==0){
+        this.setCartIsEmpty(true);
+      }else{
+        this.setCartIsEmpty(false);
+      }
     });
   }
 
