@@ -5,7 +5,7 @@ import { CartService } from 'src/app/service/cart.service';
 import { SalesDealsComponent } from './sales-deals.component';
 import { of } from 'rxjs';
 
-fdescribe('SalesDealsComponent', () => {
+describe('SalesDealsComponent', () => {
   let component: SalesDealsComponent;
   let fixture: ComponentFixture<SalesDealsComponent>;
 

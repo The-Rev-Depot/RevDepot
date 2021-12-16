@@ -6,7 +6,7 @@ import { SearchbarComponent } from './searchbar.component';
 import { ProductServiceService } from 'src/app/service/product-service.service';
 // import { of } from 'rxjs/observable/of';
 
-fdescribe('SearchbarComponent', () => {
+describe('SearchbarComponent', () => {
   let component: SearchbarComponent;
   let fixture: ComponentFixture<SearchbarComponent>;
   let serviceStub : any;
