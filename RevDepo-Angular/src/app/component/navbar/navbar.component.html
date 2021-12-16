@@ -1,9 +1,12 @@
 <!-- <app-searchbar></app-searchbar> -->
 <mat-toolbar class="fixed-header">
-		<img src="../assets/revature.png" alt="Company Logo" style="width:160px; cursor: pointer;" (click)="homeRoute()" />
-	<span class="example-spacer"></span>
-	<mat-form-field *ngIf="router.url !='/checkout'">
-		<input type=" text" matInput placeholder="Search"> </mat-form-field> <span class="example-spacer"></span>
+	<img src="../assets/revature.png" alt="Company Logo" style="width:160px; cursor: pointer;" (click)="homeRoute()" />
+<span class="example-spacer"></span>
+	
+	<app-searchbar></app-searchbar>
+	<span class="example-spacer">
+
+	</span>
 	<div *ngIf="router.url !='/checkout'">
 		<div>
 			<button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="sidenav.toggle()">
