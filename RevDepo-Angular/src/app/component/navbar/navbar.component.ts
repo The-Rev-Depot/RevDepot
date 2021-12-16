@@ -14,7 +14,7 @@ import { IItem } from 'src/app/model/item';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  cart?: ICart;
+  cart!: ICart;
   totalPrice?: number;
   cartIsEmpty!: boolean;
   loggedIn = false;
@@ -33,7 +33,8 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.cart = this.cartService.getCart();
+          this.cart = this.cartService.getCart();
+
     this.totalPrice = this.cartService.getTotalPrice();
     this.cartIsEmpty = this.cartService.cartIsEmpty;
 

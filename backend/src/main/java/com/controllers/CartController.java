@@ -17,24 +17,24 @@ import com.services.CartServiceImpl;
 public class CartController {
 	private CartServiceImpl cartService;
 
-    @Autowired
-    public CartController(CartServiceImpl cartService){
-        this.cartService = cartService;
-    }
-    
-    @PutMapping("/update")
-    public void updateCart(@RequestBody Cart curCart){
-        this.cartService.updateCart(curCart);
-    }
-    
-    @PostMapping("/add")
-    public void addCart(Cart curCart) {
-    	this.cartService.addCart(curCart);
-    }
-    
-    @GetMapping("/user/{id}")
-    public Cart getCartByUserId(@PathVariable int id) {
-    	return this.cartService.getCartByUserId(id);
-    }
+	@Autowired
+	public CartController(CartServiceImpl cartService) {
+		this.cartService = cartService;
+	}
+
+	@PutMapping("/update")
+	public void updateCart(@RequestBody Cart curCart) {
+		this.cartService.updateCart(curCart);
+	}
+
+	@PostMapping("/add")
+	public void addCart(Cart curCart) {
+		this.cartService.addCart(curCart);
+	}
+
+	@GetMapping("/user/{id}")
+	public Cart getCartByUserId(@PathVariable int id) {
+		return this.cartService.getCartByUserId(id);
+	}
 
 }

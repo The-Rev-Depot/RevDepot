@@ -51,6 +51,8 @@ export class QuantitySelectComponent implements OnInit {
     if (this.item.quantity < this.quantityLimit) {
       this.item.quantity += 1;
       this.cartService.updateCartQuantity(this.item);
+    }else{
+      alert("There is not enough in stock!");
     }
 
   }
