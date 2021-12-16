@@ -35,10 +35,6 @@ INSERT INTO inventory (quantity, product_id) VALUES (10, 5);
 
 INSERT INTO inventory (quantity, product_id) VALUES (99, 6);
 
-INSERT INTO cart (user_id) VALUES (1);
-
-INSERT INTO inventory (quantity, product_id) VALUES (99, 5);
-
 
 INSERT INTO cart (user_id) VALUES (1);
 

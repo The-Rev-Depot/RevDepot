@@ -1,8 +1,10 @@
+
 .example-spacer {
   flex: 1 1 auto;
 }
 
 .mat-sidenav-container {
+  background-color: #F26925;
   position: fixed!important;
   height: 100%;
   min-height: 100%;
@@ -32,3 +34,10 @@
   padding: 0px;
 }
 
+mat-toolbar{
+  background-color: #474C55;
+}
+
+mat-sidenav{
+  background-color: #B9B9BA;
+}

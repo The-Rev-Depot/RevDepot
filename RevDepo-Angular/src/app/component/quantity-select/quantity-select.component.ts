@@ -39,6 +39,11 @@ export class QuantitySelectComponent implements OnInit {
       console.log("Product in quantity select",this.product);
       this.isInCart=this.cartService.isInCart(this.product);
       this.item=this.cartService.getItemFromCart(this.product);
+      this.http.get<number>('http://localhost:9999/inventory/quantity/' + this.product.productId).subscribe(
+      (response) => {
+        this.quantityLimit = response;
+      }
+    );
   }
 
   increment() {
@@ -47,13 +52,6 @@ export class QuantitySelectComponent implements OnInit {
       this.item.quantity += 1;
       this.cartService.updateCartQuantity(this.item);
     }
-
-    //if(this.onlyOnce)
-    // this.http.get<number>('http://localhost:9999/inventory/quantity/' + this.item.product.productId).subscribe(
-    //   (response) => {
-    //     this.quantityLimit = response;
-    //   }
-    // );
 
   }
 

@@ -1,12 +1,11 @@
 <!-- <app-searchbar></app-searchbar> -->
-<mat-toolbar color="primary" class="fixed-header">
-	<button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="homeRoute()">
-		<mat-icon>home</mat-icon>
-	</button> <span class="example-spacer"></span>
+<mat-toolbar class="fixed-header">
+		<img src="../assets/revature.png" alt="Company Logo" style="width:160px; cursor: pointer;" (click)="homeRoute()" />
+	<span class="example-spacer"></span>
 	<mat-form-field *ngIf="router.url !='/checkout'">
 		<input type=" text" matInput placeholder="Search"> </mat-form-field> <span class="example-spacer"></span>
 	<div *ngIf="router.url !='/checkout'">
-		<div *ngIf="loggedIn">
+		<div>
 			<button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="sidenav.toggle()">
 				<mat-icon *ngIf="!opened">shopping_cart</mat-icon>
 				<mat-icon *ngIf="opened">arrow_forward_ios</mat-icon>
@@ -27,7 +26,7 @@
 		<h3 *ngIf="isEmpty">Cart is currently empty.</h3>
 		<mat-divider></mat-divider>
 		<div *ngIf="!isEmpty">
-			<h4>Total: {{getTotalPrice()}}</h4>
+			<h4>Total: {{getTotalPrice() | currency}}</h4>
 			<mat-divider></mat-divider>
 			<button mat-flat-button color="primary" (click)="checkoutRoute()" (click)="sidenav.toggle()">Checkout</button>
 		</div>

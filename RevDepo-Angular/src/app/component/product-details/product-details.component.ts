@@ -56,7 +56,7 @@ export class ProductDetailsComponent implements OnInit {
 
     console.log("getProduct | this.inventoryList[i]:", this.inventoryList[i]);
     console.log("getProduct | this.inventoryList[i].product:", this.inventoryList[i].product);
-    console.log("getProduct | this.inventoryList[i].product.productId:", this.inventoryList[i].product.productId);
+    //console.log("getProduct | this.inventoryList[i].product.productId:", this.inventoryList[i].product.productId);
 
     // console.log(this.inventoryList[i].product);
 
@@ -67,7 +67,7 @@ export class ProductDetailsComponent implements OnInit {
     this.productsArray.push(this.inventoryList[i]);
 
    }
-  //  console.log("After push: " + this.productsArray);
+    //console.log("After push: " + this.productsArray);
    }
 
 }
