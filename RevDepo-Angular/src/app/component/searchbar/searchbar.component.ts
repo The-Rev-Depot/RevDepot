@@ -43,6 +43,9 @@ export class SearchbarComponent implements OnInit {
 
   public searchText : string = "";
 
+  clearSearchText() {
+    this.searchText = "";
+  }
   /**
    * This function takes in an array and a string of text and returns a new array
    * which only contains elements that reflect the given string of text.

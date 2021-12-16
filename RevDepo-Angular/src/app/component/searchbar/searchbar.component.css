@@ -3,9 +3,35 @@
 
 .navinput{
     color: black;
+    position: absolute;
+    top: 12px;
 }
 
 .navul {
+    list-style: none;
+    margin-top: 55px;
+    overflow: visible;
+    z-index: 5000;
+    position: absolute;
+    top: 20px;
+}
+
+.navul li {
+    padding: 5px 5px;
+    background-color: white;
     overflow: visible;
     z-index: 1;
+    color: black;
+    min-width: 200px;
+    border: 1px solid #B9B9BA;
+    transition: 0.2s;
+}
+
+.navul li:nth-child(2n) {
+    background-color: #B9B9BA;
+
+}
+
+.navul li:hover{
+    transform: scale(1.2);
 }
