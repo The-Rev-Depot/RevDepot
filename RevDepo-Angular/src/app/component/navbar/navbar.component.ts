@@ -27,9 +27,7 @@ export class NavbarComponent implements OnInit {
 
 
   constructor(private cartService: CartService, public router: Router, private userService: UserServiceService) {
-
     this.cartIsEmpty = this.cartService.cartIsEmpty;
-
   }
 
   ngOnInit(): void {
@@ -67,12 +65,15 @@ export class NavbarComponent implements OnInit {
   homeRoute(){
     this.router?.navigateByUrl('/display-products');
   }
+
   loginRoute(){
     this.router?.navigateByUrl('/login');
   }
+
   updateQuantity(){
     console.log("is this working?");
   }
+  
   logout(){
     //this will hopefully be replaced by a logout() function in userservice
     this.userService.logout();

@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
       console.log(data)
       if (data.success){
         sessionStorage.setItem('userObject', JSON.stringify(data));
-        /* this.cartService.setCart(data.object) */
+        this.cartService.setCart(data.object);
         this.router.navigate([`/display-products`]);
       } else {
         this._invalidPasswordMessage = "Invalid password";

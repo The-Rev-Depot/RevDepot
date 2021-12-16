@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ICart } from '../model/cart';
 import { IItem } from '../model/item';
+import { IUser } from '../model/user';
 import { IProduct } from '../model/product';
 
 @Injectable({
@@ -11,10 +12,23 @@ import { IProduct } from '../model/product';
 })
 export class CartService {
   cart!: ICart;
-  cartIsEmpty!: boolean; 
+  cartIsEmpty!: boolean;
 
   constructor(private httpClient: HttpClient) {
-
+    this.cart = {
+      cartId: 0,
+      user: {
+        userId: 0,
+        username: "",
+        password: "",
+        firstName: "",
+        lastName: "",
+        email: "",
+        urlProPic: "",
+        birthday: ""
+      },
+      items: []
+    }
   }
 
   addItem(newItem: IItem) {
@@ -54,10 +68,10 @@ export class CartService {
     if (!this.isInCart(newProduct)) {
       this.cart?.items.push({ itemId: 0, quantity: 1, product: newProduct });
     }
-    else{
+    else {
       return;
     }
-    
+
   }
 
   removeItem(item: IItem) {
@@ -69,8 +83,6 @@ export class CartService {
         this.cartIsEmpty = true;
 
       }
-
-
     }
     else {
 
@@ -135,59 +147,31 @@ export class CartService {
 
   getCart(): ICart {
     // Hardcoded for now
-    return this.cart = {
+    return this.cart;
+  }
+
+  setCart(user: IUser) {
+    this.httpClient.get<ICart>(`http://localhost:9999/cart/user/` + user.userId, { withCredentials: true }).subscribe(data => {
+      this.cart.cartId = data.cartId;
+      this.cart.items = data.items;
+      this.cart.user = user;
+    });
+  }
+
+  createCart(user: IUser) {
+    console.log("Entered create cart");
+    let tempCart: ICart = {
       cartId: 0,
-      user: {
-        userId: 0,
-        username: "",
-        password: "",
-        firstName: "",
-        lastName: "",
-        email: "",
-        urlProPic: "",
-        birthday: ""
-      },
+      user: user,
       items: []
     }
+    console.log("Create cart before create cart");
+    this.httpClient.post<ICart>(`http://localhost:9999/cart/add`, tempCart, { withCredentials: true }).subscribe(response => {
+      console.log(response);
+    },
+      error => {
+        console.log(error);
+      });
+    console.log("Create cart after create cart");
   }
-  //     items: [
-  //       {
-  //         itemId: 0, quantity: 5, product: {
-  //           productId: 1,
-  //           productName: "Computer Tower Stand",
-  //           description: "",
-  //           picUrl: "https://material.angular.io/assets/img/examples/shiba2.jpg",
-  //           productPrice: 15,
-  //           productRating: 0,
-  //           category: "",
-  //           isOnSale: 0
-  //         }
-  //       },
-  //      /* {
-  //         itemId: 1, quantity: 3, product: {
-  //           productId: 2,
-  //           productName: "Renpho Powerful Portable Massage Gun",
-  //           description: "",
-  //           picUrl: "https://material.angular.io/assets/img/examples/shiba2.jpg",
-  //           productPrice: 20,
-  //           productRating: 0,
-  //           category: "",
-  //           isOnSale: 0
-  //         }
-  //       },
-  //       {
-  //         itemId: 2, quantity: 5, product: {
-  //           productId: 3,
-  //           productName: "Rollerblade Zetrablade Men's Adult Fitness Inline Skate",
-  //           description: "",
-  //           picUrl: "https://material.angular.io/assets/img/examples/shiba2.jpg",
-  //           productPrice: 50,
-  //           productRating: 0,
-  //           category: "",
-  //           isOnSale: 0
-  //         }
-  //       }*/
-  //     ]
-  //   };
-  // }
 }
