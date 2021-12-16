@@ -79,11 +79,17 @@ public class InventoryController {
 		return ResponseEntity.status(200).body(inventoryService.getAllProducts());
 	}
 	
+	/**
+	 * Returns a list of items with their quantity set as the maximum available amount in inventory.
+	 * @param items 	The items to be checked
+	 * @return			A list of items with their quantity maxed
+	 */
 	@PostMapping(value="getMax")
 	public Object[] checkMaxInventory (@RequestBody Item items[]) {
 		List<Item> itemList = new LinkedList<Item>(Arrays.asList(items));
 		ListIterator<Item> iterator = itemList.listIterator();
 		
+		// For each item, check how much inventory we have and set the item's quantity accordingly
 		while (iterator.hasNext()) {
 			Item item = iterator.next();
 			Inventory inventory = inventoryService.getInventoryByProduct(item.getProduct());
@@ -93,8 +99,6 @@ public class InventoryController {
 				itemList.remove(item);
 			}		
 		}
-
-		
 		
 		return  itemList.toArray();
 	}
