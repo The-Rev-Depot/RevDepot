@@ -41,23 +41,23 @@ var item1 =  {
         isOnSale: 0
       }
     }
-  
 
-  
+
+
   let service: CartService;
 
 
   beforeEach(() => {
-    TestBed.configureTestingModule({  
+    TestBed.configureTestingModule({
     imports: [
         HttpClientModule,
       ]
-   
-  }); 
+
+  });
   service = TestBed.inject(CartService);
   service.getCart();
 
-}); 
+});
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
@@ -121,14 +121,14 @@ var item1 =  {
     service.addItem(item1);
     service.addItem(item2);
     service.addItem(item3);
- 
+
     var itemArrayLength = service.getCart().items.length;
 
     service.removeItem(item22);
     expect(service.getCartItems().length).toBe(itemArrayLength);
 
   });
-  
+
   it('should add a PRODUCT that does not exist', () =>{
     var product22 =   {
         productId: 33,
@@ -139,14 +139,14 @@ var item1 =  {
         productRating: 0,
         category: "",
         isOnSale: 0
-      
+
     }
     var itemArrayLength = service.getCartItems().length;
 
     service.addProductToCart(product22);
     expect(service.getCartItems().length).toEqual(itemArrayLength +1);
   });
-  
+
   it('should NOT add a PRODUCT that already exists', () =>{
     var product22 =   {
       productId: 1,
@@ -157,7 +157,7 @@ var item1 =  {
     productRating: 0,
     category: "",
     isOnSale: 0
-      
+
     }
     var itemArrayLength = service.getCart().items.length;
 
@@ -165,19 +165,19 @@ var item1 =  {
     expect(service.getCart().items.length).toEqual(itemArrayLength);
   });
   it('should total items in cart', () =>{
-   
+
     service.addItem(item1);
     service.addItem(item2);
     var total = (item1.product.productPrice * item1.quantity) + (item2.product.productPrice * item2.quantity);
-   
+
     expect(service.getTotalPrice()).toEqual(total);
   });
   it('should DYNAMICALLY total items in cart', () =>{
-   
+
     service.addItem(item1);
     service.addItem(item2);
     var total = (item1.product.productPrice * item1.quantity) + (item2.product.productPrice * item2.quantity);
-   
+
     expect(service.getTotalPrice()).toEqual(total);
 
     service.removeItem(item2);
@@ -187,12 +187,12 @@ var item1 =  {
 
 
   it('should return true if item is in cart', () =>{
-    
+
     service.addItem(item1);
     service.addItem(item2);
-   
+
     expect(service.isInCart(item1.product)).toBeTruthy();
-   
+
   });
   it('should return false if item is not in cart', () =>{
     var item22 =  {
@@ -209,11 +209,11 @@ var item1 =  {
     }
     service.addItem(item1);
     service.addItem(item2);
-   
+
     expect(service.isInCart(item22.product)).toBeFalsy();
   });
-  
 
-  
+
+
 
 });

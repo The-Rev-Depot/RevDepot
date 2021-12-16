@@ -1,5 +1,9 @@
 h2, h3, h4{
+  margin-top: 20px;
   text-shadow: 2px 2px #c2f85c;
+  font-weight: bolder;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: xx-large;
 }
 
 .form-register {
@@ -7,6 +11,7 @@ h2, h3, h4{
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .form-container{
@@ -46,15 +51,17 @@ h2, h3, h4{
 
 /* Set a style for the submit/login button */
 .form-container .btn {
-  background-color:   #3333ff;
+  background-color: #1c55f3;
   color: white;
   padding: 16px 20px;
   border: none;
   cursor: pointer;
   width: 100%;
-  margin-top:10px;
+  margin-bottom:10px;
   opacity: 0.8;
-  font-weight: bolder;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: medium;
 }
 
 /* Add some hover effects to buttons */
@@ -65,4 +72,8 @@ h2, h3, h4{
 /* Add some hover effects to buttons */
 .form-container .btn:hover, .open-button:hover {
   opacity: 1;
+}
+
+input{
+  font-size: medium;
 }
