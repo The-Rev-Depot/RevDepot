@@ -1,15 +1,15 @@
 <div class="md-form">
-    <input type="search" [(ngModel)]="searchText" placeholder="Search Products" >
+    <input class="navinput" type="search" [(ngModel)]="searchText" id="searchInput" placeholder="Search Products" >
  
 
- <p *ngIf = "filteredList(searchText).length == 0 && searchText != '' ">
-   It appears no items match your search. 
-   Please check the spelling.
-  </p>
- 
- <ul *ngFor = "let f of filteredList(searchText)">
-   <li routerLink = "/product-details/{{ f.productId }}"> {{ f.productName }} </li>
+    <p *ngIf = "filteredList(searchText).length == 0 && searchText != '' ">
+      It appears no items match your search. 
+      Please check the spelling.
+      </p>
+    
+    <ul class="navul">
+      <li *ngFor = "let f of filteredList(searchText)" (click)="clearSearchText()" routerLink="/product-details/{{ f.productId }}"> {{ f.productName }} </li>
 
- </ul>
+    </ul>
 
 </div>
