@@ -22,15 +22,36 @@ export class SearchbarComponent implements OnInit {
   // early object used to test the functions below
   mockProduct : any = [{
     productId : 1,
-    productName : "",
+    productName : "Stickers",
     description : "A set of stylish Revature Stickers!",
     picURL : "sticker.url...",
     productPrice : 5 ,
     productRating : 4 ,
     category : "Miscellaneous",
-    isOnSale : 1 
+    isOnSale : 1 },
 
-  }]
+    {
+      productId : 2,
+      productName : "Mug",
+      description : "A nice revature mug!",
+      picURL : "mug.url...",
+      productPrice : 5 ,
+      productRating : 4 ,
+      category : "Miscellaneous",
+      isOnSale : 1 },
+
+      {
+        productId : 3,
+        productName : "Marker",
+        description : "An orange revature marker!",
+        picURL : "marker.url...",
+        productPrice : 5 ,
+        productRating : 4 ,
+        category : "Miscellaneous",
+        isOnSale : 1 }
+  
+  
+  ]
 
   
 
