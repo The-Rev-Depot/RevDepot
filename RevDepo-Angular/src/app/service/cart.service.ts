@@ -11,7 +11,7 @@ import { IProduct } from '../model/product';
 })
 export class CartService {
   cart!: ICart;
-  cartIsEmpty!: boolean; 
+  cartIsEmpty!: boolean;
 
   constructor(private httpClient: HttpClient) {
 
@@ -55,10 +55,10 @@ export class CartService {
     if (!this.isInCart(newProduct)) {
       this.cart?.items.push({ itemId: 0, quantity: 1, product: newProduct });
     }
-    else{
+    else {
       return;
     }
-    
+
   }
 
 
@@ -148,22 +148,22 @@ export class CartService {
         urlProPic: "",
         birthday: ""
       },
-      items: []
-    }
+      items: [
+        {
+          itemId: 0, quantity: 5, product: {
+            productId: 1,
+            productName: "Computer Tower Stand",
+            description: "",
+            picUrl: "https://material.angular.io/assets/img/examples/shiba2.jpg",
+            productPrice: 15,
+            productRating: 0,
+            category: "",
+            isOnSale: 0
+          }
+        }
+      ],
+    };
   }
-  //     items: [
-  //       {
-  //         itemId: 0, quantity: 5, product: {
-  //           productId: 1,
-  //           productName: "Computer Tower Stand",
-  //           description: "",
-  //           picUrl: "https://material.angular.io/assets/img/examples/shiba2.jpg",
-  //           productPrice: 15,
-  //           productRating: 0,
-  //           category: "",
-  //           isOnSale: 0
-  //         }
-  //       },
   //      /* {
   //         itemId: 1, quantity: 3, product: {
   //           productId: 2,

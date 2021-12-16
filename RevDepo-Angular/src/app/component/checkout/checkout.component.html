@@ -20,12 +20,12 @@
             <div>
 
               <p [ngClass]="limitedSupply[i] ? 'red' : ''">
-                ${{
-                  item.quantity * item.product.productPrice | number: "1.2-2"
+                {{
+                  item.quantity * item.product.productPrice | currency
                 }}
                 <br />
                 <span class="grey"
-                  >${{ item.product.productPrice | number: "1.2-2" }} ea</span
+                  >{{ item.product.productPrice | currency }} ea</span
                 >
               </p>
             </div>
@@ -48,22 +48,22 @@
               <p>Items({{ getTotalQty() }}):</p>
             </td>
             <td>
-              <p>${{ getTotalPrice() | number: "1.2-2" }}</p>
+              <p>{{ getTotalPrice() | currency }}</p>
             </td>
           </tr>
           <tr>
             <td><p>Shipping & Handling:</p></td>
-            <td><p>$10.00</p></td>
+            <td><p>{{10.00 | currency}}</p></td>
           </tr>
           <tr>
-            <td><p>Estimated Tax to be collected:</p></td>
-            <td><p>$0.00</p></td>
+            <td><p>Estimated Tax:</p></td>
+            <td><p>{{0.00 | currency}}</p></td>
           </tr>
         </table>
         <hr />
 
         <div>
-          <h4>Order total : ${{ getTotalPrice() + 10 | number: "1.2-2" }}</h4>
+          <h4>Order total : {{ getTotalPrice() + 10 | currency }}</h4>
         </div>
         <div class="center">
         <button mat-raised-button color="primary" (click)="onCheckoutClicked()">
