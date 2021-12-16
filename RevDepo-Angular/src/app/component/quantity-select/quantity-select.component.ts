@@ -13,32 +13,39 @@ import { CartService } from 'src/app/service/cart.service';
 })
 export class QuantitySelectComponent implements OnInit {
   @Input() product!: IProduct;
-  item!:IItem;
+  item!: IItem;
   quantityLimit: number = 99;
   interval: number = 400;
   intervalCount: number = 0;
   timeoutHandler: any;
   longhold: boolean = false;
   isInCart: boolean = true;
-  constructor(private http: HttpClient, private cartService: CartService) { 
+
+  constructor(private http: HttpClient, private cartService: CartService) {
+
   }
 
-  addToCart(){
+  addToCart() {
     this.item = {
       itemId: 0,
       quantity: 1,
-      product: this.product}
+      product: this.product
+    }
     this.cartService.addProductToCart(this.product);
     this.isInCart = true;
-    this.item=this.cartService.getItemFromCart(this.product);
+    this.item = this.cartService.getItemFromCart(this.product);
   }
 
   quantityControl!: FormControl;
   private debounce: number = 20;
+
   ngOnInit(): void {
-      console.log("Product in quantity select",this.product);
-      this.isInCart=this.cartService.isInCart(this.product);
-      this.item=this.cartService.getItemFromCart(this.product);
+    console.log("Product in quantity select", this.product);
+    this.isInCart = this.cartService.isInCart(this.product);
+    this.item = this.cartService.getItemFromCart(this.product);
+    this.http.get<number>('http://localhost:9999/inventory/quantity/' + this.product.productId).subscribe((response) => {
+      this.quantityLimit = response;
+    });
   }
 
   increment() {
@@ -47,13 +54,6 @@ export class QuantitySelectComponent implements OnInit {
       this.item.quantity += 1;
       this.cartService.updateCartQuantity(this.item);
     }
-
-    //if(this.onlyOnce)
-    // this.http.get<number>('http://localhost:9999/inventory/quantity/' + this.item.product.productId).subscribe(
-    //   (response) => {
-    //     this.quantityLimit = response;
-    //   }
-    // );
 
   }
 

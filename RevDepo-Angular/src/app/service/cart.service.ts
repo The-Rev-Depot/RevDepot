@@ -17,7 +17,6 @@ export class CartService {
 
   }
 
-
   addItem(newItem: IItem) {
     if (!this.isInCart(newItem.product)) {
       this.cart?.items.push(newItem);
@@ -61,8 +60,6 @@ export class CartService {
     
   }
 
-
-
   removeItem(item: IItem) {
     if (this.isInCart(item.product)) {
       let index: number | undefined = this.cart.items.indexOf(item);
@@ -80,6 +77,7 @@ export class CartService {
       return;
     }
   }
+
   getCartItems() {
     return this.cart.items;
   }
@@ -134,6 +132,7 @@ export class CartService {
     };
     return this.httpClient.post<IItem[]>(`http://localhost:9999/inventory/getMax`, this.cart!.items, httpPost);
   }
+
   getCart(): ICart {
     // Hardcoded for now
     return this.cart = {
