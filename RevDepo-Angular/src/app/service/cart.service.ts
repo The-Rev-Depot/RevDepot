@@ -193,4 +193,9 @@ export class CartService {
       });
     console.log("Create cart after create cart");
   }
+
+  emptyCart() {
+    this.cart.items = [];
+    this.setCartIsEmpty(true);
+  }
 }
