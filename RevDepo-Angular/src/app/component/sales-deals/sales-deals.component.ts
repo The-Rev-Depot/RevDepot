@@ -135,7 +135,8 @@ export class SalesDealsComponent implements OnInit {
   constructor(private cartService: CartService, private router:Router, private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.getProductsOnSale(); 
+    this.productsOnSale = this.getProductsOnSale();
+     
   }
 
   printProducts() {
@@ -144,7 +145,7 @@ export class SalesDealsComponent implements OnInit {
 
 
   getProductsOnSale():any {
-    this.http.get<any>(this.url).subscribe(
+    return this.http.get<any>(this.url).subscribe(
       response => {
         this.productsOnSale = response;
         for(let x = 0; x < this.productsOnSale.length; x++){

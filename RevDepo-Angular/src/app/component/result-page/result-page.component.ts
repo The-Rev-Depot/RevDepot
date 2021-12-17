@@ -16,8 +16,8 @@ export class ResultPageComponent implements OnInit {
   //initializing arrays to hold data retrieved from database
   public searchResults:any = [];
   public inventoryList: Array<any> = []; //holds all items in inventory
-  public productsArray: Array<any> = []; // holds items that are sorted by category
-  public productArray: Array<any> = [];//holds all
+  public productsArray: Array<ProductClass> = []; // holds items that are sorted by category
+  public productArray: Array<ProductClass> = [];//holds all
   public categoryTitle = String (this.route.snapshot.paramMap.get('category'));
 
   constructor(private router: Router, private route: ActivatedRoute, private productService:ProductServiceService, private cartService: CartService) { }

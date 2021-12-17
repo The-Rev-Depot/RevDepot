@@ -24,7 +24,9 @@
       <p>Rating: {{item.productRating}}</p>
       
     <!-- <app-quantity-select></app-quantity-select> -->
-    <app-quantity-select [product]="item"></app-quantity-select>
+    <button class="override addBtn" (click)="addItemToCart(item)">
+      <mat-icon>add</mat-icon>
+    </button> Add to Cart
     
     <h2>Category</h2>
     <a class="nav-link" routerLink="/result-page/{{item.productCategory}}">{{item.productCategory}}</a>

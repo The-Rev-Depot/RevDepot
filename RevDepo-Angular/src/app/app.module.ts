@@ -62,7 +62,6 @@ import { CurrencyPipe } from '@angular/common';
 import { AllSalesPageComponent } from './component/all-sales-page/all-sales-page.component';
 import { CartCardComponent } from './component/cart-card/cart-card.component';
 import { QuantitySelectComponent } from './component/quantity-select/quantity-select.component';
-import { IsInCartService } from './service/is-in-cart.service';
 
 // import { 
 //   MatIconModule, 
@@ -141,7 +140,7 @@ import { IsInCartService } from './service/is-in-cart.service';
     MatCardModule
     
   ],
-  providers: [HttpClient, CartService, CurrencyPipe, IsInCartService],
+  providers: [HttpClient, CartService, CurrencyPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
