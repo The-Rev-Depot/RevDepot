@@ -36,4 +36,10 @@ export class IsInCartService {
   setIsInCart(productId: number, message: boolean) {
     this.allIsInCart[productId].isInCart.next(message);
   }
+
+  emptyCart(){
+    for (let element of this.allIsInCart) {
+      element.isInCart.next(false);
+    }
+  }
 }

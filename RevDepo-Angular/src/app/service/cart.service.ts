@@ -6,6 +6,7 @@ import { ICart } from '../model/cart';
 import { IItem } from '../model/item';
 import { IUser } from '../model/user';
 import { IProduct } from '../model/product';
+import { IsInCartService } from './is-in-cart.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class CartService {
   loggedInMessage = this.isLoggedIn.asObservable();
   cartIsEmptyMessage = this.cartIsEmpty.asObservable();
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private cartCheck: IsInCartService) {
     this.cart = {
       cartId: 0,
       user: {
@@ -197,5 +198,6 @@ export class CartService {
   emptyCart() {
     this.cart.items = [];
     this.setCartIsEmpty(true);
+    this.cartCheck.emptyCart();
   }
 }
