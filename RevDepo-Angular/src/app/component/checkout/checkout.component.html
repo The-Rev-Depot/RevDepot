@@ -15,6 +15,7 @@
             
             <div [ngClass]="limitedSupply[i] ? 'red' : ''">
               Qty: {{ item.quantity }} <span *ngIf="limitedSupply[i]">Limited Stock</span>
+              <app-quantity-select [product]="item.product"></app-quantity-select>
             </div>
 
             <div>

@@ -1,11 +1,14 @@
-<div *ngIf = "isInCart">
-    <button class="btn" (click)="decrement()" (mousedown)="mousedown(false)" (mouseup)="mouseup()">-</button>
-    {{item.quantity}}
-    <button class="btn" (click)="increment()" (mousedown)="mousedown(true)" (mouseup)="mouseup()">+</button>
+<div *ngIf ="loggedIn">
+    <div *ngIf="isInCart">
+        <button class="override addBtn" (click)="decrement()" (mousedown)="mousedown(false)" (mouseup)="mouseup()"><mat-icon>remove</mat-icon></button>
+        {{item.quantity}}
+        <button class="override addBtn" (click)="increment()" (mousedown)="mousedown(true)" (mouseup)="mouseup()"><mat-icon>add</mat-icon></button>
+        <button class="override addBtn mlft" (click)="removeItem()">Remove</button>
+    </div>
+    
+    <div *ngIf="!isInCart">
+        <button class="override addBtn" (click)="addToCart()">
+            <mat-icon>add</mat-icon>
+        </button> Add to Cart
+    </div>
 </div>
-
-<div *ngIf = "!isInCart">
-    <button class="btn" (click)="addToCart()">Add To Cart</button>
-</div>
-
-

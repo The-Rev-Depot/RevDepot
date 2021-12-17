@@ -30,7 +30,7 @@
 		<h3 *ngIf="cartIsEmpty">Cart is currently empty.</h3>
 		<mat-divider></mat-divider>
 		<div *ngIf="!cartIsEmpty">
-			<h4>Total: {{getTotalPrice()}}</h4>
+			<h4>Total: {{getTotalPrice()  | currency }}</h4>
 			<mat-divider></mat-divider>
 			<button mat-flat-button color="primary" (click)="checkoutRoute()" (click)="sidenav.toggle()">Checkout</button>
 		</div>
