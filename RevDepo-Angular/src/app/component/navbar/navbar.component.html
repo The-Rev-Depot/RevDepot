@@ -1,14 +1,12 @@
 <!-- <app-searchbar></app-searchbar> -->
 <mat-toolbar  class="fixed-header navvbar" >
-	<button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="homeRoute()">
+	<span class="example-spacer"><button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="homeRoute()">
 		<mat-icon>home</mat-icon>
-	</button> <span class="example-spacer"></span>
+	</button> </span>
+<span class="example-spacer">
 
-	
-	<app-searchbar></app-searchbar>
-	<span class="example-spacer">
+	<app-searchbar></app-searchbar></span>
 
-	</span>
 	<div *ngIf="router.url !='/checkout'">
 		<div *ngIf="loggedIn">
 			<button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="sidenav.toggle()">
@@ -18,7 +16,7 @@
 			<button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="logout()"> Logout </button>
 		</div>
 	</div>
-	<button *ngIf="!loggedIn" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="loginRoute()"> Login </button>
+	<button *ngIf="!loggedIn" mat-icon-button class="login-button" aria-label="Example icon-button with menu icon" (click)="loginRoute()">User Login  </button>
 </mat-toolbar>
 
 <!--side navigation for cart-->

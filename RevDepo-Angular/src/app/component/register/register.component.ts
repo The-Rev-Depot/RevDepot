@@ -46,7 +46,7 @@ export class RegisterComponent implements OnInit {
         this.cartService.createCart(data.object);
         console.log("Register User after create cart");
         console.log("Cart", this.cartService.getCart());
-        this.router.navigate([`/display-products/`]);
+        this.router.navigate([`/login/`]);
       } else {
         alert("Failed to create a new user.");
       }});
