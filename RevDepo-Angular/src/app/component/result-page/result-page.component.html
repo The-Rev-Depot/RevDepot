@@ -15,9 +15,7 @@
         <a class="nav-link" routerLink="/product-details/{{item.productId}}">{{item.productName}}</a>
         <p>Price: {{item.productPrice | currency}}</p>
         <p>Rating: {{item.productRating}} Stars</p>
-        <button class="override addBtn" (click)="addItemToCart(item)">
-          <mat-icon>add</mat-icon>
-      </button> Add to Cart
+        <app-quantity-select [product]="item"></app-quantity-select>
     </mat-card>
   </div>
   
@@ -30,9 +28,7 @@
         <a class="nav-link" routerLink="/product-details/{{item.productId}}">{{item.productName}}</a>
         <p>Price: {{item.productPrice | currency}}</p>
         <p>Rating: {{item.productRating}} Stars</p>
-        <button class="override addBtn" (click)="addItemToCart(item)">
-          <mat-icon>add</mat-icon>
-      </button> Add to Cart
+        <app-quantity-select [product]="item"></app-quantity-select>
     </mat-card>
   
   </div>
