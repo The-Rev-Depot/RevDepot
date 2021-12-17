@@ -32,3 +32,21 @@
   padding: 0px;
 }
 
+.login-button {
+    
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 22;
+}
+.search-bar{
+ margin: 0 auto;
+  
+ 
+  
+  font-size: 1;
+ 
+}
+
+
+

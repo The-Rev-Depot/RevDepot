@@ -3,6 +3,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
 import { CartService } from "src/app/service/cart.service";
 import { UserServiceService } from "src/app/service/user-service.service";
+import { NavbarComponent } from "../navbar/navbar.component";
 
 @Component({
   selector: 'app-login',
@@ -32,7 +33,8 @@ export class LoginComponent implements OnInit {
       console.log(data)
       if (data.success){
         sessionStorage.setItem('userObject', JSON.stringify(data));
-        /* this.cartService.setCart(data.object) */
+        this.cartService.setCart(data.object);
+        this.cartService.setIsLoggedIn(true);
         this.router.navigate([`/display-products`]);
       } else {
         this._invalidPasswordMessage = "Invalid password";

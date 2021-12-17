@@ -5,8 +5,21 @@
   gap: 4em;
 }
 
+.row{
+  text-align: center;
+  /* background: rgb(252,180,20);
+  background: linear-gradient(90deg, rgba(252,180,20,0.5942752100840336) 0%, rgba(252,180,20,1) 35%, rgba(242,105,37,1) 100%); */
+  padding-bottom: 20px;
+}
+
 .textCenter {
   text-align: center;
+}
+
+.title {
+  font-family: 'Staatliches', cursive;
+  font-size: 32px;
+  
 }
 
 .mbtm {
@@ -15,4 +28,12 @@
 
 .mbtm2 {
   margin-bottom: 75px;
+}
+.graytext {
+  text-decoration: none;
+  color:  rgb(185, 185, 186);
+}
+.categoryButtons{
+  background-color: black;
+  color: white;
 }

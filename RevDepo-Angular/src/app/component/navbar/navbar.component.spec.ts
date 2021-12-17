@@ -1,15 +1,29 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ComponentFixture, inject, TestBed } from '@angular/core/testing';
+import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { NavbarComponent } from './navbar.component';
 
-describe('NavbarComponent', () => {
+fdescribe('NavbarComponent', () => {
   let component: NavbarComponent;
   let fixture: ComponentFixture<NavbarComponent>;
+  let routerSpy = {
+    navigate: jasmine.createSpy('navigate')
+ };
+
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NavbarComponent ]
+      
+      declarations: [ NavbarComponent ],
+      providers: [{
+        provide: Router,
+        useValue: routerSpy
+     }],
+     imports: [RouterTestingModule, HttpClientTestingModule] 
     })
+    
     .compileComponents();
   });
 
@@ -22,4 +36,13 @@ describe('NavbarComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('should route to checkout', () => {
+    const router = TestBed.get(Router);
+    component.checkoutRoute();
+    expect(routerSpy.navigate).toHaveBeenCalledTimes(1);
+
+  });
+
 });
+
+

@@ -1,13 +1,12 @@
 <!-- <app-searchbar></app-searchbar> -->
 <mat-toolbar  class="fixed-header navvbar" >
-	<button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="homeRoute()">
+	<span class="example-spacer"><button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="homeRoute()">
 		<mat-icon>home</mat-icon>
-	</button> <span class="example-spacer"></span>
-	
-	<app-searchbar></app-searchbar>
-	<span class="example-spacer">
+	</button> </span>
+<span class="example-spacer">
 
-	</span>
+	<app-searchbar></app-searchbar></span>
+
 	<div *ngIf="router.url !='/checkout'">
 		<div *ngIf="loggedIn">
 			<button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="sidenav.toggle()">
@@ -17,8 +16,9 @@
 			<button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="logout()"> Logout </button>
 		</div>
 	</div>
-	<button *ngIf="!loggedIn" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="loginRoute()"> Login </button>
+	<button *ngIf="!loggedIn" mat-icon-button class="login-button" aria-label="Example icon-button with menu icon" (click)="loginRoute()">Login </button>
 </mat-toolbar>
+
 <!--side navigation for cart-->
 <mat-sidenav-container class="sidnav-container" hasBackdrop="false" autosize>
 	<mat-sidenav class="sidenav" mode="over" [(opened)]="opened" position='end' fixedTopGap="64" [autoFocus]="false" fixedInViewport>
@@ -26,14 +26,15 @@
 			<div *ngFor="let item of cart.items">
 				<app-cart-card [item]="item"></app-cart-card>
 			</div>
-		</div>
-		<h3 *ngIf="isEmpty">Cart is currently empty.</h3>
+		
+		<h3 *ngIf="cartIsEmpty">Cart is currently empty.</h3>
 		<mat-divider></mat-divider>
-		<div *ngIf="!isEmpty">
-			<h4>Total: {{getTotalPrice()}}</h4>
+		<div *ngIf="!cartIsEmpty">
+			<h4>Total: {{getTotalPrice()  | currency }}</h4>
 			<mat-divider></mat-divider>
 			<button mat-flat-button color="primary" (click)="checkoutRoute()" (click)="sidenav.toggle()">Checkout</button>
 		</div>
+	</div>
 	</mat-sidenav>
 	<mat-sidenav-content>
 		<router-outlet></router-outlet>

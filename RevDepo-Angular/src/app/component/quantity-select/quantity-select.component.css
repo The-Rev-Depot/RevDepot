@@ -1,0 +1,41 @@
+.row{
+    text-align: center;
+    /* background: rgb(252,180,20);
+    background: linear-gradient(90deg, rgba(252,180,20,0.5942752100840336) 0%, rgba(252,180,20,1) 35%, rgba(242,105,37,1) 100%); */
+    padding-bottom: 20px;
+}
+
+.title {
+    margin-top: 50px;
+    font-family: 'Staatliches', cursive;
+    font-size: 52px;
+}
+
+.mlft {
+    margin-left: 10px;
+}
+
+.override {
+    border: none;
+    display: inline-flex;
+    vertical-align: middle;
+    line-height: normal;
+    background-color: rgb(253, 181, 21);
+    border-radius: 27px;
+    transition: 0.2s;
+}
+
+.override:hover {
+    transform: scale(1.2);
+}
+
+.cardImg {
+    max-height: 150px;
+    max-width: 150px;
+    margin-bottom: 10px;
+}
+
+.mat {
+    border: 1px solid rgb(185, 185, 186);
+    box-shadow: 5px 5px 5px rgb(185, 185, 186);
+}

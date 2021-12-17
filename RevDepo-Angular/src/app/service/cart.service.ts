@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ICart } from '../model/cart';
 import { IItem } from '../model/item';
+import { IUser } from '../model/user';
 import { IProduct } from '../model/product';
 
 @Injectable({
@@ -11,17 +12,42 @@ import { IProduct } from '../model/product';
 })
 export class CartService {
   cart!: ICart;
-  cartIsEmpty!: boolean; 
+
+  private isLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private cartIsEmpty: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
+  loggedInMessage = this.isLoggedIn.asObservable();
+  cartIsEmptyMessage = this.cartIsEmpty.asObservable();
 
   constructor(private httpClient: HttpClient) {
-
+    this.cart = {
+      cartId: 0,
+      user: {
+        userId: 0,
+        username: "",
+        password: "",
+        firstName: "",
+        lastName: "",
+        email: "",
+        urlProPic: "",
+        birthday: ""
+      },
+      items: []
+    }
+    
   }
 
+  setIsLoggedIn(message: boolean) {
+    this.isLoggedIn.next(message)
+  }
+
+  setCartIsEmpty(message: boolean) {
+    this.cartIsEmpty.next(message)
+  }
 
   addItem(newItem: IItem) {
     if (!this.isInCart(newItem.product)) {
       this.cart?.items.push(newItem);
-      this.cartIsEmpty = false;
+      this.setCartIsEmpty(false);
     }
     else {
       return;
@@ -54,14 +80,13 @@ export class CartService {
   addProductToCart(newProduct: IProduct) {
     if (!this.isInCart(newProduct)) {
       this.cart?.items.push({ itemId: 0, quantity: 1, product: newProduct });
+      this.setCartIsEmpty(false);
     }
-    else{
+    else {
       return;
     }
-    
+
   }
-
-
 
   removeItem(item: IItem) {
     if (this.isInCart(item.product)) {
@@ -69,17 +94,16 @@ export class CartService {
       if (index != undefined)
         this.cart?.items.splice(index, 1);
       if (this.cart?.items.length == 0) {
-        this.cartIsEmpty = true;
+        this.setCartIsEmpty(true);
 
       }
-
-
     }
     else {
 
       return;
     }
   }
+
   getCartItems() {
     return this.cart.items;
   }
@@ -134,61 +158,44 @@ export class CartService {
     };
     return this.httpClient.post<IItem[]>(`http://localhost:9999/inventory/getMax`, this.cart!.items, httpPost);
   }
+
   getCart(): ICart {
     // Hardcoded for now
-    return this.cart = {
+    return this.cart;
+  }
+
+  setCart(user: IUser) {
+    this.httpClient.get<ICart>(`http://localhost:9999/cart/user/` + user.userId, { withCredentials: true }).subscribe(data => {
+      this.cart.cartId = data.cartId;
+      this.cart.items = data.items;
+      this.cart.user = user;
+      if(data.items.length==0){
+        this.setCartIsEmpty(true);
+      }else{
+        this.setCartIsEmpty(false);
+      }
+    });
+  }
+
+  createCart(user: IUser) {
+    console.log("Entered create cart");
+    let tempCart: ICart = {
       cartId: 0,
-      user: {
-        userId: 0,
-        username: "",
-        password: "",
-        firstName: "",
-        lastName: "",
-        email: "",
-        urlProPic: "",
-        birthday: ""
-      },
+      user: user,
       items: []
     }
+    console.log("Create cart before create cart");
+    this.httpClient.post<ICart>(`http://localhost:9999/cart/add`, tempCart, { withCredentials: true }).subscribe(response => {
+      console.log(response);
+    },
+      error => {
+        console.log(error);
+      });
+    console.log("Create cart after create cart");
   }
-  //     items: [
-  //       {
-  //         itemId: 0, quantity: 5, product: {
-  //           productId: 1,
-  //           productName: "Computer Tower Stand",
-  //           description: "",
-  //           picUrl: "https://material.angular.io/assets/img/examples/shiba2.jpg",
-  //           productPrice: 15,
-  //           productRating: 0,
-  //           category: "",
-  //           isOnSale: 0
-  //         }
-  //       },
-  //      /* {
-  //         itemId: 1, quantity: 3, product: {
-  //           productId: 2,
-  //           productName: "Renpho Powerful Portable Massage Gun",
-  //           description: "",
-  //           picUrl: "https://material.angular.io/assets/img/examples/shiba2.jpg",
-  //           productPrice: 20,
-  //           productRating: 0,
-  //           category: "",
-  //           isOnSale: 0
-  //         }
-  //       },
-  //       {
-  //         itemId: 2, quantity: 5, product: {
-  //           productId: 3,
-  //           productName: "Rollerblade Zetrablade Men's Adult Fitness Inline Skate",
-  //           description: "",
-  //           picUrl: "https://material.angular.io/assets/img/examples/shiba2.jpg",
-  //           productPrice: 50,
-  //           productRating: 0,
-  //           category: "",
-  //           isOnSale: 0
-  //         }
-  //       }*/
-  //     ]
-  //   };
-  // }
+
+  emptyCart() {
+    this.cart.items = [];
+    this.setCartIsEmpty(true);
+  }
 }
