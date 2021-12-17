@@ -1,15 +1,16 @@
-<div  class="container mbtm">
+<div class="container mbtm">
 
   <!-- <a class="nav-link" routerLink="/">Home</a> -->
 
-<!-- <app-product-card></app-product-card> this only sorts by saleId at the moment...refactor to have all sort methods-->
-<div class="row justify-content-center">
-  <h1 class="col-lg-4 textCenter" >{{categoryTitle}}</h1>
-</div>
+  <!-- <app-product-card></app-product-card> this only sorts by saleId at the moment...refactor to have all sort methods-->
+  <div class="row justify-content-center">
+    <h1 class="col-lg-4 textCenter">{{categoryTitle}}</h1>
+  </div>
 
-<div class="row justify-content-center">
-  <!-- each div routes to product details page based on product id -->
-    <mat-card *ngFor = "let item of productsArray" class="product-card mat col-lg-3 " routerLink="/product-details/{{item.productId}}">
+  <div class="row justify-content-center">
+    <!-- each div routes to product details page based on product id -->
+    <mat-card *ngFor="let item of productsArray" class="product-card mat col-lg-3 "
+      routerLink="/product-details/{{item.productId}}">
       <img class="cardImg" src={{item.picUrl}} />
       <br>
       <a class="nav-link" routerLink="/product-details/{{item.productId}}">{{item.productName}}</a>
@@ -17,13 +18,14 @@
       <p>Rating: {{item.productRating}} Stars</p>
       <button class="override addBtn" (click)="addItemToCart(item)">
         <mat-icon>add</mat-icon>
-    </button> Add to Cart
-  </mat-card>
-</div>
+      </button> Add to Cart
+    </mat-card>
+  </div>
 
-<div class="row justify-content-center">
-  <!-- each div routes to product details page based on product id -->
-    <mat-card *ngFor = "let item of productArray" class="product-card mat col-md-3" routerLink="/product-details/{{item.productId}}">
+  <div class="row justify-content-center">
+    <!-- each div routes to product details page based on product id -->
+    <mat-card *ngFor="let item of productArray" class="product-card mat col-md-3"
+      routerLink="/product-details/{{item.productId}}">
 
       <img class="cardImg" src={{item.picUrl}} />
       <br>
@@ -32,12 +34,8 @@
       <p>Rating: {{item.productRating}} Stars</p>
       <button class="override addBtn" (click)="addItemToCart(item)">
         <mat-icon>add</mat-icon>
-    </button> Add to Cart
-  </mat-card>
-
-</div>
-
-</div>
+      </button> Add to Cart
+    </mat-card>
 
   </div>
 
