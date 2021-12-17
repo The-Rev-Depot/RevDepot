@@ -3,8 +3,7 @@
         <button class="override addBtn" (click)="decrement()" (mousedown)="mousedown(false)" (mouseup)="mouseup()"><mat-icon>remove</mat-icon></button>
         {{item.quantity}}
         <button class="override addBtn" (click)="increment()" (mousedown)="mousedown(true)" (mouseup)="mouseup()"><mat-icon>add</mat-icon></button>
-        <br>
-        <button mat-flat-button color="primary" (click)="removeItem()">Remove</button>
+        <button class="override addBtn mlft" (click)="removeItem()">Remove</button>
     </div>
     
     <div *ngIf="!isInCart">
