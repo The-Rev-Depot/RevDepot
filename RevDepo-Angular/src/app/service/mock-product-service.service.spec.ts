@@ -1,3 +1,4 @@
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 
 import { MockProductServiceService } from './mock-product-service.service';
@@ -6,7 +7,10 @@ describe('MockProductServiceService', () => {
   let service: MockProductServiceService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [HttpClientModule],
+      providers: [HttpClient]
+    });
     service = TestBed.inject(MockProductServiceService);
   });
 

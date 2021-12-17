@@ -59,7 +59,7 @@ describe('LoginComponent', () => {
 
   // })
 
-  it('should remove the username', ()=>{
+  xit('should remove the username', ()=>{
     expect(component._invalidUsernameMessage).toContain("testing");
     // component.removeUsername();
     // expect(component._invalidUsernameMessage).toContain("");

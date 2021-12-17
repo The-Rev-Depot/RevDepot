@@ -1,4 +1,6 @@
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { AppRoutingModule } from 'src/app/app-routing.module';
 
 import { ResultPageComponent } from './result-page.component';
 
@@ -8,7 +10,9 @@ describe('ResultPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ResultPageComponent ]
+      declarations: [ ResultPageComponent ],
+      imports: [AppRoutingModule, HttpClientModule],
+      providers: [HttpClient]
     })
     .compileComponents();
   });
