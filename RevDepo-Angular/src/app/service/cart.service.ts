@@ -104,6 +104,11 @@ export class CartService {
     }
   }
 
+  emptyCart() {
+    this.cart.items = [];
+    this.setCartIsEmpty(true);
+  }
+
   getCartItems() {
     return this.cart.items;
   }

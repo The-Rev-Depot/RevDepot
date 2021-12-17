@@ -40,6 +40,7 @@ export class CheckoutComponent implements OnInit {
       (items)=> {
         console.log(items);
         this.checkoutFinished = true;
+        this.cartService.emptyCart();
       },
       // Server responds with error if cart's items go beyond inventory's capacity
       (error: HttpErrorResponse) => {
