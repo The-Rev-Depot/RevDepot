@@ -4,10 +4,10 @@
         <app-quantity-select [product]="item.product"></app-quantity-select>
     </form>
 
-    <mat-card-subtitle>Price: {{ item.product.productPrice  | currency  }}</mat-card-subtitle>
+    <mat-card-subtitle>Price: {{ item.product.productPrice | currency }}</mat-card-subtitle>
     <br>
     <img width="105" height="85" src="{{ item.product.picUrl }}" />
-    <br><br>
-    <button mat-flat-button color="primary" (click)="removeItem()">Remove Item(s)</button>
-    <br />
+
+    
+
 </mat-card>

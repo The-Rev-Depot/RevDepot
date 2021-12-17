@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 import { IItem } from 'src/app/model/item';
 import { IProduct } from 'src/app/model/product';
 import { CartService } from 'src/app/service/cart.service';
@@ -19,7 +19,10 @@ export class QuantitySelectComponent implements OnInit {
   intervalCount: number = 0;
   timeoutHandler: any;
   longhold: boolean = false;
-  isInCart: boolean = true;
+  isInCart: boolean = false;
+  isInCartSubscription: Subscription = new Subscription;
+  loggedIn!: boolean;
+  loggedInSubscription: Subscription = new Subscription;
 
   constructor(private http: HttpClient, private cartService: CartService) {
 
@@ -41,8 +44,8 @@ export class QuantitySelectComponent implements OnInit {
 
   ngOnInit(): void {
     console.log("Product in quantity select", this.product);
-    this.isInCart = this.cartService.isInCart(this.product);
     this.item = this.cartService.getItemFromCart(this.product);
+    this.loggedInSubscription = this.cartService.loggedInMessage.subscribe(message => this.loggedIn = message)
     this.http.get<number>('http://localhost:9999/inventory/quantity/' + this.product.productId).subscribe((response) => {
       this.quantityLimit = response;
     });
@@ -107,6 +110,11 @@ export class QuantitySelectComponent implements OnInit {
       this.decrement();
     }
     this.intervalCount++;
+  }
+
+  removeItem(){
+    this.cartService.removeItem(this.item);
+    this.isInCart = false;
   }
 
 
