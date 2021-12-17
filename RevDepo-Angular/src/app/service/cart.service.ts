@@ -5,6 +5,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { ICart } from '../model/cart';
 import { IItem } from '../model/item';
 import { IProduct } from '../model/product';
+import { IUser } from '../model/user';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ import { IProduct } from '../model/product';
 export class CartService {
   cart!: ICart;
   cartIsEmpty!: boolean; 
+  isLoggedIn!: boolean;
 
   constructor(private httpClient: HttpClient) {
 
@@ -135,20 +137,34 @@ export class CartService {
 
   getCart(): ICart {
     // Hardcoded for now
-    return this.cart = {
+    return this.cart;
+  }
+
+  setCart(user: IUser) {
+    this.isLoggedIn = true;
+    console.log(this.isLoggedIn);
+    this.httpClient.get<ICart>(`http://localhost:9999/cart/user/` + user.userId, { withCredentials: true }).subscribe(data => {
+      this.cart.cartId = data.cartId;
+      this.cart.items = data.items;
+      this.cart.user = user;
+    });
+  }
+
+  createCart(user: IUser) {
+    console.log("Entered create cart");
+    let tempCart: ICart = {
       cartId: 0,
-      user: {
-        userId: 0,
-        username: "",
-        password: "",
-        firstName: "",
-        lastName: "",
-        email: "",
-        urlProPic: "",
-        birthday: ""
-      },
+      user: user,
       items: []
     }
+    console.log("Create cart before create cart");
+    this.httpClient.post<ICart>(`http://localhost:9999/cart/add`, tempCart, { withCredentials: true }).subscribe(response => {
+      console.log(response);
+    },
+      error => {
+        console.log(error);
+      });
+    console.log("Create cart after create cart");
   }
   //     items: [
   //       {

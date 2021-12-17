@@ -3,17 +3,14 @@
 	<button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="homeRoute()">
 		<mat-icon>home</mat-icon>
 	</button> <span class="example-spacer"></span>
-	<!-- <mat-form-field *ngIf="router.url !='/checkout'"> -->
-		<!-- <input type=" text" matInput placeholder="Search">  -->
-	<!-- </mat-form-field>  -->
-	<span class="example-spacer"></span>
+
 	
 	<app-searchbar></app-searchbar>
 	<span class="example-spacer">
 
 	</span>
 	<div *ngIf="router.url !='/checkout'">
-		<div *ngIf="loggedIn">
+		<div *ngIf="checkLoggedIn()">
 			<button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="sidenav.toggle()">
 				<mat-icon *ngIf="!opened">shopping_cart</mat-icon>
 				<mat-icon *ngIf="opened">arrow_forward_ios</mat-icon>
@@ -21,9 +18,9 @@
 			<button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="logout()"> Logout </button>
 		</div>
 	</div>
-	<button *ngIf="!loggedIn" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="loginRoute()"> Login </button>
+	<button *ngIf="!checkLoggedIn()" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="loginRoute()"> Login </button>
 </mat-toolbar>
-<app-searchbar></app-searchbar>  
+
 <!--side navigation for cart-->
 <mat-sidenav-container class="sidnav-container" hasBackdrop="false" autosize>
 	<mat-sidenav class="sidenav" mode="over" [(opened)]="opened" position='end' fixedTopGap="64" [autoFocus]="false" fixedInViewport>

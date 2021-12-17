@@ -17,10 +17,12 @@ export class NavbarComponent implements OnInit {
   cart?: ICart;
   totalPrice?: number;
   cartIsEmpty!: boolean;
-  loggedIn = false;
+  static loggedIn: boolean;
+  isLoggedIn!: boolean;
   @ViewChild(MatSidenav) sidenav!: MatSidenav;
   events: string[] = [];
   opened: boolean = false;
+  
   
 
 
@@ -32,10 +34,18 @@ export class NavbarComponent implements OnInit {
 
   }
 
+  checkLoggedIn(): boolean {
+    if(NavbarComponent.loggedIn){
+    return true;
+    }
+    else{
+      return false;
+    }
+  }
+
   ngOnInit(): void {
     this.cart = this.cartService.getCart();
     this.totalPrice = this.cartService.getTotalPrice();
-    // this.loggedIn = this.userService.checkloggedIn;
     this.cartIsEmpty = this.cartService.cartIsEmpty;
 
   }
@@ -71,7 +81,7 @@ export class NavbarComponent implements OnInit {
   logout(){
     //this will hopefully be replaced by a logout() function in userservice
     this.userService.logout();
-    this.loggedIn = false;
+    NavbarComponent.loggedIn = false;
   }
   
 
