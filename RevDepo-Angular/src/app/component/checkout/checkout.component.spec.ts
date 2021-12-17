@@ -9,7 +9,7 @@ import { CartService } from 'src/app/service/cart.service';
 
 import { CheckoutComponent } from './checkout.component';
 
-fdescribe('CheckoutComponent', () => {
+describe('CheckoutComponent', () => {
   let component: CheckoutComponent;
   let fixture: ComponentFixture<CheckoutComponent>;
 
@@ -55,7 +55,7 @@ fdescribe('CheckoutComponent', () => {
     expectedMax[0].quantity += 10;
 
     const cartServiceSpy = jasmine.createSpyObj('CartService', ['getCart', 'checkoutCart', 'getMax'
-    , 'getTotalPrice', 'getTotalQty']);
+    , 'getTotalPrice', 'getTotalQty', 'emptyCart']);
     getCartSpy = cartServiceSpy.getCart.and.returnValue(expectedCart);
     checkoutCartSpy = cartServiceSpy.checkoutCart.and.returnValue(of(expectedCart.items));
     getMaxSpy = cartServiceSpy.getMax.and.returnValue(of(expectedMax));
