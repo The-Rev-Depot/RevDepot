@@ -6,11 +6,11 @@
   <div id="banner" class="jumbotron">
 
     <!-- Title -->
-  <h4 class="card-title h4 pb-2"><strong>My adventure</strong></h4>
+  <!-- <h4 class="card-title h4 pb-2"><strong>My adventure</strong></h4> -->
 
   <!-- Card image -->
   <div class="view overlay my-4 waves-light" mdbWavesEffect>
-    <img src="https://itelementaryschool.com/wp-content/uploads/2015/03/it_photo_84532.jpg" class="img-fluid" alt="">
+    <img src="assets/RevDepotBanner.png" class="img-fluid" alt="">
     <a>
       <div class="mask rgba-white-slight"></div>
     </a>
@@ -24,49 +24,36 @@
 </div>
 
 <div id="items" class="container">
-  <div id="deals"><!--make this a round-about careinsel* section-->
-    <h1>All Items</h1><!--data bind product info-->
-    <a id = "spacing"  class="col-1-4" routerLink="/result-page">
 
-    <div id="itemCon">
-
-      <h3>Show more</h3>
-
-      <!-- <app-product-card></app-product-card>  component that holds products that are on sale -->
-
-      <!--
-      <div *ngFor = "let todo of todosArray" class="todo-card" onclick="reroute">
-
-
-        <h2>ToDo#{{todo.id}}</h2>
-        <p>Tasks:{{todo.content}}</p>
-        <p>Status:{{todo.status}}</p>
-        <label for="updateBox{{todo.id}}">Update Tasks</label>
-        <input id="updateBox{{todo.id}}" [(ngModel)]="todo.content" />
-        <img src={{todo.img}}/>
-        -->
-
-    </div>
-  </a>
-  </div>
-
-  <br>
-  <br>
-
-
-  <div id="categories">
-    <h1>Categories</h1> <!-- this section routes to a sorted results page based on category that is clicked -->
-    <div id="catButtons" class="grid-container" *ngFor="let category of categoriesArray">
-      <a id = "spacing"  class="col-1-4" routerLink="/result-page/{{category}}">
-        <div>
-            <h2>{{category | uppercase}}</h2>
+  <div class="row justify-content-center mbtm2"><!--make this a round-about careinsel* section-->
+    <div class="col-lg-4 textCenter">
+      <h1>All Items</h1><!--data bind product info-->
+      <a id = "spacing"  class="" routerLink="/result-page/products">
+        
+        <div id="itemCon">          
+          <h3>Show more</h3>            
         </div>
+
       </a>
     </div>
-    <br>
-    <br>
+  </div>
 
-    <!--how does search and sort team want to display results-->
+
+<!-- this section routes to a sorted results page based on category that is clicked -->
+<div class="row justify-content-center">
+  <div class="col-lg-4 textCenter">
+    <h1 >Categories</h1> 
+  </div>
+</div>
+  <div class="row justify-content-center mbtm">
+      <div id="catButtons" class="col-lg-3 textCenter" *ngFor="let category of categoriesArray">
+        <a id = "spacing" routerLink="/result-page/{{category}}">
+          <div>
+            <h2>{{category | uppercase}}</h2>
+          </div>
+        </a>
+      </div>
+      
 
   </div>
 

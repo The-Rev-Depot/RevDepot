@@ -4,36 +4,38 @@
 <br>
 <br>
 
-<div class="grid-container">
-
-  <!-- displays full information about the product -->
-  <div *ngFor = "let item of productsArray" class="col-lg-12">
-    <a class="nav-link"  routerLink="/result-page/{{item.productCategory}}">{{item.productCategory}} > </a> <!--BREADCRUMBS - Futher implementation is needed-->
-
-    <br>
-    <br>
-
-
-    <h2>ID#: {{item.productId}}</h2>
-    <img src={{item.picUrl}} />
-    <br>
-    <h2>{{item.productName}}</h2>
-    <p>Price: {{item.productPrice}}</p>
-    <p>Rating: {{item.productRating}}</p>
-    <p>On Sale: On sale</p> <!--toggle to show if on sale-->
-
-    <button>+</button> <span>xxx</span> <button>-</button>
-
-
-
-    <button>Add to Cart</button>
-
+<div class="container mbtm">
+  <div class="row">
+    
+    <!-- displays full information about the product -->
+    <!-- initial hero link https://itelementaryschool.com/wp-content/uploads/2015/03/it_photo_84532.jpg -->
+    <div *ngFor = "let item of productsArray" class="col-lg-12">
+      <a class="nav-link"  routerLink="/result-page/{{item.productCategory}}">{{item.productCategory}} > </a> <!--BREADCRUMBS - Futher implementation is needed-->
+      
+      <br>
+      <br>
+      
+      
+      <h2>ID#: {{item.productId}}</h2>
+      <img src={{item.picUrl}} />
+      <br>
+      <h2>{{item.productName}}</h2>
+      <p>Price: {{item.productPrice | currency}}</p>
+      <p>Rating: {{item.productRating}}</p>
+      
+    <!-- <app-quantity-select></app-quantity-select> -->
+    <button class="override addBtn" (click)="addItemToCart(item)">
+      <mat-icon>add</mat-icon>
+    </button> Add to Cart
+    
     <h2>Category</h2>
     <a class="nav-link" routerLink="/result-page/{{item.productCategory}}">{{item.productCategory}}</a>
-   <br>
-   <br>
+    <br>
+    <br>
     <h2>Item Description</h2>
     <p>{{item.productDescription}}</p>
-
-
+    
+    
+  </div>
 </div>
+  
