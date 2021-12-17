@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProductServiceService } from 'src/app/service/product-service.service';
 import { InventoryClass } from 'src/app/model/inventory-class';
 import { ProductClass } from 'src/app/model/product-class';
+import { CartService } from 'src/app/service/cart.service';
 
 @Component({
   selector: 'app-product-details',
@@ -19,7 +20,7 @@ export class ProductDetailsComponent implements OnInit {
   public productsArray: Array<ProductClass> = []; // holds item with matching productId
 
 
-  constructor(private router: Router, private route: ActivatedRoute, private productService:ProductServiceService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private productService:ProductServiceService, private cartService: CartService) { }
 
   ngOnInit(): void {
     //this method will be called when the component loads, product will populate based on productId
@@ -70,8 +71,10 @@ export class ProductDetailsComponent implements OnInit {
   //  console.log("After push: " + this.productsArray);
    }
 
-}
+ }
 
-
+ addItemToCart(product:any){
+   this.cartService.addProductToCart(product);
+ }
 
 }

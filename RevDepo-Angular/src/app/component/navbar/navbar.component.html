@@ -10,7 +10,7 @@
 
 	</span>
 	<div *ngIf="router.url !='/checkout'">
-		<div *ngIf="checkLoggedIn()">
+		<div *ngIf="loggedIn">
 			<button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="sidenav.toggle()">
 				<mat-icon *ngIf="!opened">shopping_cart</mat-icon>
 				<mat-icon *ngIf="opened">arrow_forward_ios</mat-icon>
@@ -18,7 +18,7 @@
 			<button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="logout()"> Logout </button>
 		</div>
 	</div>
-	<button *ngIf="!checkLoggedIn()" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="loginRoute()"> Login </button>
+	<button *ngIf="!loggedIn" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="loginRoute()"> Login </button>
 </mat-toolbar>
 
 <!--side navigation for cart-->
@@ -28,14 +28,15 @@
 			<div *ngFor="let item of cart.items">
 				<app-cart-card [item]="item"></app-cart-card>
 			</div>
-		</div>
-		<h3 *ngIf="isEmpty">Cart is currently empty.</h3>
+		
+		<h3 *ngIf="cartIsEmpty">Cart is currently empty.</h3>
 		<mat-divider></mat-divider>
-		<div *ngIf="!isEmpty">
-			<h4>Total: {{getTotalPrice()}}</h4>
+		<div *ngIf="!cartIsEmpty">
+			<h4>Total: {{getTotalPrice()  | currency }}</h4>
 			<mat-divider></mat-divider>
 			<button mat-flat-button color="primary" (click)="checkoutRoute()" (click)="sidenav.toggle()">Checkout</button>
 		</div>
+	</div>
 	</mat-sidenav>
 	<mat-sidenav-content>
 		<router-outlet></router-outlet>

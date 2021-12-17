@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProductClass } from 'src/app/model/product-class';
 import { ProductServiceService } from 'src/app/service/product-service.service';
 import { InventoryClass } from 'src/app/model/inventory-class';
+import { CartService } from 'src/app/service/cart.service';
 
 @Component({
   selector: 'app-result-page',
@@ -17,8 +18,9 @@ export class ResultPageComponent implements OnInit {
   public inventoryList: Array<any> = []; //holds all items in inventory
   public productsArray: Array<ProductClass> = []; // holds items that are sorted by category
   public productArray: Array<ProductClass> = [];//holds all
+  public categoryTitle = String (this.route.snapshot.paramMap.get('category'));
 
-  constructor(private router: Router, private route: ActivatedRoute, private productService:ProductServiceService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private productService:ProductServiceService, private cartService: CartService) { }
 
   ngOnInit(): void {
     //this method will be called when the component loads, items will populate based on category
@@ -27,7 +29,7 @@ export class ResultPageComponent implements OnInit {
 
   //this method calls the getIProducts() method in the product service to retrieve all items
   public getIProduct(): void {
-     const categoryTitle = String (this.route.snapshot.paramMap.get('category'));
+    const categoryTitle = String (this.route.snapshot.paramMap.get('category'));
 
     this.productService.getIProduct().subscribe(
       (data) => {
@@ -44,6 +46,9 @@ export class ResultPageComponent implements OnInit {
     );
   }
 
+  addItemToCart(product:any){
+    this.cartService.addProductToCart(product);
+  }
 
   public getProduct(categoryTitle:string): void{
 

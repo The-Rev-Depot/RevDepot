@@ -34,9 +34,7 @@ export class LoginComponent implements OnInit {
       if (data.success){
         sessionStorage.setItem('userObject', JSON.stringify(data));
         this.cartService.setCart(data.object);
-        this.cartService.isLoggedIn = true; 
-        NavbarComponent.loggedIn = true;
-        
+        this.cartService.setIsLoggedIn(true);
         this.router.navigate([`/display-products`]);
       } else {
         this._invalidPasswordMessage = "Invalid password";
