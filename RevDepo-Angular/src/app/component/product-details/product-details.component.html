@@ -1,19 +1,41 @@
+<div *ngIf="productsArray" class="grid-container"></div>
+<!-- <a class="nav-link" routerLink="/">Home</a> -->
 
-<a class="nav-link" routerLink="/">Home</a>
+<br>
+<br>
 
-
-
-<div class="grid-container">
-
-
-
-  <div *ngFor = "let shirtPro of productsArray" class="product-card" (click)="moreInfo()">
-
-
-    <h2>ID#: {{shirtPro.productId}}</h2>
-    <p>Name: {{shirtPro.productName}}</p>
-    <p>Price: {{shirtPro.productPrice}}</p>
-    <p>On Sale: {{shirtPro.isOnSale}}</p>
-    <img src={{shirtPro.picUrl}}/>
-
+<div class="container mbtm">
+  <div class="row">
+    
+    <!-- displays full information about the product -->
+    <!-- initial hero link https://itelementaryschool.com/wp-content/uploads/2015/03/it_photo_84532.jpg -->
+    <div *ngFor = "let item of productsArray" class="col-lg-12">
+      <a class="nav-link"  routerLink="/result-page/{{item.productCategory}}">{{item.productCategory}} > </a> <!--BREADCRUMBS - Futher implementation is needed-->
+      
+      <br>
+      <br>
+      
+      
+      <h2>ID#: {{item.productId}}</h2>
+      <img src={{item.picUrl}} />
+      <br>
+      <h2>{{item.productName}}</h2>
+      <p>Price: {{item.productPrice | currency}}</p>
+      <p>Rating: {{item.productRating}}</p>
+      
+    <!-- <app-quantity-select></app-quantity-select> -->
+    <button class="override addBtn" (click)="addItemToCart(item)">
+      <mat-icon>add</mat-icon>
+    </button> Add to Cart
+    
+    <h2>Category</h2>
+    <a class="nav-link" routerLink="/result-page/{{item.productCategory}}">{{item.productCategory}}</a>
+    <br>
+    <br>
+    <h2>Item Description</h2>
+    <p>{{item.productDescription}}</p>
+    
+    
+  </div>
 </div>
+  

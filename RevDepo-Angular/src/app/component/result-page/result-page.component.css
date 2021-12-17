@@ -1,0 +1,59 @@
+.grid-container{
+  display: inline-grid;
+  grid-template-columns: repeat(5, 1fr);
+  /* width: auto; */
+  margin-top: 2em;
+  margin-left:3em;
+  gap: 4em;
+}
+
+.product-card {
+  max-width: 400px;
+}
+
+.product-card img{
+  max-width: 380px;
+  max-height: 380px;
+}
+
+.mbtm {
+  margin: 125px auto;
+}
+
+.textCenter {
+  text-align: center;
+  font-family: 'Staatliches', cursive !important;
+  font-size: 44px !important;
+}
+
+.fill {
+  width: 100%;
+  height: 100%;
+}
+
+.cardImg {
+  max-height: 300px !important;
+  max-width: 300px !important;
+  margin-bottom: 10px;
+}
+
+.mat {
+  border: 1px solid rgb(185, 185, 186);
+  box-shadow: 5px 5px 5px rgb(185, 185, 186);
+  margin: 15px;
+}
+
+
+.override {
+  border: none;
+  display: inline-flex;
+  vertical-align: middle;
+  line-height: normal;
+  background-color: rgb(253, 181, 21);
+  border-radius: 27px;
+  transition: 0.2s;
+}
+
+.override:hover {
+  transform: scale(1.2);
+}

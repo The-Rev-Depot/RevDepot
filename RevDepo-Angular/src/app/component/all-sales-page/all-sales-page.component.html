@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <h1 class="col-md-4 title">{{title}}</h1>
+    </div>
+    <div class="row justify-content-center mbtm">
+        <div class="col-md-4" *ngFor="let product of productsOnSale" routerLink="/product-details/{{product.productId}}">
+            <mat-card class="mat">
+                <img class="cardImg" src="{{ product.picUrl }}" />
+                <mat-card-title>{{ product.productName }}</mat-card-title>
+                <br>
+                <mat-card-title>NOW:  {{ product.productPrice | currency }} </mat-card-title>
+                <mat-card-actions>
+                    <button class="override addBtn">
+                        <mat-icon>add</mat-icon>
+                    </button> Add to Cart
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+</div>

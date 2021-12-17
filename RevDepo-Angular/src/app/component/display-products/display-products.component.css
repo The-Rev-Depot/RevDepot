@@ -4,3 +4,15 @@
   margin-top: 2em;
   gap: 4em;
 }
+
+.textCenter {
+  text-align: center;
+}
+
+.mbtm {
+  margin-bottom: 150px;
+}
+
+.mbtm2 {
+  margin-bottom: 75px;
+}

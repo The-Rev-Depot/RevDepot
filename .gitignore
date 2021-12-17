@@ -84,3 +84,7 @@ nbdist/
 Thumbs.db
 
 h2testing/
+backend/.classpath
+package-lock.json
+backend/target/classes/META-INF/maven/com/RevDepot/pom.properties
+backend/.classpath

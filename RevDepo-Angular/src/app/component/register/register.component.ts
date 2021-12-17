@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IUser } from 'src/app/model/user';
+import { CartService } from 'src/app/service/cart.service';
 import { UserServiceService } from 'src/app/service/user-service.service';
 
 @Component({
@@ -17,7 +18,7 @@ export class RegisterComponent implements OnInit {
   _invalidPasswordMessage: string = "";
   _isFound: boolean = false;
 
-  constructor(private userService: UserServiceService, private router:Router) { }
+  constructor(private userService: UserServiceService, private router:Router, private cartService: CartService) { }
 
   userAccount: IUser=
     {
@@ -27,7 +28,7 @@ export class RegisterComponent implements OnInit {
     firstName: '',
     lastName: '',
     email: '',
-    urlProPic: '',
+    urlProPic: 'https://picsum.photos/200',
     birthday: '',
   }
 
@@ -41,6 +42,7 @@ export class RegisterComponent implements OnInit {
       console.log(data)
       if (data.success){
         sessionStorage.setItem('userObject', JSON.stringify(data));
+        /* this.cartService.createCart(data.object); */
         this.router.navigate([`/display-products/`]);
       } else {
         alert("Failed to create a new user.");
@@ -74,8 +76,4 @@ export class RegisterComponent implements OnInit {
     this._password = "";
   }
 
-  // temporary and transfered to nabvar
-  logout(){
-    this.userService.logout();
-  }
 }

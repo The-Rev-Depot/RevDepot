@@ -1,6 +1,5 @@
 package com.models;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,12 +19,12 @@ import lombok.ToString;
 @Table(name = "product")
 @ToString
 public class Product {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name ="product_id")
+	@Column(name = "product_id")
 	private int productId;
-	@Column(name ="product_name")
+	@Column(name = "product_name")
 	private String productName;
 	@Column(name = "product_description")
 	private String productDescription;
