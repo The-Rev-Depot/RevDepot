@@ -12,9 +12,7 @@
                 <mat-card-title>NOW: {{ product.productPrice | currency }} </mat-card-title>
             </div>
             <mat-card-actions>
-                <button class="override addBtn" (click)="addItemToCart(product)">
-                    <mat-icon>add</mat-icon>
-                </button> Add to Cart
+                <app-quantity-select [product]="product"></app-quantity-select>
             </mat-card-actions>
         </mat-card>
     </div>

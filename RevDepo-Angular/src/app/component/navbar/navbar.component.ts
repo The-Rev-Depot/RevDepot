@@ -72,7 +72,7 @@ export class NavbarComponent implements OnInit {
   logout(){
     //this will hopefully be replaced by a logout() function in userservice
     this.userService.logout();
-    this.loggedIn = false;
+    this.cartService.setIsLoggedIn(false);
     this.opened = false;
     this.sidenav.toggle();
   }

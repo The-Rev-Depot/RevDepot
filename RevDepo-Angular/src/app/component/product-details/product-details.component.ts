@@ -17,7 +17,7 @@ export class ProductDetailsComponent implements OnInit {
   //initializing arrays to hold data retrieved from database
   public searchResults:any = [];
   public inventoryList: Array<any> = []; //holds all items in inventory
-  public productsArray: Array<ProductClass> = []; // holds item with matching productId
+  public productsArray: Array<any> = []; // holds item with matching productId
 
 
   constructor(private router: Router, private route: ActivatedRoute, private productService:ProductServiceService, private cartService: CartService) { }

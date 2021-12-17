@@ -17,9 +17,6 @@ export class CartCardComponent implements OnInit {
   ngOnInit(): void {
     console.log('when card is made',this.item.product);
   }
-  removeItem(){
-    this.cartService.removeItem(this.item);
-   
-  }
+  
  
 }
