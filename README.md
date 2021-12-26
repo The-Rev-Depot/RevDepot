@@ -61,7 +61,7 @@
 * Able to see transaction history
 
 ## Roles/Contribution:
-Roel Crodua - Added login functionality and tested using JUnit and Mockito. Utilized JWT session management and implemented password hashing using BCrypt.
+**Roel Crodua** - Added login functionality and tested using JUnit and Mockito. Utilized JWT session management and implemented password hashing using BCrypt.
 
 
 ## Programs/Libraries used:
