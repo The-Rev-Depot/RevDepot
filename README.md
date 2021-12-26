@@ -60,8 +60,9 @@
 * Add real payment like cash, credit card, paypal, etc.
 * Able to see transaction history
 
-## Roles:
-(Fill In Member Roles)
+## Roles/Contribution:
+Roel Crodua - Added login functionality and tested using JUnit and Mockito. Utilized JWT session management and implemented password hashing using BCrypt.
+
 
 ## Programs/Libraries used:
 
