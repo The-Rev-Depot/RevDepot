@@ -63,6 +63,7 @@
 ## Roles/Contribution:
 **Roel Crodua** - Added login functionality and tested using JUnit and Mockito. Utilized JWT session management and implemented password hashing using BCrypt. Incorporate email service functionality to send email upon registration and for password reset for future use.
 
+** Jesse Lauesen ** - Scrum Master. Worked on the Sales/Deals user story. Wrote custom query to retrieve all products with a sale_id > 0. Wrote JUnit tests for Sales query. Created Angular components to display Products currently on sale utilizing structural directives. Added Bootstrap to Sales/Deals and results page to display Material Cards for our products. Created Hero image for landing page.
 
 ## Programs/Libraries used:
 
