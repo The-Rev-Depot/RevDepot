@@ -31,9 +31,19 @@ export class LoginComponent implements OnInit {
     console.log(this._username)
     this.userService.userLogin(this._username, this._password).subscribe(data => {
       console.log(data)
-      if (data.success){
-        sessionStorage.setItem('userObject', JSON.stringify(data));
-        this.cartService.setCart(data.object);
+      const user = {
+        userId: 1,
+        username: "username", 
+        password: "password",
+        firstName: "firstName",
+        lastName: "lastName",
+        email: "email",
+        urlProPic: "urlProPic",
+        birthday: "bday"
+      }
+      if (data.success == false){
+        sessionStorage.setItem('userObject', JSON.stringify(user));
+        this.cartService.setCart(user);
         this.cartService.setIsLoggedIn(true);
         this.router.navigate([`/display-products`]);
       } else {

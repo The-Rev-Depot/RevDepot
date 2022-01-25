@@ -6,6 +6,8 @@ import com.services.UserService;
 import com.utility.EmailService;
 import com.utility.JwtUtility;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -60,13 +62,15 @@ public class UserController {
     @PostMapping("login")
     public Response login(@RequestBody User user) {
         User currentUser = this.userService.login(user);
+        System.out.println(currentUser);
         if (currentUser == null) {
             return new Response(false, "Failure to login", null);
         } else {
             return new Response(true, jwtUtility.genToken(currentUser), currentUser);
         }
     }
-
+    
+    
     /**
      * Method used to get user using the userId as input
      *
