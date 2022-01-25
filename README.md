@@ -65,6 +65,8 @@
 
 **Jesse Lauesen** - Scrum Master. Worked on the Sales/Deals user story. Wrote custom query to retrieve all products with a sale_id > 0. Wrote JUnit tests for Sales query. Created Angular components to display Products currently on sale utilizing structural directives. Added Bootstrap to Sales/Deals and results page to display Material Cards for our products. Created Hero image for landing page.
 
+**Freddie TadeoLomelin** - Frontend designer. Worked on displaying products user story. Wrote Junit test for all product query. Created several Angular components like home page, result page, and product detail page to display products and their infomation with data binding such as string interpretation. Connected components with active routing to route to pages that only display the queried infomation looked up. 
+
 ## Programs/Libraries used:
 
 ### BackEnd:
