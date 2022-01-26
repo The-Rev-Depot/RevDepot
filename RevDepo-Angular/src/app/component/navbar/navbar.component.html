@@ -32,7 +32,7 @@
 		<div *ngIf="!cartIsEmpty">
 			<h4>Total: {{getTotalPrice()  | currency }}</h4>
 			<mat-divider></mat-divider>
-			<button mat-flat-button color="primary" (click)="checkoutRoute()" (click)="sidenav.toggle()">Checkout</button>
+			<button mat-flat-button color="primary" id="checkoutBTN" (click)="checkoutRoute()" (click)="sidenav.toggle()">Checkout</button>
 		</div>
 	</div>
 	</mat-sidenav>
