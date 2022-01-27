@@ -7,7 +7,7 @@ INSERT INTO product(product_id, product_name, product_description, pic_url, prod
 INSERT INTO product(product_id, product_name, product_description, pic_url, product_price, product_rating, product_category, sale_id) VALUES (7, 'pink t-shirt', 'made of cotton', 'https://www.picclickimg.com/d/l400/pict/184892613206_/Code-Like-a-Boss-T-Shirt-Sz-S-Small.jpg', 19.99, 4, 'clothes', 15);
 INSERT INTO product(product_id, product_name, product_description, pic_url, product_price, product_rating, product_category, sale_id) VALUES (8, 'purple t-shirt', 'made of cotton', 'https://www.picclickimg.com/d/l400/pict/184892613206_/Code-Like-a-Boss-T-Shirt-Sz-S-Small.jpg', 18.99, 5, 'clothes', 15);
 INSERT INTO product(product_id, product_name, product_description, pic_url, product_price, product_rating, product_category, sale_id) VALUES (9, 'teal t-shirt', 'made of cotton', 'https://www.picclickimg.com/d/l400/pict/184892613206_/Code-Like-a-Boss-T-Shirt-Sz-S-Small.jpg', 17.99, 3, 'clothes', 15);
-INSERT INTO item(item_id, quantity, product_id) VALUES (1, 3, 1);
+
 INSERT INTO inventory(inventory_id, product_id, quantity) VALUES (1, 1, 20);
 
 INSERT INTO user (username, password, first_name, last_name, email, url_pro_pic, birthday) VALUES ('User1', '12345', 'user', 'lastname', 'email@email.com', 'https://www.picclickimg.com/d/l400/pict/184892613206_/Code-Like-a-Boss-T-Shirt-Sz-S-Small.jpg', '1990-12-24');
